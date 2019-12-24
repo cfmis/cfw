@@ -589,8 +589,10 @@
                     <td style="text-align:right"><label for="lblDep">部門編號</label></td>
                     <%--<td><input type="text" class="easyui-validatebox" id="txtDep" name="txtDep" style="width:120px" /></td>--%>
                     <td><input id="selPrdDep" name="selPrdDep" class="easyui-combobox" data-options="width:120, valueField: 'dep_id', textField: 'dep_cdesc', url: '../ashx/Base_Select.ashx/GetItem?paraa=pd_mo_plan_dep&parab=list'" /></td>
+                    <td></td>
                     <td style="text-align:right"><label for="lblProductType">工作類型</label></td>
                     <td><input id="selProductType" name="selProductType" style="float:none" class="easyui-combobox" data-options="width:120, valueField: 'work_type_id', textField: 'work_type_desc', url: '../ashx/Base_Select.ashx/GetItem?paraa=pd_mo_plan_work_type&parab=list'" /></td>
+                    <td></td>
                 </tr>
                 <tr>
                     <td style="text-align:right"><label for="lblMo">制單編號</label></td>
