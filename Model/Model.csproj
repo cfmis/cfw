@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{99F1136A-D92B-498C-9A37-327B6646199F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Leyp.Model</RootNamespace>
+    <AssemblyName>Model</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Accounts.cs" />
+    <Compile Include="Authority.cs" />
+    <Compile Include="Buy\BuyOrder.cs" />
+    <Compile Include="Buy\BuyOrderDetail.cs" />
+    <Compile Include="Buy\BuyPay.cs" />
+    <Compile Include="Buy\BuyReceipt.cs" />
+    <Compile Include="Buy\BuyReceiptDetail.cs" />
+    <Compile Include="Buy\BuyReturn.cs" />
+    <Compile Include="Buy\BuyReturnDetail.cs" />
+    <Compile Include="Buy\VBuyOrder.cs" />
+    <Compile Include="Buy\VBuyOrderDetail.cs" />
+    <Compile Include="Buy\VBuyPay.cs" />
+    <Compile Include="Buy\VBuyReceipt.cs" />
+    <Compile Include="Buy\VBuyReceiptDetail.cs" />
+    <Compile Include="Buy\VBuyReturn.cs" />
+    <Compile Include="Buy\VBuyReturnDetail.cs" />
+    <Compile Include="Delivery.cs" />
+    <Compile Include="Depot.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="GroupAuthority.cs" />
+    <Compile Include="Log.cs" />
+    <Compile Include="Notice.cs" />
+    <Compile Include="PhotoFlow.cs" />
+    <Compile Include="Products.cs" />
+    <Compile Include="ProductsBrand.cs" />
+    <Compile Include="ProductsPhoto.cs" />
+    <Compile Include="ProductsStock.cs" />
+    <Compile Include="ProductsType.cs" />
+    <Compile Include="ProductsUserType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sales\SalesDetail.cs" />
+    <Compile Include="Sales\SalesDispatch.cs" />
+    <Compile Include="Sales\SalesOrder.cs" />
+    <Compile Include="Sales\SalesOut.cs" />
+    <Compile Include="Sales\SalesOutDetail.cs" />
+    <Compile Include="Sales\SalesPlatform.cs" />
+    <Compile Include="Sales\SalesRecord.cs" />
+    <Compile Include="Sales\SalesReturn.cs" />
+    <Compile Include="Sales\SalesReturnDetail.cs" />
+    <Compile Include="Sales\SaOrderTrace.cs" />
+    <Compile Include="Sales\VSalesDetail.cs" />
+    <Compile Include="Sales\VSalesDispatch.cs" />
+    <Compile Include="Sales\VSalesOrder.cs" />
+    <Compile Include="Sales\VSalesOut.cs" />
+    <Compile Include="Sales\VSalesOutDetail.cs" />
+    <Compile Include="Sales\VSalesRecord.cs" />
+    <Compile Include="Sales\VSalesReturn.cs" />
+    <Compile Include="Sales\VSalesReturnDetail.cs" />
+    <Compile Include="ServiceInfo.cs" />
+    <Compile Include="ServiceType.cs" />
+    <Compile Include="Shop.cs" />
+    <Compile Include="ShopUser.cs" />
+    <Compile Include="Stock\AppendStock.cs" />
+    <Compile Include="Stock\AppendStockDetail.cs" />
+    <Compile Include="Stock\Inventory.cs" />
+    <Compile Include="Stock\OutStock.cs" />
+    <Compile Include="Stock\OutStockDetail.cs" />
+    <Compile Include="Stock\StTransationRec.cs" />
+    <Compile Include="Stock\TransferringOrder.cs" />
+    <Compile Include="Stock\VAppendStock.cs" />
+    <Compile Include="Stock\VAppendStockDetail.cs" />
+    <Compile Include="Stock\VInventory.cs" />
+    <Compile Include="Stock\VOutStock.cs" />
+    <Compile Include="Stock\VOutStockDetail.cs" />
+    <Compile Include="Stock\VTransferringOrder.cs" />
+    <Compile Include="StoreHouse.cs" />
+    <Compile Include="StoreHouseDetail.cs" />
+    <Compile Include="Supplier.cs" />
+    <Compile Include="User.cs" />
+    <Compile Include="UserType.cs" />
+    <Compile Include="UserTypeSubClass.cs" />
+    <Compile Include="View\SessionUser.cs" />
+    <Compile Include="View\UserSubClassView.cs" />
+    <Compile Include="View\VProducts.cs" />
+    <Compile Include="View\VProductsStock.cs" />
+    <Compile Include="View\VServiceInfo.cs" />
+    <Compile Include="View\VstoreHouse.cs" />
+    <Compile Include="View\Vuser.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="用户权限群组.cd" />
+    <None Include="类说明图.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

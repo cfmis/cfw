@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="宋体" Size="9" />
+  <Class Name="Leyp.Model.User" HideInheritanceLine="true">
+    <Position X="5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>User.cs</FileName>
+      <HashCode>AAQACAAAACAghEEAAGIAAAAAIAGAAAAmBSEABCAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.Group" HideInheritanceLine="true">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Group.cs</FileName>
+      <HashCode>AAQACAAAAAAgAAAAABAAAAAAAAAAAAAEAAAAAAAAAAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.UserType" Collapsed="true" HideInheritanceLine="true">
+    <Position X="6.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserType.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAABAhAAAABCAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.Authority" HideInheritanceLine="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Authority.cs</FileName>
+      <HashCode>AgAAAAAAAAAgAgAAAAAAAAAAAAAAAAAEAAAAAAEABAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.GroupAuthority" HideInheritanceLine="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>GroupAuthority.cs</FileName>
+      <HashCode>AgQACAAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

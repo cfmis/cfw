@@ -1,0 +1,12 @@
+
+0. BuyOrder_Add.aspx 添加采购订单
+
+1. BuyReceip_Add.aspx添加采购入库
+
+2.AjaxBuyReceipt_Add.aspx 采购入库表头添加
+
+3.AjaxBuyReceiptDetail_load_Add_Edit_Del.aspx 初始装载BuyReceiptDetail或 添加 编辑...
+
+4.Manager_BuyReceipOrder.aspx采购入库审核
+
+

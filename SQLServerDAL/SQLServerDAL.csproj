@@ -1,0 +1,202 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C93C7252-D708-4925-B8ED-8CE52CBD63C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SQLServerDAL</RootNamespace>
+    <AssemblyName>SQLServerDAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath />
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountsDAL.cs" />
+    <Compile Include="AuthorityDAL.cs" />
+    <Compile Include="BaseDataDAL.cs" />
+    <Compile Include="Buy\BuyOrderDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Buy\BuyOrderDetailDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Buy\BuyPayDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Buy\BuyReceiptDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Buy\BuyReceiptDetailDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Buy\BuyReturnDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Buy\BuyReturnDetailDAL.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Buy\Factory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DeliveryDAL.cs" />
+    <Compile Include="Factory.cs" />
+    <Compile Include="Factory_New.cs" />
+    <Compile Include="GroupAuthorityDAL.cs" />
+    <Compile Include="GroupDAL.cs" />
+    <Compile Include="LogDAL.cs" />
+    <Compile Include="NoticeDAL.cs" />
+    <Compile Include="PhotoFlowDAL.cs" />
+    <Compile Include="ProductsBrandDAL.cs" />
+    <Compile Include="ProductsDAL.cs" />
+    <Compile Include="ProductsMoArrangeDAL.cs" />
+    <Compile Include="ProductsPhotoDAL.cs" />
+    <Compile Include="ProductsStockDAL.cs" />
+    <Compile Include="ProductsStockDAL_New.cs" />
+    <Compile Include="ProductsTypeDAL.cs" />
+    <Compile Include="ProductsUserTypeDAL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PublicAppDAL.cs" />
+    <Compile Include="Sales\Factory.cs" />
+    <Compile Include="Sales\Factory_New.cs" />
+    <Compile Include="Sales\SaColorGroupFindDAL.cs" />
+    <Compile Include="Sales\SalesQueryPublicDAL.cs" />
+    <Compile Include="Sales\SalesDetailDAL.cs" />
+    <Compile Include="Sales\SalesDispatchDAL.cs" />
+    <Compile Include="Sales\SalesOrderDAL.cs" />
+    <Compile Include="Sales\SalesOutDAL.cs" />
+    <Compile Include="Sales\SalesOutDetailDAL.cs" />
+    <Compile Include="Sales\SalesPlatformDAL.cs" />
+    <Compile Include="Sales\SalesRecordDAL.cs" />
+    <Compile Include="Sales\SalesReturnDAL.cs" />
+    <Compile Include="Sales\SalesReturnDetailDAL.cs" />
+    <Compile Include="Sales\SaOrderTestTraceDAL.cs" />
+    <Compile Include="Sales\SaQuotationQueryDAL.cs" />
+    <Compile Include="ServiceInfoDAL.cs" />
+    <Compile Include="ServiceTypeDAL.cs" />
+    <Compile Include="Service\AppendStockService.cs" />
+    <Compile Include="Service\BuyReceiptService.cs" />
+    <Compile Include="Service\BuyReturnService.cs" />
+    <Compile Include="Service\InventoryService.cs" />
+    <Compile Include="Service\OutStockService.cs" />
+    <Compile Include="Service\SalesOutService.cs" />
+    <Compile Include="Service\SalesReturnService.cs" />
+    <Compile Include="Service\TransferringService.cs" />
+    <Compile Include="ShopDAL.cs" />
+    <Compile Include="SQLHelp.cs" />
+    <Compile Include="SQLHelper.cs" />
+    <Compile Include="Stock\AppendStockDAL.cs" />
+    <Compile Include="Stock\AppendStockDetailDAL.cs" />
+    <Compile Include="Stock\Factory.cs" />
+    <Compile Include="Stock\InventoryDAL.cs" />
+    <Compile Include="Stock\OutStockDAL.cs" />
+    <Compile Include="Stock\OutStockDetailDAL.cs" />
+    <Compile Include="Stock\TransferringOrderDAL.cs" />
+    <Compile Include="StoreHouseDAL.cs" />
+    <Compile Include="StoreHouseDetailDAL.cs" />
+    <Compile Include="SupplierDAL.cs" />
+    <Compile Include="UserDAL.cs" />
+    <Compile Include="UserTypeDAL.cs" />
+    <Compile Include="UserTypeSubClassDAL.cs" />
+    <Compile Include="VProductsDAL.cs" />
+    <Compile Include="VstoreHouseDAL.cs" />
+    <Compile Include="VuserDAL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{99F1136A-D92B-498C-9A37-327B6646199F}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

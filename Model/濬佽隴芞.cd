@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="宋体" Size="9" />
+  <Class Name="Leyp.Model.Authority" Collapsed="true">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Authority.cs</FileName>
+      <HashCode>AgAAAAAAAAAgAgAAAAAAAAAAAAAAAAAEAAAAAAEABAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.Group" Collapsed="true">
+    <Position X="0.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Group.cs</FileName>
+      <HashCode>AAQACAAAAAAgAAAAABAAAAAAAAAAAAAEAAAAAAAAAAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.GroupAuthority" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>GroupAuthority.cs</FileName>
+      <HashCode>AgQACAAAAAAAggAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.Log" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Log.cs</FileName>
+      <HashCode>QAAAAAAAAAAgAAACCAAAAAABAAAAAAAEAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.Products" Collapsed="true">
+    <Position X="2.75" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Products.cs</FileName>
+      <HashCode>QMAAAgAEARUgAAAACEEIAABgCCAIAAEkABAAwAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.ProductsBrand" Collapsed="true">
+    <Position X="3.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ProductsBrand.cs</FileName>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAACAAAAABAABAABCAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.ProductsType" Collapsed="true">
+    <Position X="3.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ProductsType.cs</FileName>
+      <HashCode>AAAAAAAAAAAgAAAAAEAAIAgAAAAAABAlAAAABCAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.Shop" Collapsed="true">
+    <Position X="5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Shop.cs</FileName>
+      <HashCode>QAAAAAAAAgAgAAAAAAIAAAAAAAAAAiAEAQAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.User" Collapsed="true">
+    <Position X="5.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>User.cs</FileName>
+      <HashCode>AAQACAAAACAghEEAAGIAAAAAIAGAAAAmBSEABCAQAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.ShopUser" Collapsed="true">
+    <Position X="4.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>ShopUser.cs</FileName>
+      <HashCode>AAAAAAAAAgAAgAAAAAIAAAAAAAAAAAAAAQAAAAAEAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Leyp.Model.UserType" Collapsed="true">
+    <Position X="4" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>UserType.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAAAABAhAAAABCAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+</ClassDiagram>

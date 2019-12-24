@@ -1,0 +1,2 @@
+E:\downcode\Leyipai\BLL\obj\Debug\ResolveAssemblyReference.cache
+E:\downcode\Leyipai\BLL\obj\Debug\BLL.dll

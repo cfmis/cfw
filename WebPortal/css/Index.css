@@ -1,0 +1,77 @@
+﻿body {
+	background-color: #ffffff;
+	SCROLLBAR-FACE-COLOR: #ededed;
+	SCROLLBAR-HIGHLIGHT-COLOR: #fafafa;
+	SCROLLBAR-SHADOW-COLOR: #666666;
+	SCROLLBAR-3DLIGHT-COLOR: #ffffff;
+	SCROLLBAR-ARROW-COLOR: #777777;
+	SCROLLBAR-TRACK-COLOR: #fcfcfc;
+	SCROLLBAR-DARKSHADOW-COLOR: #ffffff;
+	overflow:hidden;
+}
+body {
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+body,td,th ,div{
+	font-size: 12px;
+	color: #111111;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+.button30 { background: url(../images/btn_30.gif); border-style: none; cursor: hand; font-size: 12px; height: 22px; line-height: 22px; text-align: center; width: 30px; }
+.button60 { background: url(../images/btn_60.gif); border-style: none; cursor: hand; font-size: 12px; height: 22px; line-height: 22px; text-align: center; width: 60px; }
+.button80 { background: url(../images/btn_80.gif); border-style: none; cursor: hand; font-size: 12px; height: 22px; line-height: 22px; text-align: center; width: 80px; }
+.BtnNew { background: url(../images/BtnNew.gif); border-style: none; cursor: hand; font-size: 12px; height: 27px; line-height: 22px; text-align: center; width: 104px;}
+.Btn80 { background: url(../images/BtnImg/button1.gif); border-style: none; cursor: hand; font-size: 12px; height: 22px; line-height: 22px; text-align: center; width: 86px; }
+.MaxBtn{background: url(../images/BtnImg/Btn11.gif); border-style: none; cursor: hand; font-size: 14px; height:35px; width:144px; line-height:35px; font-weight:bold; text-align:center; letter-spacing:3px; color:#f74c00; }
+.MaxBtn:hover{background: url(../images/BtnImg/Btn11F.gif); border-style: none; cursor: hand; font-size: 14px; height:35px; width:144px; line-height:35px; font-weight:bold; text-align:center; letter-spacing:3px; color:#f74c00; }
+.BtnFav{background: url(../images/BtnImg/Btn12.gif); border-style: none; cursor: hand; height:25px; width:90px; }
+.BtnFav:hover{background: url(../images/BtnImg/Btn12F.gif); border-style: none; cursor: hand; height:25px; width:90px;}
+.BtnLnk60:hover{ background: url(../images/btn_60F.gif); border-style: none; cursor: hand; font-size: 12px; height: 22px; line-height: 22px; text-align: center; width: 60px; }
+.PageBtn{ border:none; background:none;height:auto; height:15px;}
+
+.Btn5{background: url(../images/BtnImg/button5.gif); border-style: none; cursor: hand; height: 21px; line-height: 21px; text-align: center; width:86px; background-position:top}
+.Btn5:hover{background: url(../images/BtnImg/button5.gif); border-style: none; cursor: hand; height: 21px; line-height: 21px; text-align: center; width: 86px; background-position:bottom}
+.Btn6{background: url(../images/BtnImg/button6.gif); border-style: none; cursor: hand; height: 22px; line-height: 22px; text-align: center; width: 78px; background-position:top}
+.Btn6:hover{background: url(../images/BtnImg/button6.gif); border-style: none; cursor: hand; height: 22px; line-height: 22px; text-align: center; width: 78px; background-position:bottom}
+.Btn7{background: url(../images/BtnImg/BtnA.gif); border-style: none; cursor: hand;  height: 22px; line-height: 22px; text-align: center; width: 86px; background-position:top}
+.Btn7:hover{background: url(../images/BtnImg/BtnA.gif); border-style: none; cursor: hand;  height: 22px; line-height:22px; text-align: center; width: 86px; background-position:bottom}
+.Btn8{background: url(../images/BtnImg/button8.gif); border-style: none; cursor: hand;  height: 26px; line-height: 26px; text-align: center; width: 81px; background-position:top}
+.Btn8:hover{background: url(../images/BtnImg/button8.gif); border-style: none; cursor: hand;  height: 26px; line-height:26px; text-align: center; width: 81px; background-position:bottom}
+input{ border: 1px solid #808080; font-family: Geneva, Arial, Helvetica, sans-serif; font-size: 12px;color:#333333;}
+
+.logintext{ border:1px solid #0470CA; height:14px; width:100px; background:#E2F2FE;}
+.logintext:hover{background:#ffffff;}
+.lbotton{BORDER-RIGHT: 0px;	BORDER-TOP: 0px;FONT-SIZE: 12px;BACKGROUND: url(../images/buttonbg.gif) no-repeat;	BORDER-LEFT: 0px;WIDTH: 55px;CURSOR: hand;LINE-HEIGHT: 23px;	BORDER-BOTTOM: 0px;	HEIGHT: 19px;	color:#ffffff;}
+a:link{color: #333333; text-decoration:none;}
+a:hover { color: #003399; font-size: 12px; text-decoration: none; }
+a:active { color: #0099CC; font-size: 12px; text-decoration: none; }
+a:visited{text-decoration:none;color: #333333;}
+textarea{ border: 1px solid #808080; overflow: auto;font-family: Geneva, Arial, Helvetica, sans-serif; font-size: 12px; line-height:18px; overflow-x:hidden;color:#333333;}
+.TopLeft{ width:217px; height:31px; background:url(../Images/top-2.gif) no-repeat;}
+.TopInfo{ padding-left:30px; padding-top:6px;filter:Dropshadow(color=#ffffff,offX=1,offY=1);height:20px;}
+.TopBg{background:url(../Images/top-3.gif) repeat-x;}
+.TopRightImg{width:75px; background:url(../Images/top-5.gif) no-repeat;}
+.TopRightBg{background:url(../Images/top-6.gif) repeat-x; width:100px;}
+.TopTxt{padding-top:7px; padding-left:3px; padding-right:3px;filter:Dropshadow(color=#E1F0FF,offX=1,offY=1);height:20px;}
+.TopAle{width:39px; height:31px; background:url(../Images/top-4.gif) no-repeat;}
+
+.txtline{border:none; border-bottom:1px solid #808080; background:none;}
+.TxtLine2{ border:1px solid #808080;}
+.msdiv{ height: 100%; overflow: hidden; table-layout: fixed; width: 100%; }
+.sdiv{  width: 100%; height: 100%; overflow: auto; table-layout: fixed;}
+.cmdrow{ background-color: #f1f1f1; height: 30px; text-align: center; }
+.WinCmdRow{height:50px; text-align:center; padding-top:20px;}
+.TabFix{width:100%;height:100%; table-layout:fixed;}
+.TabW100Fix{width:100%;table-layout:fixed;}
+.TabOnlyFix{table-layout:fixed;}
+.TabFixBg{width:100%;height:100%; table-layout:fixed; background:#f1f1f1;}
+.TabFixBBg{width:100%;height:100%; table-layout:fixed; background:#ffffff;}
+.CommonTxt{width:180px;}
+.TabNoFix{width:100%;height:100%;}
+.heard{height:23px;background:#FFF url(../Images/header-opened.png) repeat-x;color:#000;padding-top:2px;font-weight:bold;}
+.Pager{ height:35px; text-align:right;}
+.MsgDiv{border:1px solid #808080; background:#fafafa; padding:4px; height:100%; width:100%; word-wrap:break-word;}
+.BillDiv{border:1px solid #808080; background:#fafafa; padding:4px; word-wrap:break-word; }

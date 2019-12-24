@@ -1,0 +1,123 @@
+HTML {
+	OVERFLOW-Y: scroll
+}
+BODY {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #dde4ea; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; FONT-FAMILY: Tahoma,Arial,Helvetica,Sans-Serif
+}
+IMG {
+	VERTICAL-ALIGN: middle; BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; BORDER-BOTTOM-STYLE: none
+}
+A:link {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #0066cc; TEXT-DECORATION: none
+}
+A:hover {
+	COLOR: #333333; TEXT-DECORATION: underline
+}
+A:active {
+	COLOR: #0066cc; TEXT-DECORATION: underline
+}
+UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 3px; LINE-HEIGHT: 20px; PADDING-TOP: 0px
+}
+LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 15px; PADDING-TOP: 0px; LIST-STYLE-TYPE: disc
+}
+LI A:link {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+LI A:visited {
+	COLOR: #333333; TEXT-DECORATION: none
+}
+LI A:hover {
+	COLOR: #333333; TEXT-DECORATION: underline
+}
+LI A:active {
+	COLOR: #333333; TEXT-DECORATION: underline
+}
+IMG {
+	BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; VERTICAL-ALIGN: middle; BORDER-RIGHT-WIDTH: 0px
+}
+#desktop_config {
+	PADDING-TOP: 5px
+}
+#desktop_config IMG {
+	CURSOR: pointer
+}
+#overlay {
+	DISPLAY: none; Z-INDEX: 10000; BACKGROUND: #000; FILTER: alpha(opacity=50); LEFT: 0px; POSITION: absolute; TOP: 0px; HEIGHT: 100%; opacity: 0.5; moz-opacity: 0.5
+}
+.dialogBlock {
+	CLEAR: both; Z-INDEX: 10002; MARGIN: 10px auto; POSITION: absolute; TOP: 100px
+}
+.dialogBlock .menu {
+	FLOAT: left; WIDTH: 120px
+}
+.dialogBlock .menu A {
+	BORDER-RIGHT: white 1px solid; PADDING-RIGHT: 10px; BORDER-TOP: white 1px solid; DISPLAY: block; PADDING-LEFT: 10px; BACKGROUND: none transparent scroll repeat 0% 0%; MARGIN-BOTTOM: 5px; PADDING-BOTTOM: 3px; BORDER-LEFT: white 1px solid; COLOR: #645a44; PADDING-TOP: 3px; BORDER-BOTTOM: white 1px solid; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+.dialogBlock .menu A:hover {
+	BORDER-LEFT-COLOR: #99cc00; BACKGROUND: url(bg_input_btn_hover.png) #f4fadf; BORDER-BOTTOM-COLOR: #80aa00; COLOR: #395500; BORDER-TOP-COLOR: #99cc00; TEXT-DECORATION: none! important; BORDER-RIGHT-COLOR: #80aa00
+}
+.dialogBlock .menu .current {
+	BORDER-LEFT-COLOR: #c8c4bb; BACKGROUND: url(bg_input_btn.png) #f4fbe1; BORDER-BOTTOM-COLOR: #aba498; BORDER-TOP-COLOR: #c8c4bb; BORDER-RIGHT-COLOR: #aba498
+}
+.dialogBlock .subContent {
+	BORDER-RIGHT: #8fabc1 1px solid; BORDER-TOP: #8fabc1 1px solid; BACKGROUND: url(bg_input_text.png) white repeat-x left top; FLOAT: right; BORDER-LEFT: #8fabc1 1px solid; WIDTH: 500px; COLOR: #663300; BORDER-BOTTOM: #8fabc1 1px solid
+}
+.module {
+	BORDER-RIGHT: #dedcd8 1px solid; BORDER-TOP: #dedcd8 1px solid; BACKGROUND: white; MARGIN-BOTTOM: 10px; MARGIN-LEFT: 10px; BORDER-LEFT: #dedcd8 1px solid; BORDER-BOTTOM: #dedcd8 1px solid
+}
+.moduleHeader {
+	PADDING-RIGHT: 1%; PADDING-LEFT: 1%; FONT-WEIGHT: normal; FONT-SIZE: 12px; BACKGROUND: #f4f3f0; PADDING-BOTTOM: 3px; MARGIN: 0px; OVERFLOW: hidden; WIDTH: 98%; LINE-HEIGHT: 14px; PADDING-TOP: 3px; BORDER-BOTTOM: #dedcd8 1px dotted
+}
+.moduleHeader .icon {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; PADDING-TOP: 0px
+}
+.moduleHeader .text {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; FONT-WEIGHT: bold; FLOAT: left; PADDING-BOTTOM: 3px; CURSOR: pointer; PADDING-TOP: 3px
+}
+.moduleHeader .title {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; FONT-WEIGHT: bold; FLOAT: left; PADDING-BOTTOM: 2px; LINE-HEIGHT: 16px; PADDING-TOP: 2px
+}
+.moduleHeader .option {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; FLOAT: right; PADDING-BOTTOM: 2px; CURSOR: pointer; PADDING-TOP: 2px; TEXT-DECORATION: none
+}
+.moduleHeader .close {
+	PADDING-RIGHT: 3px; DISPLAY: none; PADDING-LEFT: 3px; FLOAT: right; PADDING-BOTTOM: 2px; CURSOR: pointer; PADDING-TOP: 2px; TEXT-DECORATION: none
+}
+.module_body {
+	PADDING-RIGHT: 1%! important; PADDING-LEFT: 1%! important; FONT-SIZE: 9pt; PADDING-BOTTOM: 10px! important; MARGIN: 0px; OVERFLOW: hidden! important; WIDTH: 98%! important; PADDING-TOP: 10px! important
+}
+.moduleFooter {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FONT-SIZE: 12px; MARGIN-BOTTOM: 10px; PADDING-BOTTOM: 0px; PADDING-TOP: 0px; TEXT-ALIGN: center
+}
+.module_page {
+	DISPLAY: none
+}
+.module_div {
+	OVERFLOW: hidden
+}
+.PageLinkDisable {
+	COLOR: #cccccc! important
+}
+.listColor {
+	BORDER-RIGHT: #8fabc1 1px solid; BORDER-TOP: #8fabc1 1px solid; BORDER-LEFT: #8fabc1 1px solid; COLOR: #003366; BORDER-BOTTOM: #8fabc1 1px solid
+}
+.listColor HR {
+	BORDER-BOTTOM: #8fabc1 1px solid
+}
+.listColor .moduleHeader {
+	BACKGROUND: url(list_hd_bg.gif) #e3eef2 repeat-x left top; BORDER-BOTTOM: #8fabc1 1px solid
+}
+.listColor .moduleHeaderCollapsed {
+	BORDER-BOTTOM-WIDTH: 0px
+}
+.listColor .module_body {
+	BACKGROUND: #f4f8f9
+}
+.listColor .bright {
+	COLOR: #003366! important
+}

@@ -1,0 +1,15 @@
+C:\Users\yuqin\Desktop\Leyipai\Model\bin\Release\Model.dll
+C:\Users\yuqin\Desktop\Leyipai\Model\bin\Release\Model.pdb
+C:\Users\yuqin\Desktop\Leyipai\Model\obj\Release\ResolveAssemblyReference.cache
+C:\Users\yuqin\Desktop\Leyipai\Model\obj\Release\Model.dll
+C:\Users\yuqin\Desktop\Leyipai\Model\obj\Release\Model.pdb
+C:\Users\yuqin\Desktop\Leyipai\Model\bin\Debug\Model.dll
+C:\Users\yuqin\Desktop\Leyipai\Model\bin\Debug\Model.pdb
+C:\Users\yuqin\Desktop\Leyipai\Model\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\yuqin\Desktop\Leyipai\Model\obj\Debug\Model.dll
+C:\Users\yuqin\Desktop\Leyipai\Model\obj\Debug\Model.pdb
+E:\downcode\Leyipai\Model\bin\Debug\Model.dll
+E:\downcode\Leyipai\Model\bin\Debug\Model.pdb
+E:\downcode\Leyipai\Model\obj\Debug\ResolveAssemblyReference.cache
+E:\downcode\Leyipai\Model\obj\Debug\Model.dll
+E:\downcode\Leyipai\Model\obj\Debug\Model.pdb
