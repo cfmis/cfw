@@ -221,10 +221,12 @@
             var f = $('<form action="../ExportToExcel.aspx" method="post" id="fm1"></form>');
             var i = $('<input type="hidden" id="txtContent" name="txtContent" />');
             var l = $('<input type="hidden" id="txtName" name="txtName" />');
-            
+            var fileName = "生產進度記錄表";
+            if ($("#selPrdDep").textbox('getValue') == "302")
+                fileName = "302原始報表";
             i.val(allStr);
             i.appendTo(f);
-            l.val('生產進度記錄表');
+            l.val(fileName);
             l.appendTo(f);
             f.appendTo(document.body).submit();
             $(document.body).remove("form:last");
@@ -354,7 +356,7 @@
                 row += '<td>' + arrData[i]["prd_mo"] + '</td>';
                 row += '<td>' + arrData[i]["prd_item"] + '</td>';
                 row += '<td>' + "" + '</td>';
-                row += '<td>' + "0" + '</td>';
+                row += '<td>' + arrData[i]["line_num"] + '</td>';
                 row += '<td>' + arrData[i]["prd_group"] + '</td>';
                 row += '<td>' + "1" + '</td>';
                 row += '<td>' + "1" + '</td>';
@@ -399,7 +401,7 @@
                 row += '<td>' + "0" + '</td>';
                 row += '<td>' + "0" + '</td>';
                 row += '<td>' + "0" + '</td>';
-                row += '<td>' + "0" + '</td>';
+                row += '<td>' + arrData[i]["prd_run_qty"] + '</td>';
                 row += '<td>' + "0" + '</td>';
                 row += '<td>' + "0" + '</td>';
                 row += '<td>' + "0" + '</td>';
