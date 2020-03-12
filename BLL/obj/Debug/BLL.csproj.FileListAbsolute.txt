@@ -52,3 +52,12 @@ C:\MyProjects\cfw\BLL\bin\Debug\SQLServerDAL.pdb
 C:\MyProjects\cfw\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
 C:\MyProjects\cfw\BLL\obj\Debug\BLL.dll
 C:\MyProjects\cfw\BLL\obj\Debug\BLL.pdb
+C:\Workspace\cfw\BLL\bin\Debug\BLL.dll
+C:\Workspace\cfw\BLL\bin\Debug\BLL.pdb
+C:\Workspace\cfw\BLL\bin\Debug\Model.dll
+C:\Workspace\cfw\BLL\bin\Debug\SQLServerDAL.dll
+C:\Workspace\cfw\BLL\bin\Debug\Model.pdb
+C:\Workspace\cfw\BLL\bin\Debug\SQLServerDAL.pdb
+C:\Workspace\cfw\BLL\obj\Debug\BLL.csprojResolveAssemblyReference.cache
+C:\Workspace\cfw\BLL\obj\Debug\BLL.dll
+C:\Workspace\cfw\BLL\obj\Debug\BLL.pdb

@@ -433,7 +433,7 @@
                 <div style="margin-bottom: 5px">
                 貨倉編號:
                 <input id="selLoc_no" name="selPrd_dep" style="float:none" class="easyui-combobox" data-options="width:160, valueField: 'id', textField: 'name', url: '../ashx/Base_Select.ashx/GetItem?paraa=get_jx_dep&parab=list'" />
-                <label><input type="checkbox" id="chkNoZero"/><span>不顯示為零的記錄</span></label>
+                <label><input type="checkbox" id="chkBatchMo"/><span>只查找已設定的制單</span></label>
                 </div>
                 <div id="divMo" style="margin-bottom: 5px">
                 制單編號:

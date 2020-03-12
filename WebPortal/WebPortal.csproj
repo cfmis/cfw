@@ -1443,6 +1443,7 @@
     <Content Include="Sales\Sa_Mo_Test_Trace.aspx" />
     <Content Include="Sales\Sa_Mo_View_Test.aspx" />
     <Content Include="Sales\Sa_Oc_CountOcByBrandGroup.aspx" />
+    <Content Include="Sales\Sa_Oc_MoSummary.aspx" />
     <Content Include="Sales\Sa_Oc_NoCompleteOc.aspx" />
     <Content Include="Sales\Sa_OrderCreate.aspx" />
     <Content Include="Sales\Sa_OrderManage.aspx" />
@@ -1634,6 +1635,9 @@
     </Compile>
     <Compile Include="ashx\Ax_Sa_LoadLandInv.ashx.cs">
       <DependentUpon>Ax_Sa_LoadLandInv.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_Sa_Oc_MoSummary.ashx.cs">
+      <DependentUpon>Ax_Sa_Oc_MoSummary.ashx</DependentUpon>
     </Compile>
     <Compile Include="ashx\Ax_St_Jx_Mo_Arrange.ashx.cs">
       <DependentUpon>Ax_St_Jx_Mo_Arrange.ashx</DependentUpon>
@@ -2314,6 +2318,13 @@
     </Compile>
     <Compile Include="Sales\Sa_Oc_CountOcByBrandGroup.aspx.designer.cs">
       <DependentUpon>Sa_Oc_CountOcByBrandGroup.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_Oc_MoSummary.aspx.cs">
+      <DependentUpon>Sa_Oc_MoSummary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_Oc_MoSummary.aspx.designer.cs">
+      <DependentUpon>Sa_Oc_MoSummary.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sa_Oc_NoCompleteOc.aspx.cs">
       <DependentUpon>Sa_Oc_NoCompleteOc.aspx</DependentUpon>
@@ -3297,6 +3308,7 @@
       <DependentUpon>dgcf_dbDataSet.xsd</DependentUpon>
     </Content>
     <Content Include="ashx\Ax_DepProductStatus.ashx" />
+    <Content Include="ashx\Ax_Sa_Oc_MoSummary.ashx" />
     <None Include="dgcf_dbDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dgcf_dbDataSet.Designer.cs</LastGenOutput>

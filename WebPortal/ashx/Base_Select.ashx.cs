@@ -118,6 +118,9 @@ namespace WebPortal.ashx
                 case "goods_transfer_jx":
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().get_docflag("goods_transfer_jx");
                     break;
+                case "get_order_complete_flag":
+                    dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().getMoStatusFlag();
+                    break;
             }
 
 

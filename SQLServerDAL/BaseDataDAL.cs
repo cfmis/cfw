@@ -175,6 +175,13 @@ namespace Leyp.SQLServerDAL
             DataTable dt = SQLHelper.ExecuteSqlReturnDataTable(strSql);
             return dt;
         }
-
+        //獲取訂單的完成標識
+        public DataTable getMoStatusFlag()
+        {
+            string strSql;
+            strSql = "select flag_id,flag_desc from bs_flag_desc Where doc_type='CP' AND flag0='Y' order by flag_id ";
+            DataTable dt = SQLHelper.ExecuteSqlReturnDataTable(strSql);
+            return dt;
+        }
     }
 }

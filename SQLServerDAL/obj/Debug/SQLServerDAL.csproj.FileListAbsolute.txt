@@ -41,3 +41,11 @@ C:\MyProjects\cfw\SQLServerDAL\obj\Debug\SQLServerDAL.csprojResolveAssemblyRefer
 C:\MyProjects\cfw\SQLServerDAL\obj\Debug\SQLServerDAL.dll
 C:\MyProjects\cfw\SQLServerDAL\obj\Debug\SQLServerDAL.pdb
 C:\MyProjects\cfw\SQLServerDAL\bin\Debug\SQLServerDAL.dll.config
+C:\Workspace\cfw\SQLServerDAL\bin\Debug\SQLServerDAL.dll.config
+C:\Workspace\cfw\SQLServerDAL\bin\Debug\SQLServerDAL.dll
+C:\Workspace\cfw\SQLServerDAL\bin\Debug\SQLServerDAL.pdb
+C:\Workspace\cfw\SQLServerDAL\bin\Debug\Model.dll
+C:\Workspace\cfw\SQLServerDAL\bin\Debug\Model.pdb
+C:\Workspace\cfw\SQLServerDAL\obj\Debug\SQLServerDAL.csprojResolveAssemblyReference.cache
+C:\Workspace\cfw\SQLServerDAL\obj\Debug\SQLServerDAL.dll
+C:\Workspace\cfw\SQLServerDAL\obj\Debug\SQLServerDAL.pdb
