@@ -48,6 +48,7 @@
         <asp:Button ID="btnUpload" runat="server" Text="上传" onclick="btnUpload_Click" Width ="80px" Height="25px" />
             
             </div>
+            <img src="../images/process3.gif" id="imgProcess" style="width:80px;height:80px" runat="server" visible="false"/>
             
         </form>
         </fieldset>

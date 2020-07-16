@@ -1418,6 +1418,7 @@
     <Content Include="Sales\ConsultSalesOrder.aspx" />
     <Content Include="Sales\FindSalesOrder_DispatchState.aspx" />
     <Content Include="Sales\Issue_SalesDispatch.aspx" />
+    <Content Include="Sales\Json.aspx" />
     <Content Include="Sales\ManagerAuditingSalesOrder.aspx" />
     <Content Include="Sales\ManagerAuditingSalesOut.aspx" />
     <Content Include="Sales\Manager_AuditingSalesOrder.aspx" />
@@ -1445,6 +1446,7 @@
     <Content Include="Sales\Sa_Oc_CountOcByBrandGroup.aspx" />
     <Content Include="Sales\Sa_Oc_MoSummary.aspx" />
     <Content Include="Sales\Sa_Oc_NoCompleteOc.aspx" />
+    <Content Include="Sales\Sa_Oc_Polo.aspx" />
     <Content Include="Sales\Sa_OrderCreate.aspx" />
     <Content Include="Sales\Sa_OrderManage.aspx" />
     <Content Include="Sales\Sa_OrderManage_Edit.aspx" />
@@ -1614,6 +1616,9 @@
     </Compile>
     <Compile Include="ashx\Ax_Oc_NoCompleteOc_New.ashx.cs">
       <DependentUpon>Ax_Oc_NoCompleteOc_New.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_Oc_Polo.ashx.cs">
+      <DependentUpon>Ax_Oc_Polo.ashx</DependentUpon>
     </Compile>
     <Compile Include="ashx\Ax_Pd_DepAverageProduct.ashx.cs">
       <DependentUpon>Ax_Pd_DepAverageProduct.ashx</DependentUpon>
@@ -2144,6 +2149,13 @@
     <Compile Include="Sales\Issue_SalesDispatch.aspx.designer.cs">
       <DependentUpon>Issue_SalesDispatch.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Json.aspx.cs">
+      <DependentUpon>Json.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Json.aspx.designer.cs">
+      <DependentUpon>Json.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sales\ManagerAuditingSalesOrder.aspx.cs">
       <DependentUpon>ManagerAuditingSalesOrder.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2332,6 +2344,13 @@
     </Compile>
     <Compile Include="Sales\Sa_Oc_NoCompleteOc.aspx.designer.cs">
       <DependentUpon>Sa_Oc_NoCompleteOc.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_Oc_Polo.aspx.cs">
+      <DependentUpon>Sa_Oc_Polo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_Oc_Polo.aspx.designer.cs">
+      <DependentUpon>Sa_Oc_Polo.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sa_OrderCreate.aspx.cs">
       <DependentUpon>Sa_OrderCreate.aspx</DependentUpon>
@@ -3309,6 +3328,7 @@
     </Content>
     <Content Include="ashx\Ax_DepProductStatus.ashx" />
     <Content Include="ashx\Ax_Sa_Oc_MoSummary.ashx" />
+    <Content Include="ashx\Ax_Oc_Polo.ashx" />
     <None Include="dgcf_dbDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dgcf_dbDataSet.Designer.cs</LastGenOutput>

@@ -137,10 +137,11 @@ namespace WebPortal.Products
         /// 更新Excel表到临时表pu_temp_excel中
         private void DtOperator(DataTable dt, string fileName,string sheetName)
         {
+            bool upd_flag = true;
             string result_str = "";
             string strSql = "", strSql_f = "";
 
-
+            imgProcess.Visible = true;
             string now_date, prd_dep = "102";
             int excel_row = 1;
             //string[] proSub = Request.Form.GetValues("selDep");
@@ -201,9 +202,13 @@ namespace WebPortal.Products
 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
+                    strSql = "";
                     excel_row = excel_row + 1;
                     DataRow dr = dt.Rows[i];
-
+                    //if (i == 577)
+                    //{
+                    //    int aa = 1;
+                    //}
                     arrange_seq = (arrange_seq_h == "" ? 0 : (dr[arrange_seq_h].ToString() != "" ? Convert.ToInt32(dr[arrange_seq_h]) : 0));
                     prd_mo = (prd_mo_h == "" ? "" : dr[prd_mo_h].ToString().Trim());
                     if (prd_mo != "")
@@ -291,24 +296,38 @@ namespace WebPortal.Products
                                 , urgent_status, arrange_machine, arrange_date, arrange_seq, order_qty, cust_o_date, req_f_date, req_qty
                                 , cpl_qty, arrange_qty, prd_cpl_qty, dep_rep_date, rec_status, prd_status, req_hk_date, dep_group, now_date, pre_prd_dep_date, pre_prd_dep_qty, user_id, arrange_id);
                         }
+                        result_str = sh.ExecuteSqlUpdate(strSql);//更新明細記錄
+                        if (result_str != "")
+                        {
+                            upd_flag = false;
+                            break;
+                        }
                     }
                 }
-
-                if (strSql != "")
-                {
-                    result_str = sh.ExecuteSqlUpdate(strSql);//更新明細記錄
+                imgProcess.Visible = false;
+                if (upd_flag)
                     StrHlp.WebMessageBox(this.Page, "匯入排期表成功!");
-                 }
                 else
-                {
-                    result_str = "";
+                    StrHlp.WebMessageBox(this.Page, "匯入排期表失敗,記錄： " + excel_row.ToString() + " " + result_str);
+                //if (strSql != "")
+                //{
+                //    result_str = sh.ExecuteSqlUpdate(strSql);//更新明細記錄
+                //    if (result_str == "")
+                //        StrHlp.WebMessageBox(this.Page, "匯入排期表成功!");
+                //    else
+                //        StrHlp.WebMessageBox(this.Page, "匯入排期表失敗："+ result_str);
+                //}
+                //else
+                //{
+                //    result_str = "";
 
-                }
+                //}
             }
             catch (Exception ex)
             {
                 result_str = "Excel文件的欄位不正確,行:" + excel_row.ToString() + " " + ex.Message;
             }
+            imgProcess.Visible = false;
             if (result_str != "")
             {
                 //Response.Write(String.Format("<script text='text/javascript'>alert('{0}')</script>", result_str));

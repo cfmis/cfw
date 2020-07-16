@@ -72,6 +72,9 @@ namespace WebPortal.ashx
                 case "get_mogroup":
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().getMoGroup();
                     break;
+                case "get_ocmogroup":
+                    dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().getOcMoGroup();
+                    break;
                 case "getSa_Oc_NoCompleteOc":
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().getSa_Oc_NoCompleteOc();
                     break;
@@ -113,10 +116,13 @@ namespace WebPortal.ashx
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().get_lang("st_jx_stransfer_flag");
                     break; 
                 case "get_jx_dep":
-                    dt = Leyp.SQLServerDAL.Sales.Factory_New.SalesQueryPublicDAL().getJxDep();
+                    dt = Leyp.SQLServerDAL.Sales.Factory_New.SalesQueryPublicDAL().getJxDep(); 
                     break;
                 case "goods_transfer_jx":
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().get_docflag("goods_transfer_jx");
+                    break;
+                case "set_polo_order_trace":
+                    dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().get_docflag("set_polo_order_trace");
                     break;
                 case "get_order_complete_flag":
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().getMoStatusFlag();

@@ -482,7 +482,7 @@
             <table>
                 <tr>
                     <td style="text-align:right"><label for="lblMoGroup">組別</label></td>
-                    <td><select id="selMoGroup" name="selMoGroup" class="easyui-combobox" data-options="width:120, valueField: 'mo_group', textField: 'mo_group', url: '../ashx/Base_Select.ashx/GetItem?paraa=get_mogroup&parab=list'" /></td>
+                    <td><select id="selMoGroup" name="selMoGroup" class="easyui-combobox" data-options="width:120, valueField: 'group_id', textField: 'group_desc', url: '../ashx/Base_Select.ashx/GetItem?paraa=get_ocmogroup&parab=list'" /></td>
                     <td><label><input type="checkbox" id="chkShowAPart"/><span>只顯示面件</span></label></td>
                     <td colspan="3"><label><input type="checkbox" id="chkBatchMo"/><span>只查找已設定的制單</span></label></td>
                 </tr>

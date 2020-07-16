@@ -38,7 +38,13 @@ namespace Leyp.SQLServerDAL
             DataTable dtMoGroup = SQLHelper.ExecuteSqlReturnDataTable(strSql);
             return dtMoGroup;
         }
-        
+        public DataTable getOcMoGroup()
+        {
+            string strSql;
+            strSql = "select group_id,group_desc from bs_mo_group order by group_id ";
+            DataTable dtMoGroup = SQLHelper.ExecuteSqlReturnDataTable(strSql);
+            return dtMoGroup;
+        }
         public DataTable getMoGroup_para(string id)
         {
             string strSql;
