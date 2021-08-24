@@ -16,6 +16,7 @@
         <script type="text/javascript" src="../js/My97DatePicker/WdatePicker.js" charset="UTF-8"></script>
           <script type="text/javascript" src="../js/Sales/Js_Oc_NoCompleteOc.js"></script>
         <script type="text/javascript" src="../js/exportdatagridtoexcel.js"></script>
+    <script type="text/javascript" src="../js/publicfuncs.js"></script>
 
           <style type="text/css"> 
         .textbox { 
@@ -257,7 +258,7 @@
             }
             function LoadFunction(data) {
                 //alert(data);
-                
+                closeLoadingWindow();
                 var f = $('<form action="../ExportToExcel.aspx" method="post" id="fm1"></form>');
                 var i = $('<input type="hidden" id="txtContent" name="txtContent" />');
                 var l = $('<input type="hidden" id="txtName" name="txtName" />');
@@ -275,7 +276,7 @@
                 $("#divShowLoadMsg").html('');
             }
             function BefLoadFunction() {
-                $("#divShowLoadMsg").html('加载中...');
+                showLoadingDialog();
             }
             function erryFunction(data) {
                 alert(data);

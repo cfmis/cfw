@@ -48,7 +48,6 @@
 
             var DropDownList1_Value = "";
             var DropDownList1_Text = "";
-
             var DropDownList1 = document.getElementById("dlPrd_item");
             if (DropDownList1 != null) {
                 var DropDownList1_Index = DropDownList1.selectedIndex;                 //获取选择项的索引

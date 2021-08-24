@@ -28,7 +28,7 @@ function tick() {
 	var intHours, intMinutes, intSeconds, intYear, intMonth, intDay;
 	var today;
 	today = new Date();
-	intYear = today.getYear();
+	intYear = today.getFullYear();//today.getYear();
 	intMonth = today.getMonth()+1;
 	intDay = today.getDate();
 	intHours = today.getHours();

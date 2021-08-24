@@ -1385,6 +1385,7 @@
     <Content Include="Products\Pd_DepProductStatus.aspx" />
     <Content Include="Products\Pd_Mo_Arrange_Imput.aspx" />
     <Content Include="Products\Pd_Mo_Arrange_New.aspx" />
+    <Content Include="Products\Pd_Mo_LoadSpecificColorProduct.aspx" />
     <Content Include="Products\Pd_Mo_OutSide_ReWork_SetMark.aspx" />
     <Content Include="Products\Pd_Mo_Plan.aspx" />
     <Content Include="Products\Pd_Mo_Plan_Details.aspx" />
@@ -1401,6 +1402,9 @@
     <Content Include="Products\Products_Edit.aspx" />
     <Content Include="Products\Products_Photo.aspx" />
     <Content Include="Products\Products_Photo_Attach.aspx" />
+    <Content Include="Products\Pu_FindOutsideProducePrice.aspx" />
+    <Content Include="Products\Pu_SetOutsideProducePrice.aspx" />
+    <Content Include="Products\Pu_SetOutsideProducePriceFind.aspx" />
     <Content Include="Products\ShowProductsInfo.aspx" />
     <Content Include="Products\ShowProductsList.aspx" />
     <Content Include="Products\SysProductsBrandManager.aspx" />
@@ -1430,19 +1434,24 @@
     <Content Include="Sales\Manager_SalesReturnList.aspx" />
     <Content Include="Sales\pu_DeliverSetPrice.aspx" />
     <Content Include="Sales\Sa_ColorGroup_Find.aspx" />
+    <Content Include="Sales\Sa_Iv_LoadSpecificBrandSale.aspx" />
     <Content Include="Sales\Sa_Iv_SalesByGroupBrand.aspx" />
     <Content Include="Sales\Sa_Iv_salesByProductType.aspx" />
     <Content Include="Sales\Sa_Iv_VatDeliveryDetails.aspx" />
     <Content Include="Sales\Sa_Iv_VatDeliveryDetailsPrint.aspx" />
+    <Content Include="Sales\Sa_LoadGapInv.aspx" />
     <Content Include="Sales\Sa_LoadLandInv.aspx" />
+    <Content Include="Sales\Sa_LoadOcTestCharge.aspx" />
     <Content Include="Sales\Sa_Mo_BatchPrint.aspx" />
     <Content Include="Sales\Sa_Mo_FindByBrand.aspx" />
     <Content Include="Sales\Sa_Mo_OutsideProcess.aspx" />
+    <Content Include="Sales\Sa_Mo_PackRecordNotSent.aspx" />
     <Content Include="Sales\Sa_Mo_PeriodOver5Day.aspx" />
     <Content Include="Sales\Sa_Mo_PeriodOver5Day_No.aspx" />
     <Content Include="Sales\Sa_Mo_PrdOver5Day.aspx" />
     <Content Include="Sales\Sa_Mo_Test_Trace.aspx" />
     <Content Include="Sales\Sa_Mo_View_Test.aspx" />
+    <Content Include="Sales\Sa_Oc_BrandProductTypeMotypeMoq.aspx" />
     <Content Include="Sales\Sa_Oc_CountOcByBrandGroup.aspx" />
     <Content Include="Sales\Sa_Oc_MoSummary.aspx" />
     <Content Include="Sales\Sa_Oc_NoCompleteOc.aspx" />
@@ -1498,7 +1507,6 @@
     <Content Include="Sales\SalesReturn_Detail.aspx" />
     <Content Include="Sales\Sa_InvSentStatus.aspx" />
     <Content Include="Sales\Sa_LoadPoloInvoice.aspx" />
-    <Content Include="Sales\Sa_LoadInvByAgent.aspx" />
     <Content Include="Sales\Sa_MoAfterPlate_To510.aspx" />
     <Content Include="Sales\Sa_MoMoveStatus_Set.aspx" />
     <Content Include="Sales\Sa_MoMoveStatus_Spec.aspx" />
@@ -1507,7 +1515,6 @@
     <Content Include="Sales\Sa_NoCompleteOcList.aspx" />
     <Content Include="Sales\Sa_Oc_DelivStatus.aspx" />
     <Content Include="Sales\Sa_Oc_DepWaitTime.aspx" />
-    <Content Include="Sales\Sa_Oc_ShowStatus.aspx" />
     <Content Include="Sales\Sa_Quotation_Query.aspx" />
     <Content Include="Sales\Sa_Sample_Trace.aspx" />
     <Content Include="Sales\Sa_Sample_Trace_View.aspx" />
@@ -1602,6 +1609,9 @@
     <Compile Include="ashx\Ax_GoodsTransferJx.ashx.cs">
       <DependentUpon>Ax_GoodsTransferJx.ashx</DependentUpon>
     </Compile>
+    <Compile Include="ashx\Ax_Iv_LoadSpecificBrandSale.ashx.cs">
+      <DependentUpon>Ax_Iv_LoadSpecificBrandSale.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ashx\Ax_Iv_SalesByGroupBrand.ashx.cs">
       <DependentUpon>Ax_Iv_SalesByGroupBrand.ashx</DependentUpon>
     </Compile>
@@ -1610,6 +1620,15 @@
     </Compile>
     <Compile Include="ashx\Ax_Mo_FindSeason.ashx.cs">
       <DependentUpon>Ax_Mo_FindSeason.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_Mo_LoadSpecificColorProduct.ashx.cs">
+      <DependentUpon>Ax_Mo_LoadSpecificColorProduct.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_Mo_PackRecordNotSent.ashx.cs">
+      <DependentUpon>Ax_Mo_PackRecordNotSent.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_Oc_BrandProductTypeMotypeMoq.ashx.cs">
+      <DependentUpon>Ax_Oc_BrandProductTypeMotypeMoq.ashx</DependentUpon>
     </Compile>
     <Compile Include="ashx\Ax_Oc_CountOcByBrandGroup.ashx.cs">
       <DependentUpon>Ax_Oc_CountOcByBrandGroup.ashx</DependentUpon>
@@ -1626,6 +1645,9 @@
     <Compile Include="ashx\Ax_Pd_Mo_Arrange.ashx.cs">
       <DependentUpon>Ax_Pd_Mo_Arrange.ashx</DependentUpon>
     </Compile>
+    <Compile Include="ashx\Ax_SaLoadOcTestCharge.ashx.cs">
+      <DependentUpon>Ax_SaLoadOcTestCharge.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ashx\Ax_SaOrderManage.ashx.cs">
       <DependentUpon>Ax_SaOrderManage.ashx</DependentUpon>
     </Compile>
@@ -1638,11 +1660,17 @@
     <Compile Include="ashx\Ax_Sa_Iv_VatDeliveryDetails.ashx.cs">
       <DependentUpon>Ax_Sa_Iv_VatDeliveryDetails.ashx</DependentUpon>
     </Compile>
+    <Compile Include="ashx\Ax_Sa_LoadGapInv.ashx.cs">
+      <DependentUpon>Ax_Sa_LoadGapInv.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ashx\Ax_Sa_LoadLandInv.ashx.cs">
       <DependentUpon>Ax_Sa_LoadLandInv.ashx</DependentUpon>
     </Compile>
     <Compile Include="ashx\Ax_Sa_Oc_MoSummary.ashx.cs">
       <DependentUpon>Ax_Sa_Oc_MoSummary.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_SetOutsideProducePrice.ashx.cs">
+      <DependentUpon>Ax_SetOutsideProducePrice.ashx</DependentUpon>
     </Compile>
     <Compile Include="ashx\Ax_St_Jx_Mo_Arrange.ashx.cs">
       <DependentUpon>Ax_St_Jx_Mo_Arrange.ashx</DependentUpon>
@@ -1931,6 +1959,13 @@
     <Compile Include="Products\Pd_Mo_Arrange_New.aspx.designer.cs">
       <DependentUpon>Pd_Mo_Arrange_New.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Products\Pd_Mo_LoadSpecificColorProduct.aspx.cs">
+      <DependentUpon>Pd_Mo_LoadSpecificColorProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products\Pd_Mo_LoadSpecificColorProduct.aspx.designer.cs">
+      <DependentUpon>Pd_Mo_LoadSpecificColorProduct.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Products\Pd_Mo_OutSide_ReWork_SetMark.aspx.cs">
       <DependentUpon>Pd_Mo_OutSide_ReWork_SetMark.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2028,6 +2063,27 @@
     </Compile>
     <Compile Include="Products\Products_Photo_Attach.aspx.designer.cs">
       <DependentUpon>Products_Photo_Attach.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Pu_FindOutsideProducePrice.aspx.cs">
+      <DependentUpon>Pu_FindOutsideProducePrice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products\Pu_FindOutsideProducePrice.aspx.designer.cs">
+      <DependentUpon>Pu_FindOutsideProducePrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Pu_SetOutsideProducePrice.aspx.cs">
+      <DependentUpon>Pu_SetOutsideProducePrice.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products\Pu_SetOutsideProducePrice.aspx.designer.cs">
+      <DependentUpon>Pu_SetOutsideProducePrice.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Pu_SetOutsideProducePriceFind.aspx.cs">
+      <DependentUpon>Pu_SetOutsideProducePriceFind.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products\Pu_SetOutsideProducePriceFind.aspx.designer.cs">
+      <DependentUpon>Pu_SetOutsideProducePriceFind.aspx</DependentUpon>
     </Compile>
     <Compile Include="Products\ShowProductsInfo.aspx.cs">
       <DependentUpon>ShowProductsInfo.aspx</DependentUpon>
@@ -2233,6 +2289,13 @@
     <Compile Include="Sales\Sa_ColorGroup_Find.aspx.designer.cs">
       <DependentUpon>Sa_ColorGroup_Find.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Sa_Iv_LoadSpecificBrandSale.aspx.cs">
+      <DependentUpon>Sa_Iv_LoadSpecificBrandSale.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_Iv_LoadSpecificBrandSale.aspx.designer.cs">
+      <DependentUpon>Sa_Iv_LoadSpecificBrandSale.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Sa_Iv_SalesByGroupBrand.aspx.cs">
       <DependentUpon>Sa_Iv_SalesByGroupBrand.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2261,12 +2324,26 @@
     <Compile Include="Sales\Sa_Iv_VatDeliveryDetailsPrint.aspx.designer.cs">
       <DependentUpon>Sa_Iv_VatDeliveryDetailsPrint.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Sa_LoadGapInv.aspx.cs">
+      <DependentUpon>Sa_LoadGapInv.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_LoadGapInv.aspx.designer.cs">
+      <DependentUpon>Sa_LoadGapInv.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Sa_LoadLandInv.aspx.cs">
       <DependentUpon>Sa_LoadLandInv.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sales\Sa_LoadLandInv.aspx.designer.cs">
       <DependentUpon>Sa_LoadLandInv.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_LoadOcTestCharge.aspx.cs">
+      <DependentUpon>Sa_LoadOcTestCharge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_LoadOcTestCharge.aspx.designer.cs">
+      <DependentUpon>Sa_LoadOcTestCharge.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sa_Mo_BatchPrint.aspx.cs">
       <DependentUpon>Sa_Mo_BatchPrint.aspx</DependentUpon>
@@ -2288,6 +2365,13 @@
     </Compile>
     <Compile Include="Sales\Sa_Mo_OutsideProcess.aspx.designer.cs">
       <DependentUpon>Sa_Mo_OutsideProcess.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_Mo_PackRecordNotSent.aspx.cs">
+      <DependentUpon>Sa_Mo_PackRecordNotSent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_Mo_PackRecordNotSent.aspx.designer.cs">
+      <DependentUpon>Sa_Mo_PackRecordNotSent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sa_Mo_PeriodOver5Day.aspx.cs">
       <DependentUpon>Sa_Mo_PeriodOver5Day.aspx</DependentUpon>
@@ -2323,6 +2407,13 @@
     </Compile>
     <Compile Include="Sales\Sa_Mo_View_Test.aspx.designer.cs">
       <DependentUpon>Sa_Mo_View_Test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_Oc_BrandProductTypeMotypeMoq.aspx.cs">
+      <DependentUpon>Sa_Oc_BrandProductTypeMotypeMoq.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_Oc_BrandProductTypeMotypeMoq.aspx.designer.cs">
+      <DependentUpon>Sa_Oc_BrandProductTypeMotypeMoq.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sa_Oc_CountOcByBrandGroup.aspx.cs">
       <DependentUpon>Sa_Oc_CountOcByBrandGroup.aspx</DependentUpon>
@@ -2709,13 +2800,6 @@
     <Compile Include="Sales\Sa_LoadPoloInvoice.aspx.designer.cs">
       <DependentUpon>Sa_LoadPoloInvoice.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sales\Sa_LoadInvByAgent.aspx.cs">
-      <DependentUpon>Sa_LoadInvByAgent.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sales\Sa_LoadInvByAgent.aspx.designer.cs">
-      <DependentUpon>Sa_LoadInvByAgent.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Sales\Sa_MoAfterPlate_To510.aspx.cs">
       <DependentUpon>Sa_MoAfterPlate_To510.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2771,13 +2855,6 @@
     </Compile>
     <Compile Include="Sales\Sa_Oc_DepWaitTime.aspx.designer.cs">
       <DependentUpon>Sa_Oc_DepWaitTime.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sales\Sa_Oc_ShowStatus.aspx.cs">
-      <DependentUpon>Sa_Oc_ShowStatus.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sales\Sa_Oc_ShowStatus.aspx.designer.cs">
-      <DependentUpon>Sa_Oc_ShowStatus.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sa_Quotation_Query.aspx.cs">
       <DependentUpon>Sa_Quotation_Query.aspx</DependentUpon>
@@ -3329,6 +3406,13 @@
     <Content Include="ashx\Ax_DepProductStatus.ashx" />
     <Content Include="ashx\Ax_Sa_Oc_MoSummary.ashx" />
     <Content Include="ashx\Ax_Oc_Polo.ashx" />
+    <Content Include="ashx\Ax_Oc_BrandProductTypeMotypeMoq.ashx" />
+    <Content Include="ashx\Ax_Sa_LoadGapInv.ashx" />
+    <Content Include="ashx\Ax_Iv_LoadSpecificBrandSale.ashx" />
+    <Content Include="ashx\Ax_Mo_LoadSpecificColorProduct.ashx" />
+    <Content Include="ashx\Ax_Mo_PackRecordNotSent.ashx" />
+    <Content Include="ashx\Ax_SetOutsideProducePrice.ashx" />
+    <Content Include="ashx\Ax_SaLoadOcTestCharge.ashx" />
     <None Include="dgcf_dbDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dgcf_dbDataSet.Designer.cs</LastGenOutput>

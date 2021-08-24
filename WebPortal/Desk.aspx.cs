@@ -59,10 +59,6 @@ public partial class Desk : BasePage
         VServiceInfoList.DataSource = list30;
         VServiceInfoList.DataBind();
 
-
-
-
-
     
     }
 

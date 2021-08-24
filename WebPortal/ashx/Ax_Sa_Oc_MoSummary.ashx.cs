@@ -54,6 +54,7 @@ namespace WebPortal.ashx
             string isAPart = "";
             string isComplete = "";
             string createBy = "";
+            string csColor = "";
             string para = context.Request["param"];
             if (para != null)
             {
@@ -75,6 +76,7 @@ namespace WebPortal.ashx
                 sourceType = Convert.ToInt32(ja[0]["SourceType"].ToString());
                 isAPart = ja[0]["IsAPart"].ToString().Trim();
                 isComplete = ja[0]["IsComplete"].ToString().Trim();
+                csColor = ja[0]["csColor"].ToString().Trim();
             }
             else
             {
@@ -95,8 +97,9 @@ namespace WebPortal.ashx
                 sourceType = context.Request["SourceType"] != null ? Convert.ToInt32(context.Request["SourceType"]) : 1;
                 isAPart= context.Request["IsAPart"] != null ? context.Request["IsAPart"] : "";
                 isComplete = context.Request["IsComplete"] != null ? context.Request["IsComplete"] : "";
+                csColor = context.Request["csColor"] != null ? context.Request["csColor"] : "";
             }
-            if(moGroup==""&&createBy==""&&dateFrom==""&&orderDateFrom==""&&productMoFrom==""&&brandFrom==""&&custFrom==""&&ownFrom=="")
+            if(moGroup==""&&createBy==""&&dateFrom==""&&orderDateFrom==""&&productMoFrom==""&&brandFrom==""&&custFrom==""&&ownFrom=="" && custFrom == "" && csColor == "")
             {
                 productMoFrom = "ZZZZZZZZZZ";
                 productMoTo = "ZZZZZZZZZZ";
@@ -112,7 +115,8 @@ namespace WebPortal.ashx
                                         , new SqlParameter("@brand1", brandFrom), new SqlParameter("@brand2", brandTo)
                                         , new SqlParameter("@cust1", custFrom), new SqlParameter("@cust2", custTo)
                                         , new SqlParameter("@own1", ownFrom), new SqlParameter("@own2", ownTo)
-                                        , new SqlParameter("@showapart", isAPart)};
+                                        , new SqlParameter("@showapart", isAPart)
+                                        , new SqlParameter("@csColor", csColor)};
 
             DataTable dtOc = SQLHelper.ExecuteProcedureRetrunDataTable("usp_GetOcStatus", parameters);
 

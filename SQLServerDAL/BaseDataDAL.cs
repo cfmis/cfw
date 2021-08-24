@@ -11,6 +11,7 @@ namespace Leyp.SQLServerDAL
     public class BaseDataDAL
     {
         private string remote_db = "dgerp2.cferp.dbo.";
+        private string within_code = "0000";
         public DataTable getUnit()
         {
             SQLHelp sh = new SQLHelp();
@@ -138,6 +139,12 @@ namespace Leyp.SQLServerDAL
             DataTable dtSeason = SQLHelper.ExecuteSqlReturnDataTable(strSql);
             return dtSeason;
         }
+        public DataTable getBaseUnit(string kind)
+        {
+            string strSql = "select id from " + remote_db + "cd_units where within_code='"+within_code+"' And kind='" + kind + "'" + " order by id ";
+            DataTable dtSeason = SQLHelper.ExecuteSqlReturnDataTable(strSql);
+            return dtSeason;
+        }
         public DataTable get_funcgroup()
         {
             string strSql;
@@ -185,7 +192,19 @@ namespace Leyp.SQLServerDAL
         public DataTable getMoStatusFlag()
         {
             string strSql;
-            strSql = "select flag_id,flag_desc from bs_flag_desc Where doc_type='CP' AND flag0='Y' order by flag_id ";
+            strSql = "select flag_id,flag_cdesc AS flag_desc"+
+                " from bs_flag_desc Where doc_type='CP' AND flag1='Y'"+
+                " order by flag_id ";
+            DataTable dt = SQLHelper.ExecuteSqlReturnDataTable(strSql);
+            return dt;
+        }
+        //獲取供應商編號
+        public DataTable getVend()
+        {
+            string strSql;
+            strSql = "select id AS vend_id,Rtrim(id)+'--'+Rtrim(name) AS vend_cdesc,Rtrim(id)+'--'+Rtrim(english_name) AS vend_edesc" +
+                " from " + remote_db + "it_vendor" +
+                " Where within_code='" + within_code + "' AND id>='CL' AND id<='CLZZZZZZ'";
             DataTable dt = SQLHelper.ExecuteSqlReturnDataTable(strSql);
             return dt;
         }

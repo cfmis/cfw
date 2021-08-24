@@ -121,3 +121,27 @@ function changeDateToChar(value) {
         return "";
     }
 }
+
+function showLoadingDialog() {
+    var title = '正在查詢記錄，請稍候。。。';
+    var content = '';
+    content += '<p style="text-align: center; vertical-align: central;">';
+    content += '<img src="../images/splash.gif" />';
+    content += '</p>';
+    var boarddiv = '<div id="msgwindow" title="' + title + '"></div>';//style="overflow:hidden;"可以去掉滚动条
+
+    $(document.body).append(boarddiv);
+    var win = $('#msgwindow').dialog({
+        content: content,
+        width: 200,
+        height: 130,
+        modal: true,
+        title: title,
+        closable: false,
+    });
+    win.dialog('open');
+}
+
+function closeLoadingWindow() {
+    $('#msgwindow').dialog('close');
+}

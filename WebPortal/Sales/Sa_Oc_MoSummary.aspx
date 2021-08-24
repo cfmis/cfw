@@ -138,7 +138,8 @@
                 { field: 'order_qty', title: '訂單數量', width: 100 },
                 { field: 'goods_unit', title: '數量單位', width: 80 },
                 { field: 'actual_bto_hk_date', title: '實際回港日期', width: 100 },
-                { field: 'id', title: 'OC編號', width: 100 }
+                { field: 'id', title: 'OC編號', width: 100 },
+                { field: 'csColor', title: '客人顏色編號', width: 100 }
                 ]],
                 loadFilter: pagerFilter,
                 //toolbar: [{
@@ -176,6 +177,7 @@
             var queryData = {
                 MoGroup: $("#selMoGroup").textbox('getValue'),
                 CreateBy: $("#txtCreateBy").val(),
+                csColor: $("#txtCsColor").val(),
                 DateFrom: $('#txtDateFrom').datebox('getValue'),
                 DateTo: $('#txtDateTo').datebox('getValue'),
                 OrderDateFrom: $('#txtOrderDateFrom').datebox('getValue'),
@@ -221,6 +223,7 @@
                 SourceType = 2;
             j.MoGroup = $("#selMoGroup").textbox('getValue');
             j.CreateBy = $("#txtCreateBy").val();
+            j.csColor = $("#txtCsColor").val();
             j.DateFrom = $('#txtDateFrom').datebox('getValue');
             j.DateTo = $('#txtDateTo').datebox('getValue');
             j.OrderDateFrom = $('#txtOrderDateFrom').datebox('getValue');
@@ -255,7 +258,7 @@
 
         function LoadFunctionDetails(data) {
             //alert(data);
-
+            closeLoadingWindow();
             var f = $('<form action="../ExportToExcel.aspx" method="post" id="fm1"></form>');
             var i = $('<input type="hidden" id="txtContent" name="txtContent" />');
             var l = $('<input type="hidden" id="txtName" name="txtName" />');
@@ -273,10 +276,12 @@
             $("#divShowLoadMsg").html('');
         }
         function BefLoadFunction() {
-            $("#divShowLoadMsg").html('加载中...');
+            showLoadingDialog();
         }
         function erryFunction(data) {
-            alert(data);
+            closeLoadingWindow();
+            if (data.status == 500)
+                alert("提取數據失敗!");
         }
 
         function JSONToExcelConvertorDetails(fileName, jsonData) {
@@ -326,6 +331,7 @@
             row += '<td>' + '數量單位' + '</td>';
             row += '<td>' + '實際回港日期' + '</td>';
             row += '<td>' + 'OC編號' + '</td>';
+            row += '<td>' + '客戶顏色編號' + '</td>';
             //列头结束
             excel += row + "</tr>";
 
@@ -359,6 +365,7 @@
                 row += '<td>' + arrData[i]["goods_unit"] + '</td>';
                 row += '<td>' + arrData[i]["actual_bto_hk_date"] + '</td>';
                 row += '<td>' + arrData[i]["id"] + '</td>';
+                row += '<td>' + arrData[i]["csColor"] + '</td>';
                 excel += row + "</tr>";
             }
             //table结束
@@ -493,7 +500,9 @@
                     <td style="text-align:right"><label for="lblOrderDate">訂單日期</label></td>
                     <td><input id="txtOrderDateFrom" style="width:120px" class="easyui-datebox-expand"/></td>
                     <td><input id="txtOrderDateTo" style="width:120px" class="easyui-datebox-expand"/></td>
-                    
+                    <td style="text-align:right"><label for="lblCsColor">客人顏色</label>
+                    <input type="text" class="easyui-validatebox" id="txtCsColor" style="width:120px" />
+                    </td>
                 </tr>
                 <tr>
                     <td style="text-align:right"><label for="lblMo">制單編號</label></td>

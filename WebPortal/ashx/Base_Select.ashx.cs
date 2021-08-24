@@ -36,6 +36,7 @@ namespace WebPortal.ashx
         {
             string paraa = context.Request["paraa"];
             string parab = context.Request["parab"];
+            string parac = context.Request["parac"];
             string para = context.Request["param"];
             string id = "", name = "";
             string search_val = "";
@@ -91,6 +92,9 @@ namespace WebPortal.ashx
                 case "get_unit":
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().get_unit();
                     break;
+                case "get_base_unit":
+                    dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().getBaseUnit(parac);
+                    break;
                 case "get_prdtype":
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().get_PrdType(search_val);
                     break;
@@ -126,6 +130,9 @@ namespace WebPortal.ashx
                     break;
                 case "get_order_complete_flag":
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().getMoStatusFlag();
+                    break;
+                case "get_vend":
+                    dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().getVend();
                     break;
             }
 

@@ -227,6 +227,7 @@
                 }).then(function (res) {
                     //console.log(res);
                     //把从json获取的数据赋值给数组
+                    debugger;
                     self.units = res;
                 }).fail(function () {
                     console.log('失败');

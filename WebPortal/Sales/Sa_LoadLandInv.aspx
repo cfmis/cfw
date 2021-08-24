@@ -15,6 +15,7 @@
     <script type="text/javascript" src="../js/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
     <script type="text/javascript" src="../js/My97DatePicker/WdatePicker.js" charset="UTF-8"></script>
     <script type="text/javascript" src="../js/exportdatagridtoexcel.js"></script>
+    
     <%--<script type="text/javascript" src="../js/download.js"></script>--%>
     <style> 
         .box1 {width:400px; float:left; display:inline;} 
@@ -174,6 +175,7 @@
             //alert(data);
             $('#txt').val(data);
             return;
+            //closeLoadingWindow();
             var f = $('<form action="../ExportToExcel.aspx" method="post" id="fm1"></form>');
             var i = $('<input type="hidden" id="txtContent" name="txtContent" />');
             var l = $('<input type="hidden" id="txtName" name="txtName" />');
@@ -207,10 +209,10 @@
             //document.body.removeChild(link);
  
 
-            $("#divShowLoadMsg").html('');
+            //$("#divShowLoadMsg").html('');
         }
         function BefLoadFunction() {
-            $("#divShowLoadMsg").html('加载中...');
+            //showLoadingDialog();
         }
         function erryFunction(data) {
             alert(data);
