@@ -142,6 +142,7 @@
                 { field: 'process_request', editor: 'text', title: '價格備註', width: 80 },
                 { field: 'mould_fee', editor: { type: 'numberbox', options: { precision: 3 } }, title: '最低消費金額', width: 80 },
                 { field: 'former_free', editor: { type: 'numberbox', options: { precision: 3 } }, title: '版費', width: 60 },
+                { field: 'amt_hkd', title: '總加工金額(HKD)', width: 120 },
                 { field: 'do_color', title: '顏色做法', width: 120 },
                 { field: 'goods_name', title: '物料描述', width: 280 },
                 { field: 'plate_remark', title: '電鍍/噴油備註', width: 220 },
@@ -555,8 +556,9 @@
             //json
             var arrData = typeof jsonData != 'object' ? JSON.parse(jsonData) : jsonData;
             // #region 拼接数据
-
-            var excel = '<table>';
+            var excel = '';
+            excel += "<meta http-equiv=Content-Type; content=text/html;charset=utf-8> ";
+            excel += '<table>';
 
             //设置表头
             var row = "<tr>";
@@ -575,8 +577,9 @@
             row += '<td>' + '重量單價' + '</td>';
             row += '<td>' + '單價單位' + '</td>';
             row += '<td>' + '價格備註' + '</td>';
-            row += '<td>' + '最低消費金額' + '</td>';
+            row += '<td>' + '最低消費金額' + '</td>'; 
             row += '<td>' + '版費' + '</td>';
+            row += '<td>' + '總加工金額(HKD)' + '</td>';
             row += '<td>' + '顏色做法' + '</td>';
             row += '<td>' + '電鍍/噴油備註' + '</td>';
             row += '<td>' + '物料編號' + '</td>';
@@ -606,6 +609,7 @@
                 row += '<td>' + arrData[i]["process_request"] + '</td>';
                 row += '<td>' + arrData[i]["mould_fee"] + '</td>';
                 row += '<td>' + arrData[i]["former_free"] + '</td>';
+                row += '<td>' + arrData[i]["amt_hkd"] + '</td>';
                 row += '<td>' + arrData[i]["do_color"] + '</td>';
                 row += '<td>' + arrData[i]["plate_remark"] + '</td>';
                 row += '<td>' + arrData[i]["goods_id"] + '</td>';
@@ -638,48 +642,54 @@
             //json
             var arrData = typeof jsonData != 'object' ? JSON.parse(jsonData) : jsonData;
             // #region 拼接数据
-
-            var excel = '<table>';
-
+            var excel = '';
+            excel += "<meta http-equiv=Content-Type; content=text/html;charset=utf-8> ";
+            excel += '<table>';
+            
             //设置表头
             var row = "";
+            //
+            
 
+            ////------------用JASON的標頭作為EXCEL的表頭----------------
             row += "<tr>";
-            row += "<td colspan='6' align='center'>" + $("#txtDate_from").textbox('getValue')+"日" + "</td>";
+            row += "<td colspan='8' align='center'>" + $("#txtDate_from").textbox('getValue')+" 日 (貨幣--RMB)" + "</td>";
             row += "</tr>";
-
             row += "<tr>";
-
-
-            //------------用JASON的標頭作為EXCEL的表頭----------------
-
+            excel += row;
             //for (var name in arrData[0]) {
             //    //每个单元格都可以指定样式. eg color:red   生成出来的就是 红色的字体了.
             //    row += "<td style='color:red;text-align:center;'>" + name + '</td>';
             //}
             //------------用JASON的標頭作為EXCEL的表頭----------------
-            row += '<td>' + '頁數' + '</td>';
+            row = '<td>' + '頁數' + '</td>';
             row += '<td>' + '備註' + '</td>';
-            row += '<td>' + '數量' + '</td>';
-            row += '<td>' + '單價' + '</td>';
+            row += '<td>' + '供' + '</td>';
+            row += '<td>' + '單價(G)' + '</td>';
+            row += '<td>' + 'OC數' + '</td>';
+            row += '<td>' + '發數量' + '</td>';
             row += '<td>' + '金額' + '</td>';
             row += '<td>' + '追貨人' + '</td>';
+            row += "</tr>";
             //列头结束
-            excel += row + "</tr>";
+            excel += row;
 
             //设置数据
             for (var i = 0; i < arrData.length; i++) {
 
                 //var mo_id = arrData[i]["mo_id"];
 
-                var row = "<tr>";
+                row = "<tr>";
                 row += '<td>' + arrData[i]["mo_id"] + '</td>';
                 row += '<td>' + arrData[i]["remark"] + '</td>';
-                row += '<td>' + arrData[i]["prod_qty"] + '</td>';
+                row += '<td>' + arrData[i]["vendor"] + '</td>';
                 row += '<td>' + arrData[i]["price"] + '</td>';
+                row += '<td>' + arrData[i]["order_qty_pcs"] + '</td>';
+                row += '<td>' + arrData[i]["prod_qty"] + '</td>';
                 row += '<td>' + arrData[i]["amt_rmb"] + '</td>';
                 row += '<td>' + '' + '</td>';
-                excel += row + "</tr>";
+                row += "</tr>";
+                excel += row;
             }
             //table结束
             excel += "</table>";

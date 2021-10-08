@@ -267,8 +267,9 @@
             var arrData = typeof jsonData != 'object' ? JSON.parse(jsonData) : jsonData;
 
             // #region 拼接数据
-
-            var excel = '<table border="1">';
+            var excel = '';
+            excel += "<meta http-equiv=Content-Type; content=text/html;charset=utf-8> ";
+            excel += '<table border="1">';
 
             //设置表头
             var row = "<tr>";
