@@ -31,4 +31,3 @@ C:\Workspace\cfw\Model\bin\Debug\Model.dll
 C:\Workspace\cfw\Model\bin\Debug\Model.pdb
 C:\Workspace\cfw\Model\obj\Debug\Model.dll
 C:\Workspace\cfw\Model\obj\Debug\Model.pdb
-C:\Workspace\cfw\Model\obj\Debug\Model.csprojResolveAssemblyReference.cache
