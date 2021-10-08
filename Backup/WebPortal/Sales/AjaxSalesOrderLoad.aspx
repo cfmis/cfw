@@ -1,1 +1,0 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" Inherits="Sales_AjaxSalesOrderLoad" Codebehind="AjaxSalesOrderLoad.aspx.cs" %>
