@@ -1,4 +1,4 @@
-
+.vs
 WebPortal/bin/
 WebPortal/obj/
 Components/bin/
@@ -6,5 +6,9 @@ Components/obj/
 BLL/bin/
 BLL/obj/
 Backup
+Model/bin/
+Model/obj/
+SQLServerDAL/bin/
+SQLServerDAL/obj/
 Properties/licenses.licx
 
