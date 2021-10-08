@@ -3,6 +3,7 @@ WebPortal/bin/
 WebPortal/obj/
 Components/bin/
 Components/obj/
-
+BLL/bin/
+BLL/obj/
 Properties/licenses.licx
 
