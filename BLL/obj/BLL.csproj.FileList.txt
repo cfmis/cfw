@@ -1,9 +1,0 @@
-bin\Debug\BLL.dll
-bin\Debug\BLL.pdb
-obj\Debug\ResolveAssemblyReference.cache
-obj\Debug\BLL.dll
-obj\Debug\BLL.pdb
-bin\Debug\Model.dll
-bin\Debug\SQLServerDAL.dll
-bin\Debug\SQLServerDAL.pdb
-bin\Debug\Model.pdb
