@@ -121,6 +121,7 @@
                 { field: 'customer_goods', title: 'GAP RD #', width: 120 },
                 { field: 'prd_type_name', title: 'Trim Type', width: 120 },
                 { field: 'size_name', title: 'Size', width: 160 },
+                { field: 'season', title: 'Season', width: 160 },
                 ]],
                 loadFilter: pagerFilter,
                 //toolbar: [{
@@ -297,6 +298,7 @@
             row += '<td>' + 'GAP RD #' + '</td>';
             row += '<td>' + 'Trim Type' + '</td>';
             row += '<td>' + 'Size' + '</td>';
+            row += '<td>' + 'Season' + '</td>';
             row += '<td>' + 'Finsh(顏色)' + '</td>';
             row += '<td>' + '發票編號' + '</td>';
             row += '<td>' + '序號' + '</td>';
@@ -315,6 +317,7 @@
             row += '<td>' + '發票(VAT)日期' + '</td>';
             row += '<td>' + '送貨日期' + '</td>';
             row += '<td>' + '標識' + '</td>';
+            
             //列头结束
             excel += row + "</tr>";
 
@@ -339,6 +342,7 @@
                 row += '<td>' + arrData[i]["customer_goods"] + '</td>';
                 row += '<td>' + arrData[i]["prd_type_name"] + '</td>';
                 row += '<td>' + arrData[i]["size_name"] + '</td>';
+                row += '<td>' + arrData[i]["season"] + '</td>';
                 row += '<td>' + arrData[i]["color_name"] + '</td>';
                 row += '<td>' + arrData[i]["id"] + '</td>';
                 row += '<td>' + arrData[i]["sequence_id"] + '</td>';

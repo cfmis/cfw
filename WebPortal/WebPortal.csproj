@@ -1434,6 +1434,7 @@
     <Content Include="Sales\Manager_SalesReturnList.aspx" />
     <Content Include="Sales\pu_DeliverSetPrice.aspx" />
     <Content Include="Sales\Sa_ColorGroup_Find.aspx" />
+    <Content Include="Sales\Sa_Iv_InvoiceCustDetails.aspx" />
     <Content Include="Sales\Sa_Iv_LoadSpecificBrandSale.aspx" />
     <Content Include="Sales\Sa_Iv_SalesByGroupBrand.aspx" />
     <Content Include="Sales\Sa_Iv_salesByProductType.aspx" />
@@ -1442,6 +1443,8 @@
     <Content Include="Sales\Sa_LoadGapInv.aspx" />
     <Content Include="Sales\Sa_LoadLandInv.aspx" />
     <Content Include="Sales\Sa_LoadOcTestCharge.aspx" />
+    <Content Include="Sales\Sa_MoNeedProofreadColor.aspx" />
+    <Content Include="Sales\Sa_MoNeedProofreadColorAdd.aspx" />
     <Content Include="Sales\Sa_Mo_BatchPrint.aspx" />
     <Content Include="Sales\Sa_Mo_FindByBrand.aspx" />
     <Content Include="Sales\Sa_Mo_OutsideProcess.aspx" />
@@ -1657,6 +1660,9 @@
     <Compile Include="ashx\Ax_SaQuotation_Query.ashx.cs">
       <DependentUpon>Ax_SaQuotation_Query.ashx</DependentUpon>
     </Compile>
+    <Compile Include="ashx\Ax_Sa_Iv_InvoiceCustDetails.ashx.cs">
+      <DependentUpon>Ax_Sa_Iv_InvoiceCustDetails.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ashx\Ax_Sa_Iv_VatDeliveryDetails.ashx.cs">
       <DependentUpon>Ax_Sa_Iv_VatDeliveryDetails.ashx</DependentUpon>
     </Compile>
@@ -1665,6 +1671,9 @@
     </Compile>
     <Compile Include="ashx\Ax_Sa_LoadLandInv.ashx.cs">
       <DependentUpon>Ax_Sa_LoadLandInv.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_Sa_MoNeedProofreadColor.ashx.cs">
+      <DependentUpon>Ax_Sa_MoNeedProofreadColor.ashx</DependentUpon>
     </Compile>
     <Compile Include="ashx\Ax_Sa_Oc_MoSummary.ashx.cs">
       <DependentUpon>Ax_Sa_Oc_MoSummary.ashx</DependentUpon>
@@ -2289,6 +2298,13 @@
     <Compile Include="Sales\Sa_ColorGroup_Find.aspx.designer.cs">
       <DependentUpon>Sa_ColorGroup_Find.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sales\Sa_Iv_InvoiceCustDetails.aspx.cs">
+      <DependentUpon>Sa_Iv_InvoiceCustDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_Iv_InvoiceCustDetails.aspx.designer.cs">
+      <DependentUpon>Sa_Iv_InvoiceCustDetails.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sales\Sa_Iv_LoadSpecificBrandSale.aspx.cs">
       <DependentUpon>Sa_Iv_LoadSpecificBrandSale.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2344,6 +2360,20 @@
     </Compile>
     <Compile Include="Sales\Sa_LoadOcTestCharge.aspx.designer.cs">
       <DependentUpon>Sa_LoadOcTestCharge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_MoNeedProofreadColor.aspx.cs">
+      <DependentUpon>Sa_MoNeedProofreadColor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_MoNeedProofreadColor.aspx.designer.cs">
+      <DependentUpon>Sa_MoNeedProofreadColor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_MoNeedProofreadColorAdd.aspx.cs">
+      <DependentUpon>Sa_MoNeedProofreadColorAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_MoNeedProofreadColorAdd.aspx.designer.cs">
+      <DependentUpon>Sa_MoNeedProofreadColorAdd.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sa_Mo_BatchPrint.aspx.cs">
       <DependentUpon>Sa_Mo_BatchPrint.aspx</DependentUpon>
@@ -3413,6 +3443,8 @@
     <Content Include="ashx\Ax_Mo_PackRecordNotSent.ashx" />
     <Content Include="ashx\Ax_SetOutsideProducePrice.ashx" />
     <Content Include="ashx\Ax_SaLoadOcTestCharge.ashx" />
+    <Content Include="ashx\Ax_Sa_Iv_InvoiceCustDetails.ashx" />
+    <Content Include="ashx\Ax_Sa_MoNeedProofreadColor.ashx" />
     <None Include="dgcf_dbDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dgcf_dbDataSet.Designer.cs</LastGenOutput>
