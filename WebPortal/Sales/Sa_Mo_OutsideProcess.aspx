@@ -80,12 +80,14 @@
         </ContentTemplate>
         </asp:UpdatePanel>--%>
 
-    <asp:Label ID="lblDep" Text="部門:" runat="server"></asp:Label>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblDep" Text="部門:" runat="server"></asp:Label>
     <asp:TextBox ID="txtDep" Text="" Width="120px" runat="server"></asp:TextBox>
-    <asp:Label ID="lblDat" Text="批準日期:" runat="server"></asp:Label>
+    &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblDat" Text="日期:" runat="server"></asp:Label>
     <input size="12" type="text" id="dateStart" style="height:18px;width:120px" runat="server" class="Wdate" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy/MM/dd',readOnly:true})"/>
     <input size="12" type="text" id="dateEnd" style="height:18px;width:120px" runat="server" class="Wdate" onfocus="WdatePicker({lang:'zh-cn',dateFmt:'yyyy/MM/dd',readOnly:true})"/>
-
+    <br />
+    <asp:Label ID="Label1" Text="制單編號:" runat="server"></asp:Label>
+    <input size="12" type="text" id="txtMo" style="height:18px;width:120px" runat="server"/>
     <br />
     <br />
     <asp:Button class="btn btn-success" ID="Btn_Exp_Plate_Out" runat="server" onclick="Btn_Exp_Plate_Out_Click" Text="電鍍加工單" Width="160px" />

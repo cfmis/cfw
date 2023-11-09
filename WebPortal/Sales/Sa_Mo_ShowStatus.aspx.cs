@@ -340,6 +340,7 @@ namespace WebPortal.Sales
             int str_start = art_file.IndexOf("/");
             string imgAdd_d = "file/image/" + art_file.Substring(str_start + 1, art_file.Length - (str_start + 1));//"xls/A588001.bmp";
             FileInfo file_s = new FileInfo(Server.MapPath(imgAdd_s));//指定源文件路径
+            //FileInfo file_s = new FileInfo(imgAdd_s);//指定源文件路径
             FileInfo file_d = new FileInfo(Server.MapPath(imgAdd_d));//指定目的文件路徑
             if (file_s.Exists)//判断源文件是否存在
             {

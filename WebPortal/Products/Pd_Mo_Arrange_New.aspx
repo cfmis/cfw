@@ -211,6 +211,12 @@
             //    return;
             //}
             //得到用户输入的参数
+            var queryData = GetQueryData();
+            //将值传递给initTable
+            initList(queryData);
+            return false;
+        }
+        function GetQueryData() {
             var queryData = {
                 rpt_type: 0,
                 Prd_dep: $("#selPrd_dep").textbox('getValue'),
@@ -220,10 +226,8 @@
                 Prd_item_from: $("#txtPrd_item_from").val(),
                 Dep_group: $("#txtDep_group").val(),
             };
-            //将值传递给initTable
-            initList(queryData);
-            return false;
-        } 
+            return queryData;
+        }
 
         function showMessageDialog(url, title, width, height, shadow) {
 
@@ -462,24 +466,26 @@
         function JsonToExcel(rpt_type) {
             //rpt_type=1 -- 安排的記錄；2--安排制單的生產記錄
             var url = "../ashx/Ax_Pd_Mo_Arrange.ashx?paraa=";
-            var json = [];
-            var j = {};
+            //var json = [];
+            //var j = {};
             if (rpt_type == 1)
                 url += "get_plan";
             else
                 url += "getArrangeMoWithPrd";
-            j.Prd_dep = $("#selPrd_dep").textbox('getValue');
-            j.Arrange_date = $("#txtArrangeDate_from").datebox("getValue"),
-            j.Prd_mo_from = $("#txtMo_from").val();
-            j.Prd_mo_to = $("#txtMo_to").val();
-            j.Prd_item_from = $("#txtPrd_item_from").val();
-            j.Dep_group = $("#txtDep_group").val();
-            json.push(j);
-            var obja = JSON.stringify(json);
+            //j.Prd_dep = $("#selPrd_dep").textbox('getValue');
+            //j.Arrange_date = $("#txtArrangeDate_from").datebox("getValue"),
+            //j.Prd_mo_from = $("#txtMo_from").val();
+            //j.Prd_mo_to = $("#txtMo_to").val();
+            //j.Prd_item_from = $("#txtPrd_item_from").val();
+            //j.Dep_group = $("#txtDep_group").val();
+            //json.push(j);
+            //var obja = JSON.stringify(json);
+            var queryData = GetQueryData();
             $.ajax({
                 url: url,
                 type: "post",
-                data: { 'param': obja }, //参数
+                //data: { 'param': obja }, //参数  //舊寫法
+                data:queryData,
                 datatype: "json",
                 async: true,    //默認异步，要改為同步：true
                 beforeSend: BefLoadFunction, //加载执行方法
@@ -776,7 +782,7 @@
                         <a href="#" id="btnExpArrangeWithPrd" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="JsonToExcel(2)" style="width:120px;height:25px">生產記錄</a>
                         <a href="#" class="easyui-linkbutton" iconcls="icon-save" id="btnShowDlg" onclick="showMessageDialog('../Products/Pd_Mo_Arrange_Imput.aspx','上傳計劃',600,350,true)" style="width:100px;height:25px">上傳計劃單</a>
                         <a href="#" class="easyui-linkbutton" iconcls="icon-cancel" id="btnClean" style="width:100px;height:25px">清空計劃單</a>
-                        <a href="#" class="easyui-linkbutton" iconcls="icon-save" id="btnShowDlg" onclick="updateMoStatus('../Products/Pd_Mo_Update_Status.aspx','上傳計劃',600,300,true)" style="width:120px;height:25px">更新制單狀態</a>
+                        <a href="#" class="easyui-linkbutton" iconcls="icon-save" id="btnShowDlg" onclick="updateMoStatus('../Products/Pd_Mo_Update_Status.aspx','更新制單狀態',600,300,true)" style="width:120px;height:25px">更新制單狀態</a>
                     </div>
                     <div style="margin-bottom: 5px">
                         <%--<div class="box1">--%>

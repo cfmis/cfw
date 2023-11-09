@@ -51,6 +51,7 @@ namespace WebPortal.ashx
             string ownFrom = "", ownTo = "";
             string custFrom = "", custTo = "";
             int sourceType = 1;
+            int MoNoPrd = 1;
             string isAPart = "";
             string isComplete = "";
             string createBy = "";
@@ -77,6 +78,7 @@ namespace WebPortal.ashx
                 isAPart = ja[0]["IsAPart"].ToString().Trim();
                 isComplete = ja[0]["IsComplete"].ToString().Trim();
                 csColor = ja[0]["csColor"].ToString().Trim();
+                MoNoPrd = Convert.ToInt32(ja[0]["MoNoPrd"].ToString());
             }
             else
             {
@@ -98,6 +100,7 @@ namespace WebPortal.ashx
                 isAPart= context.Request["IsAPart"] != null ? context.Request["IsAPart"] : "";
                 isComplete = context.Request["IsComplete"] != null ? context.Request["IsComplete"] : "";
                 csColor = context.Request["csColor"] != null ? context.Request["csColor"] : "";
+                MoNoPrd = context.Request["MoNoPrd"] != null ? Convert.ToInt32(context.Request["MoNoPrd"]) : 1;
             }
             if(moGroup==""&&createBy==""&&dateFrom==""&&orderDateFrom==""&&productMoFrom==""&&brandFrom==""&&custFrom==""&&ownFrom=="" && custFrom == "" && csColor == "")
             {
@@ -116,7 +119,8 @@ namespace WebPortal.ashx
                                         , new SqlParameter("@cust1", custFrom), new SqlParameter("@cust2", custTo)
                                         , new SqlParameter("@own1", ownFrom), new SqlParameter("@own2", ownTo)
                                         , new SqlParameter("@showapart", isAPart)
-                                        , new SqlParameter("@csColor", csColor)};
+                                        , new SqlParameter("@csColor", csColor)
+                                        , new SqlParameter("@MoNoPrd", MoNoPrd)};
 
             DataTable dtOc = SQLHelper.ExecuteProcedureRetrunDataTable("usp_GetOcStatus", parameters);
 

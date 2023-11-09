@@ -62,10 +62,19 @@
     <Reference Include="DevExpress.XtraReports.v11.2.Web, Version=11.2.11.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>Dll\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="office, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -1447,6 +1456,8 @@
     <Content Include="Sales\Sa_MoNeedProofreadColorAdd.aspx" />
     <Content Include="Sales\Sa_Mo_BatchPrint.aspx" />
     <Content Include="Sales\Sa_Mo_FindByBrand.aspx" />
+    <Content Include="Sales\Sa_Mo_LoadDepPlan.aspx" />
+    <Content Include="Sales\Sa_Mo_LoadDnByBrand.aspx" />
     <Content Include="Sales\Sa_Mo_OutsideProcess.aspx" />
     <Content Include="Sales\Sa_Mo_PackRecordNotSent.aspx" />
     <Content Include="Sales\Sa_Mo_PeriodOver5Day.aspx" />
@@ -1624,6 +1635,12 @@
     <Compile Include="ashx\Ax_Mo_FindSeason.ashx.cs">
       <DependentUpon>Ax_Mo_FindSeason.ashx</DependentUpon>
     </Compile>
+    <Compile Include="ashx\Ax_Mo_LoadDepPlan.ashx.cs">
+      <DependentUpon>Ax_Mo_LoadDepPlan.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_Mo_LoadDnByBrand.ashx.cs">
+      <DependentUpon>Ax_Mo_LoadDnByBrand.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ashx\Ax_Mo_LoadSpecificColorProduct.ashx.cs">
       <DependentUpon>Ax_Mo_LoadSpecificColorProduct.ashx</DependentUpon>
     </Compile>
@@ -1647,6 +1664,9 @@
     </Compile>
     <Compile Include="ashx\Ax_Pd_Mo_Arrange.ashx.cs">
       <DependentUpon>Ax_Pd_Mo_Arrange.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_Pd_Mo_ArrangeImput.ashx.cs">
+      <DependentUpon>Ax_Pd_Mo_ArrangeImput.ashx</DependentUpon>
     </Compile>
     <Compile Include="ashx\Ax_SaLoadOcTestCharge.ashx.cs">
       <DependentUpon>Ax_SaLoadOcTestCharge.ashx</DependentUpon>
@@ -2388,6 +2408,20 @@
     </Compile>
     <Compile Include="Sales\Sa_Mo_FindByBrand.aspx.designer.cs">
       <DependentUpon>Sa_Mo_FindByBrand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_Mo_LoadDepPlan.aspx.cs">
+      <DependentUpon>Sa_Mo_LoadDepPlan.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_Mo_LoadDepPlan.aspx.designer.cs">
+      <DependentUpon>Sa_Mo_LoadDepPlan.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_Mo_LoadDnByBrand.aspx.cs">
+      <DependentUpon>Sa_Mo_LoadDnByBrand.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_Mo_LoadDnByBrand.aspx.designer.cs">
+      <DependentUpon>Sa_Mo_LoadDnByBrand.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sa_Mo_OutsideProcess.aspx.cs">
       <DependentUpon>Sa_Mo_OutsideProcess.aspx</DependentUpon>
@@ -3445,6 +3479,9 @@
     <Content Include="ashx\Ax_SaLoadOcTestCharge.ashx" />
     <Content Include="ashx\Ax_Sa_Iv_InvoiceCustDetails.ashx" />
     <Content Include="ashx\Ax_Sa_MoNeedProofreadColor.ashx" />
+    <Content Include="ashx\Ax_Pd_Mo_ArrangeImput.ashx" />
+    <Content Include="ashx\Ax_Mo_LoadDnByBrand.ashx" />
+    <Content Include="ashx\Ax_Mo_LoadDepPlan.ashx" />
     <None Include="dgcf_dbDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dgcf_dbDataSet.Designer.cs</LastGenOutput>

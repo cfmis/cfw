@@ -169,10 +169,13 @@
             }
             var IsAPart = "";
             var SourceType = 1;
+            var MoNoPrd = 0;
             if ($("#chkShowAPart").prop("checked"))
                 IsAPart = "1";
             if ($("#chkBatchMo").prop("checked"))
                 SourceType = 2;
+            if ($("#chkMoNoPrd").prop("checked"))
+                MoNoPrd = 1;
             //得到用户输入的参数
             var queryData = {
                 MoGroup: $("#selMoGroup").textbox('getValue'),
@@ -192,7 +195,8 @@
                 CustTo: $("#txtCustTo").val(),
                 IsComplete: $("#selIsComplete").textbox('getValue'),
                 IsAPart: IsAPart,
-                SourceType: SourceType
+                SourceType: SourceType,
+                MoNoPrd: MoNoPrd
             };
             //将值传递给initTable
             initList(queryData);
@@ -217,10 +221,13 @@
             var j = {};
             var IsAPart = "";
             var SourceType = 1;
+            var MoNoPrd = 0;
             if ($("#chkShowAPart").prop("checked"))
                 IsAPart = "1";
             if ($("#chkBatchMo").prop("checked"))
                 SourceType = 2;
+            if ($("#chkMoNoPrd").prop("checked"))
+                MoNoPrd = 1;
             j.MoGroup = $("#selMoGroup").textbox('getValue');
             j.CreateBy = $("#txtCreateBy").val();
             j.csColor = $("#txtCsColor").val();
@@ -239,6 +246,7 @@
             j.IsComplete = $("#selIsComplete").textbox('getValue');
             j.IsAPart = IsAPart;
             j.SourceType = SourceType;
+            j.MoNoPrd = MoNoPrd;
             json.push(j);
             var obja = JSON.stringify(json);
             var url = "../ashx/Ax_Sa_Oc_MoSummary.ashx"
@@ -332,6 +340,7 @@
             row += '<td>' + '實際回港日期' + '</td>';
             row += '<td>' + 'OC編號' + '</td>';
             row += '<td>' + '客戶顏色編號' + '</td>';
+            row += '<td>' + '倉(採購)直接發貨' + '</td>';
             //列头结束
             excel += row + "</tr>";
 
@@ -366,6 +375,7 @@
                 row += '<td>' + arrData[i]["actual_bto_hk_date"] + '</td>';
                 row += '<td>' + arrData[i]["id"] + '</td>';
                 row += '<td>' + arrData[i]["csColor"] + '</td>';
+                row += '<td>' + arrData[i]["mo_no_prd"] + '</td>';
                 excel += row + "</tr>";
             }
             //table结束
@@ -490,8 +500,9 @@
                 <tr>
                     <td style="text-align:right"><label for="lblMoGroup">組別</label></td>
                     <td><select id="selMoGroup" name="selMoGroup" class="easyui-combobox" data-options="width:120, valueField: 'group_id', textField: 'group_desc', url: '../ashx/Base_Select.ashx/GetItem?paraa=get_ocmogroup&parab=list'" /></td>
-                    <td><label><input type="checkbox" id="chkShowAPart"/><span>只顯示面件</span></label></td>
-                    <td colspan="3"><label><input type="checkbox" id="chkBatchMo"/><span>只查找已設定的制單</span></label></td>
+                    <td><label><input type="checkbox" id="chkShowAPart" checked="checked"/><span>只顯示面件</span></label></td>
+                    <td colspan="2"><label><input type="checkbox" id="chkBatchMo"/><span>只查找已設定的制單</span></label></td>
+                    <td><label><input type="checkbox" id="chkMoNoPrd" checked="checked" /><span>不要倉(採購)直接出貨的制單</span></label></td>
                 </tr>
                 <tr>
                     <td style="text-align:right"><label for="lblDate">開單日期</label></td>

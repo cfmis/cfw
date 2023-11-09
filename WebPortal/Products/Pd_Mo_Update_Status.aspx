@@ -26,6 +26,10 @@
     <div id="container">  
 
     <div id="content">
+        <div style="margin-bottom:10px">
+            <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" style="width:80px" onclick="parentCloseWindow()">关闭</a>
+        </div>
+        
         <fieldset id="fdUpload">
                 <legend><label style="color:blue">將計劃單匯入系統，必須為正確格式的Excel文件</label></legend>
             
@@ -39,7 +43,7 @@
             
         </form>
         </fieldset>
-            <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" style="width:80px" onclick="parentCloseWindow()">关闭</a>
+            
         </div>
     </div>
 </body>

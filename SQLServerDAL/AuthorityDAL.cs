@@ -19,10 +19,10 @@
                 Authority item = new Authority();
                 item.AuthorityID = reader.GetInt32(reader.GetOrdinal("AuthorityID"));
                 item.TypeID = reader.GetInt32(reader.GetOrdinal("TypeID"));
-                item.AuthorityName = reader.GetString(reader.GetOrdinal("AuthorityName"));
-                item.ModuleUrl = reader.GetString(reader.GetOrdinal("ModuleUrl"));
-                item.WebUrl = reader.GetString(reader.GetOrdinal("WebUrl"));
-                item.Description = reader.GetString(reader.GetOrdinal("Description"));
+                item.AuthorityName = reader.GetString(reader.GetOrdinal("AuthorityName")).Trim();
+                item.ModuleUrl = reader.GetString(reader.GetOrdinal("ModuleUrl")).Trim();
+                item.WebUrl = reader.GetString(reader.GetOrdinal("WebUrl")).Trim();
+                item.Description = reader.GetString(reader.GetOrdinal("Description")).Trim();
                 list.Add(item);
             }
             reader.Close();

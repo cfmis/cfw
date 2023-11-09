@@ -57,25 +57,25 @@ namespace WebPortal.ashx
             string Dep_group = "";
             string strSql = "";
             string para = context.Request["param"];
-            if (para != null)
-            {
-                JArray ja = (JArray)JsonConvert.DeserializeObject(para);
-                Prd_dep = ja[0]["Prd_dep"].ToString().Trim();
-                Arrange_date = ja[0]["Arrange_date"].ToString().Trim();
-                Prd_mo_from = ja[0]["Prd_mo_from"].ToString().Trim();
-                Prd_mo_to = ja[0]["Prd_mo_to"].ToString().Trim();
-                Prd_item_from = ja[0]["Prd_item_from"].ToString().Trim();
-                Dep_group = ja[0]["Dep_group"].ToString().Trim();
-            }
-            else
-            {
+            //if (para != null)
+            //{
+            //    JArray ja = (JArray)JsonConvert.DeserializeObject(para);
+            //    Prd_dep = ja[0]["Prd_dep"].ToString().Trim();
+            //    Arrange_date = ja[0]["Arrange_date"].ToString().Trim();
+            //    Prd_mo_from = ja[0]["Prd_mo_from"].ToString().Trim();
+            //    Prd_mo_to = ja[0]["Prd_mo_to"].ToString().Trim();
+            //    Prd_item_from = ja[0]["Prd_item_from"].ToString().Trim();
+            //    Dep_group = ja[0]["Dep_group"].ToString().Trim();
+            //}
+            //else
+            //{
                 Prd_dep = context.Request["Prd_dep"] != null ? context.Request["Prd_dep"] : "";
                 Arrange_date = context.Request["Arrange_date"] != null ? context.Request["Arrange_date"] : "";
                 Prd_mo_from = context.Request["Prd_mo_from"] != null ? context.Request["Prd_mo_from"] : "";
                 Prd_mo_to = context.Request["Prd_mo_to"] != null ? context.Request["Prd_mo_to"] : "";
                 Prd_item_from = context.Request["Prd_item_from"] != null ? context.Request["Prd_item_from"] : "";
                 Dep_group = context.Request["Dep_group"] != null ? context.Request["Dep_group"] : "";
-            }
+            //}
             if (Prd_dep == "" && Arrange_date == "" && Prd_mo_from == "" && Prd_mo_to == "" && Prd_item_from == "" && Dep_group == "")
             {
                 Prd_dep = "ZZZ";
@@ -245,16 +245,22 @@ namespace WebPortal.ashx
             string Dep_group = "";
             string strSql = "";
             string para = context.Request["param"];
-            if (para != null)
-            {
-                JArray ja = (JArray)JsonConvert.DeserializeObject(para);
-                Prd_dep = ja[0]["Prd_dep"].ToString().Trim();
-                Arrange_date = ja[0]["Arrange_date"].ToString().Trim();
-                Prd_mo_from = ja[0]["Prd_mo_from"].ToString().Trim();
-                Prd_mo_to = ja[0]["Prd_mo_to"].ToString().Trim();
-                Prd_item_from = ja[0]["Prd_item_from"].ToString().Trim();
-                Dep_group = ja[0]["Dep_group"].ToString().Trim();
-            }
+            //if (para != null)
+            //{
+            //    JArray ja = (JArray)JsonConvert.DeserializeObject(para);
+            //    Prd_dep = ja[0]["Prd_dep"].ToString().Trim();
+            //    Arrange_date = ja[0]["Arrange_date"].ToString().Trim();
+            //    Prd_mo_from = ja[0]["Prd_mo_from"].ToString().Trim();
+            //    Prd_mo_to = ja[0]["Prd_mo_to"].ToString().Trim();
+            //    Prd_item_from = ja[0]["Prd_item_from"].ToString().Trim();
+            //    Dep_group = ja[0]["Dep_group"].ToString().Trim();
+            //}
+            Prd_dep = context.Request["Prd_dep"] != null ? context.Request["Prd_dep"] : "";
+            Arrange_date = context.Request["Arrange_date"] != null ? context.Request["Arrange_date"] : "";
+            Prd_mo_from = context.Request["Prd_mo_from"] != null ? context.Request["Prd_mo_from"] : "";
+            Prd_mo_to = context.Request["Prd_mo_to"] != null ? context.Request["Prd_mo_to"] : "";
+            Prd_item_from = context.Request["Prd_item_from"] != null ? context.Request["Prd_item_from"] : "";
+            Dep_group = context.Request["Dep_group"] != null ? context.Request["Dep_group"] : "";
             if (Prd_dep == "" && Arrange_date == "" && Prd_mo_from == "" && Prd_mo_to == "" && Prd_item_from == "" && Dep_group == "")
             {
                 Prd_dep = "ZZZ";

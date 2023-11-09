@@ -48,7 +48,7 @@
     </td>
     </tr>
     </table>
-    <asp:GridView ID="gvBatchMo" runat="server" Height="90px" Width="200px"
+    <asp:GridView ID="gvBatchMo" runat="server" Height="90px" Width="500px"
       BackColor="AntiqueWhite"
       BorderColor="Black" 
       CellPadding="3"
@@ -64,10 +64,25 @@
       onrowdeleting="gvDetails_RowDeleting">
         <Columns>
             <asp:BoundField DataField="mo_id" HeaderText="制單編號" HeaderStyle-Width="120px" >
-<HeaderStyle Width="120px"></HeaderStyle>
+<HeaderStyle Width="120px" BackColor="White"></HeaderStyle>
+            </asp:BoundField>
+        </Columns>
+        <Columns>
+            <asp:BoundField DataField="status_desc" HeaderText="制單狀態" HeaderStyle-Width="100px" >
+<HeaderStyle Width="100px" BackColor="White"></HeaderStyle>
+            </asp:BoundField>
+        </Columns>
+        <Columns>
+            <asp:BoundField DataField="crusr" HeaderText="建立人" HeaderStyle-Width="100px" >
+<HeaderStyle Width="100px" BackColor="White"></HeaderStyle>
+            </asp:BoundField>
+        </Columns>
+        <Columns>
+            <asp:BoundField DataField="crtim" HeaderText="建立日期" HeaderStyle-Width="120px" >
+<HeaderStyle Width="120px" BackColor="White"></HeaderStyle>
             </asp:BoundField>
             <asp:CommandField ShowDeleteButton="True" >
-            <HeaderStyle Width="40px" />
+            <HeaderStyle Width="40px" BackColor="White" />
             </asp:CommandField>
         </Columns>
         <HeaderStyle HorizontalAlign="Center" BackColor="ActiveBorder" Font-Bold="True"></HeaderStyle>

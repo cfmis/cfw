@@ -43,7 +43,9 @@ namespace WebPortal.Sales
             string strSql = "";
             string result = "";
             //strSql = "Delect From mo_BatchPrint Where within_code='" + within_code + "' AND user_id='" + user_id + "'";
-            strSql = "Select mo_id From mo_BatchPrint Where within_code='" + within_code + "' AND user_id='" + user_id + "' AND mo_id='" + mo_id + "'";
+            strSql = "Select mo_id " +
+                " From mo_BatchPrint " +
+                " Where within_code='" + within_code + "' AND user_id='" + user_id + "' AND mo_id='" + mo_id + "'";
             DataTable tbMoFind = sh.ExecuteSqlReturnDataTable(strSql);
             if (tbMoFind.Rows.Count == 0)
             {
@@ -73,7 +75,9 @@ namespace WebPortal.Sales
         protected void LoadBatchMo()
         {
             user_id = getUserName();
-            string strSql = "Select mo_id From mo_BatchPrint Where within_code='" + within_code + "' AND user_id='" + user_id + "'";
+            string strSql = "Select mo_id,status_desc,crusr,Convert(Varchar(20),crtim,111) AS crtim" +
+                " From mo_BatchPrint "+
+                " Where within_code='" + within_code + "' AND user_id='" + user_id + "'";
             DataTable tbMoFind = sh.ExecuteSqlReturnDataTable(strSql);
             if (tbMoFind.Rows.Count == 0)
                 tbMoFind.Rows.Add();
@@ -151,7 +155,7 @@ namespace WebPortal.Sales
             string savePath = Server.MapPath("~/file/");
             FileOperatpr(fileName, savePath);
             fileId.SaveAs(savePath + fileName);
-            DataOperator(fileName, savePath);
+            DataOperator(savePath + fileName);
             LoadBatchMo();
         }
 
@@ -171,31 +175,105 @@ namespace WebPortal.Sales
         /// </summary>  
         /// <param name="fileName"></param>  
         /// <param name="savePath"></param>  
-        private void DataOperator(string fileName, string savePath)
+        private void DataOperator(string fileName)
         {
-            string myString = "Provider = Microsoft.Jet.OLEDB.4.0 ; Data Source =  " + savePath + fileName + ";Extended Properties=Excel 8.0";
-            OleDbConnection oconn = new OleDbConnection(myString);
+            //string myString = "Provider = Microsoft.Jet.OLEDB.4.0 ; Data Source =  " + savePath + fileName + ";Extended Properties=Excel 8.0";
+            //OleDbConnection oconn = new OleDbConnection(myString);
+            //try
+            //{
+
+            //    oconn.Open();
+            //    DataSet ds = new DataSet();
+            //    OleDbDataAdapter oda = new OleDbDataAdapter("select * from [Sheet1$]", oconn);
+            //    oda.Fill(ds);
+            //    oconn.Close();
+
+            //    if (File.Exists(savePath + fileName))
+            //    {
+
+            //        File.Delete(savePath + fileName);
+            //    }
+            //    DataSetOperator(ds.Tables[0]);
+            //}
+            //catch (Exception ex)
+            //{
+            //    StrHlp.WebMessageBox(this.Page, ex.Message);
+            //    //StrHlp.WebMessageBox(this.Page, "錯誤!");
+            //    //txtAddMo.Text = ex.Message;
+            //}
+
+            string result = "";
+            OleDbConnection conn = new OleDbConnection();
+
+            string strConn = string.Empty;
+
+            
             try
             {
-
-                oconn.Open();
-                DataSet ds = new DataSet();
-                OleDbDataAdapter oda = new OleDbDataAdapter("select * from [Sheet1$]", oconn);
-                oda.Fill(ds);
-                oconn.Close();
-
-                if (File.Exists(savePath + fileName))
-                {
-
-                    File.Delete(savePath + fileName);
-                }
-                DataSetOperator(ds.Tables[0]);
+                // Excel 2003 版本连接字符串
+                strConn = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName + ";Extended Properties='Excel 8.0; HDR=YES; IMEX=1;'";
+                conn = new OleDbConnection(strConn);
+                conn.Open();
             }
-            catch (Exception ex)
+            catch
             {
-                StrHlp.WebMessageBox(this.Page, ex.Message);
-                //StrHlp.WebMessageBox(this.Page, "錯誤!");
-                //txtAddMo.Text = ex.Message;
+                try
+                {
+                    // Excel 2007 以上版本连接字符串
+                    strConn = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + fileName + ";Extended Properties='Excel 12.0;HDR=Yes;IMEX=1;'";
+                    conn = new OleDbConnection(strConn);
+                    conn.Open();
+                }
+                catch (Exception ex)
+                {
+                    result = "不是有效的Excel文件!";
+                }
+            }
+            if (result != "")
+            {
+                //关闭连接，释放资源
+                conn.Close();
+                conn.Dispose();
+            }
+            //////刪除舊有的記錄
+            string strSql = string.Format(@"Delete From mo_BatchPrint Where user_id='{0}'", user_id);
+            sh.ExecuteSqlUpdate(strSql);//更新明細記錄
+
+            //获取所有的 sheet 表
+            System.Data.DataTable dtSheetName = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, new object[] { null, null, null, "Table" });
+            bool findSheetFlag = false;
+            for (int i = 0; i < dtSheetName.Rows.Count; i++)//這個是獲取Excel所有的Sheet
+            //for (int i = 0; i < 1; i++)//只獲取Excel第1個Sheet
+            {
+                System.Data.DataTable dt = new System.Data.DataTable();
+                dt.TableName = "table0";// + i.ToString();
+                //获取表名
+                string sheetName = string.Empty;
+                sheetName = dtSheetName.Rows[i]["TABLE_NAME"].ToString();
+                //有些Excel是隱藏了很多個臨時表的，只將實際的導入
+                //如果sheet的名字為數字開頭的如：105或105abc等，則sheetName則為：'105$'，則要將符號'去掉後再判斷
+                if (sheetName.Substring(sheetName.Length - 1, 1) == "$"
+                    || (sheetName.Substring(0, 1) == "'" && sheetName.Substring(sheetName.Length - 1, 1) == "'" && sheetName.Substring(sheetName.Length - 2, 1) == "$"))
+                {
+                    findSheetFlag = true;
+                    OleDbDataAdapter oleda = new OleDbDataAdapter("select * from [" + sheetName + "]", conn);
+                    oleda.Fill(dt);
+                    result = DataSetOperator(dt);
+                }
+
+            }
+            //ds.Tables.Add(dt);
+            //关闭连接，释放资源
+            conn.Close();
+            conn.Dispose();
+            if (findSheetFlag == false)
+                result = "沒有符合的工作表，請檢查工作表名稱是否正確!";
+            if (result == "")
+                result = "匯入排期表成功!";
+            if (result != "")
+            {
+                //Response.Write(String.Format("<script text='text/javascript'>alert('{0}')</script>", result_str));
+                StrHlp.WebMessageBox(this.Page, result);
             }
         }
 
@@ -204,42 +282,48 @@ namespace WebPortal.Sales
         /// </summary>  
         /// <param name="ds"></param>  
         /// 更新Excel表到临时表pu_temp_excel中
-        private void DataSetOperator(DataTable dt)
+        private string DataSetOperator(DataTable dt)
         {
             string result_str = "";
             string strSql = "";
             user_id = getUserName();
-            strSql += string.Format(@"Delete From mo_BatchPrint Where user_id='{0}'", user_id);
-            try
+            string mo_id_h = "";
+            string status_h = "";
+            for (int j = 0; j < dt.Columns.Count; j++)
             {
-                for (int i = 0; i < dt.Rows.Count; i++)
+                string colName = dt.Columns[j].ColumnName;
+                mo_id_h = (colName == "制單編號" || colName == "頁數" || colName == "未完成頁數" ? colName : mo_id_h);
+                status_h = (colName == "急單" || colName == "状态" || colName == "狀態" || colName == "急/特急狀態" ? colName : status_h);
+
+            }
+            if (mo_id_h == "" || status_h == "")
+            {
+                result_str = "Excel文件的欄位不正確";
+                return result_str;
+            }
+            strSql += string.Format(@" SET XACT_ABORT  ON ");
+            strSql += string.Format(@" BEGIN TRANSACTION ");
+
+            
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                string mo_id = "";
+                string status = "";
+                DataRow dr = dt.Rows[i];
+                mo_id = (mo_id_h == "" ? "" : dr[mo_id_h].ToString().Trim());
+                if (mo_id != "")
                 {
-                    strSql += string.Format(@"INSERT INTO mo_BatchPrint (within_code,mo_id,user_id,crusr,crtim)
-                    VALUES ('{0}','{1}','{2}','{3}',GETDATE())"
-                        , within_code, dt.Rows[i][0], user_id, user_id);
-                }
-
-
-                if (strSql != "")
-                {
-                    result_str = sh.ExecuteSqlUpdate(strSql);//更新明細記錄
-
-                }
-                else
-                {
-                    result_str = "";
-
+                    status = (status_h == "" ? "" : dr[status_h].ToString().Trim());
+                    strSql += string.Format(@"INSERT INTO mo_BatchPrint (within_code,mo_id,status_desc,user_id,crusr,crtim)
+                    VALUES ('{0}','{1}','{2}','{3}','{4}',GETDATE())"
+                            , within_code, mo_id, status, user_id, user_id);
                 }
             }
-            catch (Exception ex)
-            {
-                result_str = "Excel文件的欄位不正確:" + ex.Message;
-            }
-            if (result_str != "")
-            {
-                //Response.Write(String.Format("<script text='text/javascript'>alert('{0}')</script>", result_str));
-                StrHlp.WebMessageBox(this.Page, result_str);
-            }
-        }  
+
+            strSql += string.Format(@" COMMIT TRANSACTION ");
+            result_str = sh.ExecuteSqlUpdate(strSql);//更新明細記錄
+            return result_str;
+        }
     }
 }

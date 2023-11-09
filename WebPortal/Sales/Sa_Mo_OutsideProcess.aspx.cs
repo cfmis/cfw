@@ -74,13 +74,18 @@ namespace WebPortal.Sales
             //System.Web.UI.WebControls.PagedDataSource ps = new PagedDataSource();
             string filename = file_str + ".xls";
             DataTable dt = new DataTable();
-            string dat1, dat2;
-            dat1 = Convert.ToDateTime(dateStart.Value).ToString("yyyy/MM/dd");
-            dat2 = Convert.ToDateTime(dateEnd.Value).AddDays(1).ToString("yyyy/MM/dd");
+            string dat1="", dat2="";
+            string mo_id="";
+            if (dateStart.Value.ToString() != "")
+                dat1 = Convert.ToDateTime(dateStart.Value).ToString("yyyy/MM/dd");
+            if (dateEnd.Value.ToString() != "")
+                dat2 = Convert.ToDateTime(dateEnd.Value).AddDays(1).ToString("yyyy/MM/dd");
+            mo_id = txtMo.Value;
             SqlParameter[] parameters1 = { new SqlParameter("@print_type", print_type)
                                         ,new SqlParameter("@dep", txtDep.Text)
                                         ,new SqlParameter("@dat1", dat1)
                                         ,new SqlParameter("@dat2", dat2)
+                                        ,new SqlParameter("@mo_id", mo_id)
                                             };
             dt = sh.ExecuteProcedure("usp_mo_outsideprocess", parameters1);
 
