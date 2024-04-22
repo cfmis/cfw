@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sa_Mo_LoadDepPlan.aspx.cs" Inherits="WebPortal.Sales.Sa_Mo_LoadDepPlan" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Pd_LoadProductionBonus.aspx.cs" Inherits="WebPortal.Products.Pd_LoadProductionBonus" %>
 
 <!DOCTYPE html>
 
@@ -55,26 +55,19 @@
 
             });
 
-            //$("input", $("#txtDate_from").next("span")).blur(function () {
-            //    $("#txtDate_to").textbox('setValue', $("#txtDate_from").textbox('getValue'));
-            //});
-
-            $("input", $("#txtMo_from").next("span")).blur(function () {
-                $("#txtMo_to").textbox('setValue', $("#txtMo_from").textbox('getValue'));
-            });
-
-            //var date = new Date();
-            //var newDate = date.addDays(7); //加7天
-            //var newMonth = date.addMonths(1); //加1个月
-            //var newYear = date.addYears(1); //加1年
-            //var subtractDate = date.subtractDays(7); //减7天
-            //var subtractMonth = date.subtractMonths(1); //减1个月
-            //var subtractYear = date.subtractYears(1); //减1年
             var now_date = new Date();
             var from_date = new Date();
             from_date.setDate(now_date.getDate() - 60);
             $("#txtDate_from").datebox("setValue", changeDateToChar(from_date));
             $("#txtDate_to").datebox("setValue", changeDateToChar(now_date));
+
+            $('#selWorkType').combobox({
+                value: 'A02' // 设置默认值为 'Department 2'
+            });
+
+            //$('#selWorkType').combobox('select', 'A02');
+            //$("#selWorkType").datebox("setValue", "A02");
+            //$('#selWorkType').children[1].checked = true;
         });
 
         function SearchData() {
@@ -98,8 +91,7 @@
                 dep: $("#selPrd_dep").textbox('getValue'),
                 date_from: $("#txtDate_from").datebox("getValue"),
                 date_to: $("#txtDate_to").datebox("getValue"),
-                mo_from: $("#txtMo_from").val(),
-                mo_to: $("#txtMo_to").val(),
+                prd_worktype: $("#selWorkType").textbox('getValue'),
             };
             return queryData;
         }
@@ -107,7 +99,7 @@
         function initList(queryData) {
             $('#tbInvList').datagrid({
 
-                url: "../ashx/Ax_Mo_LoadDepPlan.ashx?paraa=get_plan&parab=table",   //指向后台的Action来获取当前用户的信息的Json格式的数据
+                url: "../ashx/Ax_LoadProductionBouns.ashx?paraa=get_plan&parab=table",   //指向后台的Action来获取当前用户的信息的Json格式的数据
                 iconCls: 'icon-view',//图标
                 //height: 500,
                 //fit: true,//自动适屏功能，表格會自動適應屏幕，就算設置了高度也無效的
@@ -130,21 +122,16 @@
                 queryParams: queryData, //搜索条件查询
                 //frozenColumns 和 columns是有區別的，frozenColumns--沒有滾動，columns--可以滾動，注意是區分大小寫的
                 columns: [[
-                { field: 'arrange_seq', title: '序號', width: 60 },
-                { field: 'prd_mo', title: '制單編號', width: 80 },
-                { field: 'prd_item', title: '物料編號', width: 80 },
-                { field: 'goods_cname', title: '物料描述', width: 200 },
-                { field: 'arrange_qty', title: '安排數量', width: 100 },
-                { field: 'arrange_date', title: '安排日期', width: 60 },
-                { field: 'req_f_date', title: '要求完成時間', width: 80 },
-                { field: 'cust_o_date', title: '客落單日期', width: 80 },
-                { field: 'order_qty', title: '訂單數量', width: 80 },
-                { field: 'req_qty', title: '要求數量', width: 80 },
-                { field: 'cpl_qty', title: '完成數量', width: 80 },
-                { field: 'prd_cpl_qty', title: '生產數量', width: 80 },
-                { field: 'to_dep_desc', title: '收貨部門', width: 80 },
-                { field: 'dep_rep_date', title: '部門回覆', width: 80 },
-                { field: 'prd_dep', title: '部門編號', width: 60 },
+                { field: 'prd_dep', title: '部門', width: 60 },
+                { field: 'dep_group', title: '車間', width: 80 },
+                { field: 'dep_group_desc', title: '車間描述', width: 80 },
+                { field: 'prd_worker', title: '工號', width: 200 },
+                { field: 'hrm1name', title: '姓名', width: 100 },
+                { field: 'hrm1job', title: '職位', width: 60 },
+                { field: 'hrc5name', title: '職位描述', width: 80 },
+                { field: 'prd_qty', title: '生產數量', width: 80 },
+                { field: 'count_time', title: '生產時數', width: 80 },
+                { field: 'prd_bonus', title: '應得獎金', width: 80 },
                 ]],
                 loadFilter: pagerFilter,
                 //toolbar: [{
@@ -216,7 +203,7 @@
 
     <script type="text/javascript">
         function DownloadExcel(rpt_type) {
-            var url = "../ashx/Ax_Mo_LoadDepPlan.ashx?paraa=xls";
+            var url = "../ashx/Ax_LoadProductionBouns.ashx?paraa=xls";
             var url_dst = "../file/";
             var queryData = GetQueryData(rpt_type);
             //debugger;
@@ -255,8 +242,151 @@
 
     <script type="text/javascript">
         
+        function DetailsToExcel(rpt_type) {
+            var url = "../ashx/Ax_LoadProductionBouns.ashx?paraa=list";
+            var url_dst = "../file/";
+            var queryData = GetQueryData(rpt_type);
+            //debugger;
+            $.ajax({
+                url: url,
+                type: 'post',
+                data: queryData, //参数
+                //xhrFields: { responseType: 'blob' },
+                datatype: "json",
+                beforeSend: BefLoadFunction, //加载执行方法
+                success: LoadFunctionDetails,
+                error: function () {
+                    // 上传失败后的处理
+                    closeLoadingWindow();
+                    alert(data);
+                }
+            });
+        }
+        function LoadFunctionDetails(data) {
+            //alert(data);
+            closeLoadingWindow();
+            var f = $('<form action="../ExportToExcel.aspx" method="post" id="fm1"></form>');
+            var i = $('<input type="hidden" id="txtContent" name="txtContent" />');
+            var l = $('<input type="hidden" id="txtName" name="txtName" />');
+            var dataJson = JSON.parse(data);
+            i.val(JSONToExcelConvertorDetails("我的excel", dataJson));
+            i.appendTo(f);
+            l.val('部門生產數明細表');
+            l.appendTo(f);
+            f.appendTo(document.body).submit();
+            $(document.body).remove("form:last");
 
-        
+
+            //document.getElementById('btnFind').click();
+
+            $("#divShowLoadMsg").html('');
+        }
+
+        function JSONToExcelConvertorDetails(fileName, jsonData) {
+            ///<summary>json转excel下载</summary>
+            ///<param name="fileName">文件名</param>
+            ///<param name="jsonData">数据</param>        
+
+            //json
+            var arrData = typeof jsonData != 'object' ? JSON.parse(jsonData) : jsonData;
+
+            // #region 拼接数据
+
+            var excel = '<table>';
+
+            //设置表头
+            var row = "<tr>";
+
+
+            //------------用JASON的標頭作為EXCEL的表頭----------------
+
+            //for (var name in arrData[0]) {
+            //    //每个单元格都可以指定样式. eg color:red   生成出来的就是 红色的字体了.
+            //    row += "<td style='color:red;text-align:center;'>" + name + '</td>';
+            //}
+            //------------用JASON的標頭作為EXCEL的表頭----------------
+            row += '<td>' + '部門' + '</td>';
+            row += '<td>' + '車間' + '</td>';
+            row += '<td>' + '工號' + '</td>';
+            row += '<td>' + '姓名' + '</td>';
+            row += '<td>' + '生產日期' + '</td>';
+            row += '<td>' + '制單編號' + '</td>';
+            row += '<td>' + '物料編號' + '</td>';
+            row += '<td>' + '物料描述' + '</td>';
+            row += '<td>' + '正常班時數' + '</td>';
+            row += '<td>' + '加班時數' + '</td>';
+            row += '<td>' + '合計生產時數' + '</td>';
+            row += '<td>' + '每小時標準數量' + '</td>';
+            row += '<td>' + '應生產數量' + '</td>';
+            row += '<td>' + '實際生產數量' + '</td>';
+            row += '<td>' + '難度' + '</td>';
+            row += '<td>' + '倍數' + '</td>';
+            row += '<td>' + '應計時數' + '</td>';
+            row += '<td>' + '應得獎金' + '</td>';
+            row += '<td>' + '開始時間' + '</td>';
+            row += '<td>' + '結束時間' + '</td>';
+            row += '<td>' + '生產重量' + '</td>';
+            row += '<td>' + '工種類型' + '</td>';
+            row += '<td>' + '生產機器' + '</td>';
+            row += '<td>' + '職位' + '</td>';
+            row += '<td>' + '職位描述' + '</td>';
+            row += '<td>' + '員工所屬' + '</td>';
+            row += '<td>' + '單據編號' + '</td>';
+            row += '<td>' + '生產類型' + '</td>';
+            row += '<td>' + '類型描述' + '</td>';
+            row += '<td>' + '記錄人' + '</td>';
+            row += '<td>' + '記錄時間' + '</td>';
+            //列头结束
+            excel += row + "</tr>";
+
+            //设置数据
+            for (var i = 0; i < arrData.length; i++) {
+
+                //var mo_id = arrData[i]["mo_id"];
+
+                var row = "<tr>";
+                row += '<td>' + arrData[i]["prd_dep"] + '</td>';
+                row += '<td>' + arrData[i]["dep_group"] + '</td>';
+                row += '<td>' + arrData[i]["prd_worker"] + '</td>';
+                row += '<td>' + arrData[i]["hrm1name"] + '</td>';
+                row += '<td>' + "=\"" + arrData[i]["prd_date"] + "\"" + '</td>';
+                row += '<td>' + arrData[i]["prd_mo"] + '</td>';
+                row += '<td>' + arrData[i]["prd_item"] + '</td>';
+                row += '<td>' + arrData[i]["prd_item_cdesc"] + '</td>';
+                row += '<td>' + arrData[i]["prd_normal_time"] + '</td>';
+                row += '<td>' + arrData[i]["prd_ot_time"] + '</td>';
+                row += '<td>' + arrData[i]["prd_time"] + '</td>';
+                row += '<td>' + arrData[i]["hour_std_qty"] + '</td>';
+                row += '<td>' + arrData[i]["prd_req_qty"] + '</td>';
+                row += '<td>' + arrData[i]["prd_qty"] + '</td>';
+                row += '<td>' + arrData[i]["difficulty_level"] + '</td>';
+                row += '<td>' + arrData[i]["time_rate"] + '</td>';
+                row += '<td>' + arrData[i]["count_time"] + '</td>';
+                row += '<td>' + arrData[i]["prd_bonus"] + '</td>';
+                row += '<td>' + arrData[i]["prd_start_time"] + '</td>';
+                row += '<td>' + arrData[i]["prd_end_time"] + '</td>';
+                row += '<td>' + arrData[i]["prd_weg"] + '</td>';
+                row += '<td>' + arrData[i]["job_type"] + '</td>';
+                row += '<td>' + arrData[i]["prd_machine"] + '</td>';
+                row += '<td>' + arrData[i]["hrm1job"] + '</td>';
+                row += '<td>' + arrData[i]["hrc5name"] + '</td>';
+                row += '<td>' + arrData[i]["hrm1corp"] + '</td>';
+                row += '<td>' + arrData[i]["prd_id"] + '</td>';
+                row += '<td>' + arrData[i]["prd_work_type"] + '</td>';
+                row += '<td>' + arrData[i]["prd_work_type_desc"] + '</td>';
+                row += '<td>' + arrData[i]["amusr"] + '</td>';
+                row += '<td>' + "=\"" + arrData[i]["amtim"] + "\"" + '</td>';
+                excel += row + "</tr>";
+            }
+            //table结束
+            excel += "</table>";
+
+            return excel;
+            // #endregion
+
+
+
+        }
     </script>
 
 
@@ -275,26 +405,22 @@
                 <%--<form id="ffSearch" method="post">--%>
                     <div style="margin-bottom: 5px">
                         <a href="#" class="easyui-linkbutton" iconcls="icon-search" id="btnSerach" style="width:80px;height:25px">查詢</a>
-                        <a href="#" id="btnExcelSum" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DownloadExcel(0)" style="width:120px;height:25px">Excel明細</a>
-                        <a href="#" id="btExcelDetails" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DownloadExcel(1)" style="width:120px;height:25px">Excel匯總</a>
-                        <a href="#" id="btExcelPrdDetails" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DownloadExcel(2)" style="width:120px;height:25px">Excel生產數</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="easyui-linkbutton" iconcls="icon-save" id="btnShowDlg" onclick="showMessageDialog('../Products/Pd_Mo_Arrange_Imput.aspx','上傳計劃',600,350,true)" style="width:120px;height:25px">上傳計劃單</a>
+                        <a href="#" id="btnExcelSum" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DetailsToExcel(0)" style="width:120px;height:25px">生產數明細</a>
+                        <a href="#" id="btExcelDetails" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DownloadExcel(1)" style="width:120px;height:25px">生產數匯總</a>
                     </div>
                 <div style="margin-bottom: 5px">
                     <label id="lblDep">部門編號</label>
-                    <input id="selPrd_dep" name="selPrd_dep" class="easyui-combobox" data-options="width:160, valueField: 'dep_id', textField: 'dep_cdesc', url: '../ashx/Base_Select.ashx/GetItem?paraa=pd_mo_plan_dep&parab=list'" />
+                    <input id="selPrd_dep" name="selPrd_dep" class="easyui-combobox" data-options="width:160,value:'102', valueField: 'dep_id', textField: 'dep_cdesc', url: '../ashx/Base_Select.ashx/GetItem?paraa=pd_mo_plan_dep&parab=list'" />
                     <%--<label>報表類型</label>
                     <select id="selIsComplete" class="easyui-combobox" data-options="width:120, valueField: 'flag_id', textField: 'flag_desc', url: '../ashx/Base_Select.ashx/GetItem?paraa=get_order_complete_flag&parab=list'" />--%>
                 </div>
                 <div style="margin-bottom: 5px">
-                        <label id="lblDate">計劃單日期</label>
+                        <label id="lblDate">生產日期</label>
                         <input id="txtDate_from" style="width:160px" class="easyui-datebox-expand"/>
                         <input id="txtDate_to" style="width:160px" class="easyui-datebox-expand"/>
-                        <label for="lblMo">制單編號</label>
-                        <input type="text" class="easyui-textbox" id="txtMo_from" name="txtMo_from" style="width:160px" />
-                        <input type="text" class="easyui-textbox" id="txtMo_to" name="txtMo_to" style="width:160px" />
-                    </div>
+                    <label id="lblWorkType">生產類型</label>
+                    <input id="selWorkType" name="selWorkType" class="easyui-combobox" data-options="width:160, valueField: 'work_type_id', textField: 'work_type_desc', url: '../ashx/Base_Select.ashx/GetItem?paraa=get_work_type&parab=list'" />
+                </div>
 
             </fieldset>
 

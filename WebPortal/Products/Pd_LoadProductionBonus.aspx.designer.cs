@@ -7,10 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebPortal.Sales {
+namespace WebPortal.Products {
     
     
-    public partial class Sa_Mo_LoadDepPlan {
+    public partial class Pd_LoadProductionBonus {
         
         /// <summary>
         /// btnExcelSum control.
@@ -29,14 +29,5 @@ namespace WebPortal.Sales {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btExcelDetails;
-        
-        /// <summary>
-        /// btExcelPrdDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btExcelPrdDetails;
     }
 }

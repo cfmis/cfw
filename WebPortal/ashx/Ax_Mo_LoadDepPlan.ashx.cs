@@ -12,6 +12,7 @@ using System.IO;
 using Microsoft.Office.Interop.Excel;
 using System.Text;
 using System.Reflection;
+using System.Drawing;
 
 namespace WebPortal.ashx
 {
@@ -92,190 +93,614 @@ namespace WebPortal.ashx
             context.Response.End();
         }
 
-
-        private string DataToExcel(HttpContext context,System.Data.DataTable dtExcel,string dep)
+        /// <summary>
+        /// ///////匯出生產計劃的明細表
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="dtExcel"></param>
+        /// <param name="dep"></param>
+        /// <returns></returns>
+        private string DataToExcel(HttpContext context, System.Data.DataTable dtExcel, string dep)
         {
             string result = "";
             string filePath = context.Server.MapPath("~/") + "file\\";
 
-            string fileName = dep+"部門生產計劃單.xls";// DateTime.Now.ToString("yyyyMMddHHmmss") + "跟单文件.xls";
+            string fileName = dep + "部門生產計劃單.xls";// DateTime.Now.ToString("yyyyMMddHHmmss") + "跟单文件.xls";
 
             FileOperatpr(fileName, filePath);
             //filePath = savePath + fileName;
             result = fileName;// excelFileName;
+            
+            int exp_times = 1;
+
+            //try
+            //{
+                //////创建Excel应用程序对象
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            //var ev=excel.Version;//獲取Excel的版本
+            //excel.Visible = true;       //Excel可見
+
+            Workbook wBook = excel.Workbooks.Add(true);
+            //////獲取活動的工作表
+            //Worksheet wSheet = (Microsoft.Office.Interop.Excel.Worksheet)wBook.ActiveSheet;
+            //////在工作簿中添加一個工作表
+            var xlSheets = wBook.Sheets as Sheets;//Microsoft.Office.Interop.Excel.Sheets;
+            //var xlNewSheet = xlSheets.Add(xlSheets[1], Type.Missing, Type.Missing, Type.Missing);//(Microsoft.Office.Interop.Excel.Worksheet)
+            //////定義在前或後插入幾個Sheet
+            //xlSheets.Add(object Before, object After, object Count, object Type);
+            if (dep != "105")
+            {
+                xlSheets.Add(Type.Missing, xlSheets[1], Type.Missing, Type.Missing);//(Microsoft.Office.Interop.Excel.Worksheet)
+            }
+            else
+            {
+                xlSheets.Add(Type.Missing, xlSheets[1], 3, Type.Missing);//(Microsoft.Office.Interop.Excel.Worksheet)
+            }
+            //////定義并獲取第幾個工作表
+            //Worksheet wSheet1 = wBook.Worksheets[2] as Worksheet;//Microsoft.Office.Interop.Excel.Worksheet;
+            //////設置第1個Sheet為活動的
+            wBook.Sheets[1].Activate();
+            if (dep == "102")
+            {
+                exp_times = 2;
+                //wSheet1 = wBook.Worksheets[1] as Worksheet;//Microsoft.Office.Interop.Excel.Worksheet;
+                wBook.Worksheets[1].Name = "102-A";
+                //wSheet1 = wBook.Worksheets[1] as Worksheet;//Microsoft.Office.Interop.Excel.Worksheet;
+                wBook.Worksheets[2].Name = "102-B";
+            }
+            else if (dep == "302")
+            {
+                exp_times = 2;
+                //wSheet1 = wBook.Worksheets[1] as Worksheet;//Microsoft.Office.Interop.Excel.Worksheet;
+                wBook.Worksheets[1].Name = "DG單";
+                //wSheet1 = wBook.Worksheets[1] as Worksheet;//Microsoft.Office.Interop.Excel.Worksheet;
+                wBook.Worksheets[2].Name = "N單";
+            }
+            else if(dep == "105")
+            {
+                exp_times = 4;
+                //wSheet1 = wBook.Worksheets[1] as Worksheet;//Microsoft.Office.Interop.Excel.Worksheet;
+                wBook.Worksheets[1].Name = "手啤";
+                //wSheet1 = wBook.Worksheets[1] as Worksheet;//Microsoft.Office.Interop.Excel.Worksheet;
+                wBook.Worksheets[2].Name = "牛仔";
+                wBook.Worksheets[3].Name = "底配件";
+                wBook.Worksheets[4].Name = "急鈕";
+            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    result = ex.Message;
+            //    return result;
+            //}
+
             try
             {
-                // 创建Excel应用程序对象
-                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-                var ev=excel.Version;
-                //excel.Visible = true;       //激活Excel
-                Workbook wBook = excel.Workbooks.Add(true);
-                Worksheet wSheet = (Microsoft.Office.Interop.Excel.Worksheet)wBook.ActiveSheet;
-                //var wSheet = (Microsoft.Office.Interop.Excel._Worksheet)wBook.ActiveSheet;
-                wSheet.Cells[1, 1] = "序號 ";
-                wSheet.Cells[1, 2] = "制單編號";
-                wSheet.Cells[1, 3] = "排期日期";
-                wSheet.Cells[1, 4] = "急單";
-                wSheet.Cells[1, 5] = "產品編號";
-                wSheet.Cells[1, 6] = "產品描述";
-                wSheet.Cells[1, 7] = "圖片";
-                wSheet.Cells[1, 8] = "PMC要求日期";
-                wSheet.Cells[1, 9] = "訂單數量";
-                wSheet.Cells[1, 10] = "要求數量";
-                wSheet.Cells[1, 11] = "完成數量";
-                wSheet.Cells[1, 12] = "待完成數量";
-                wSheet.Cells[1, 13] = "生產數量";
-                wSheet.Cells[1, 14] = "部門覆期";
-                wSheet.Cells[1, 15] = "下部門";
-                wSheet.Cells[1, 16] = "標準時產量";
-                wSheet.Cells[1, 17] = "需要時間";
-                wSheet.Cells[1, 18] = "生產設備";
-                wSheet.Cells[1, 19] = "計劃回港期";
-                wSheet.Cells[1, 20] = "上部門來貨數量";
-                wSheet.Cells[1, 21] = "上部門來貨期";
-                wSheet.Cells[1, 22] = "组別";
-                wSheet.Cells[1, 23] = "每啤";
-                wSheet.Cells[1, 24] = "需要啤數";
-                wSheet.Cells[1, 25] = "上模";
-                wSheet.Cells[1, 26] = "供應商";
-                wSheet.Cells[1, 27] = "過期標識";
-                int excelRow = 2;
-                string picPath = DBUtility.image_map_path;// context.Server.MapPath("~/") + "images\\";
-                for (int i = 0; i < dtExcel.Rows.Count; i++)
+                for (int ii = 1; ii <= exp_times; ii++)
                 {
-                    DataRow dr = dtExcel.Rows[i];
-                    wSheet.Cells[excelRow, 1] = dr["arrange_seq"].ToString();
-                    wSheet.Cells[excelRow, 2] = dr["prd_mo"].ToString();
-                    wSheet.Cells[excelRow, 3] = dr["arrange_date"].ToString() != "" ? "\'" + dr["arrange_date"].ToString() : "";// "=\"" +dr["arrange_date"].ToString() + "\"";
-                    wSheet.Cells[excelRow, 4] = dr["status_desc"].ToString();
-                    wSheet.Cells[excelRow, 5] = dr["prd_item"].ToString();
-                    wSheet.Cells[excelRow, 6] = dr["goods_cname"].ToString();
-                    wSheet.Cells[excelRow, 7] = "";
-                    wSheet.Cells[excelRow, 8] = dr["req_f_date"].ToString() != "" ? "\'" + dr["req_f_date"].ToString() : ""; //"=\"" + dr["req_f_date"].ToString() + "\"";
-                    wSheet.Cells[excelRow, 9] = dr["order_qty"].ToString();
-                    wSheet.Cells[excelRow, 10] = dr["req_qty"].ToString();
-                    wSheet.Cells[excelRow, 11] = dr["cpl_qty"].ToString();
-                    wSheet.Cells[excelRow, 12] = dr["arrange_qty"].ToString();
-                    wSheet.Cells[excelRow, 13] = dr["prd_cpl_qty"].ToString();
-                    wSheet.Cells[excelRow, 14] = dr["dep_rep_date"].ToString();
-                    wSheet.Cells[excelRow, 15] = dr["to_dep_desc"].ToString();
-                    wSheet.Cells[excelRow, 16] = dr["hour_std_qty"].ToString();
-                    wSheet.Cells[excelRow, 17] = dr["req_time"].ToString();
-                    wSheet.Cells[excelRow, 18] = dr["arrange_machine"].ToString();
-                    wSheet.Cells[excelRow, 19] = dr["req_hk_date"].ToString() != "" ? "\'" + dr["req_hk_date"].ToString() : ""; //"=\"" + dr["req_hk_date"].ToString() + "\"";
-                    wSheet.Cells[excelRow, 20] = dr["pre_prd_dep_qty"].ToString();
-                    wSheet.Cells[excelRow, 21] = dr["pre_prd_dep_date"].ToString() != "" ? "\'" + dr["pre_prd_dep_date"].ToString() : ""; //"=\"" + dr["pre_prd_dep_date"].ToString() + "\"";
-                    wSheet.Cells[excelRow, 22] = dr["dep_group"].ToString();
-                    wSheet.Cells[excelRow, 23] = dr["line_num"].ToString();
-                    wSheet.Cells[excelRow, 24] = dr["req_num"].ToString();
-                    wSheet.Cells[excelRow, 25] = dr["install_moudle"].ToString();
-                    wSheet.Cells[excelRow, 26] = dr["vendor_desc"].ToString();
-                    wSheet.Cells[excelRow, 27] = dr["period_flag"].ToString();
-                    string picName = dr["art_image"].ToString().Trim(); //"pencil.png";
-                    if (picName != "")
+                    System.Data.DataTable dtNewExcel = new System.Data.DataTable();
+                    DataView dv = dtExcel.DefaultView;
+                    if (dep == "102")
                     {
-                        picName = picName.Replace("\\", "/");
-                        picName = picPath + picName;
-                        string file_d = context.Server.MapPath(picName);
-                        //file_d = context.Server.MapPath("~/") + "images\\"+ "leftico01.png";
-                        if (File.Exists(file_d))
+                        string dep_group_102 = "102-A";
+                        if (ii == 1)//////將未設定組別的，暫時設定為A組別，并將該行用不同顏色顯示
+                            dv.RowFilter = "dep_group = " + "'" + dep_group_102 + "'" + " Or dep_group=''";
+                        else
                         {
-                            Microsoft.Office.Interop.Excel.Range picRange = wSheet.Range[wSheet.Cells[excelRow, 7], wSheet.Cells[excelRow, 7]];
-                            picRange.Select();
-                            //object m_objOpt = Missing.Value;
-                            //Pictures pics = (Pictures)wSheet.Pictures(m_objOpt);
-                            //pics.Insert(file_d, m_objOpt);
-
-                            float PicLeft, PicTop;
-                            PicLeft = Convert.ToSingle(picRange.Left+2);
-                            PicTop = Convert.ToSingle(picRange.Top+2);
-                            wSheet.Shapes.AddPicture(file_d, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, PicLeft, PicTop, 50, 50);
-
-
+                            dep_group_102 = "102-B";
+                            dv.RowFilter = "dep_group = " + "'" + dep_group_102 + "'";
                         }
+                        dtNewExcel = dv.ToTable();
                     }
-                    wSheet.Rows[excelRow].RowHeight = 60;
-                    excelRow++;
+                    else
+                    if (dep == "302")
+                    {
+                        if (ii == 1)
+                            dv.RowFilter = " Substring(prd_mo,1,1)<>'N' ";
+                        else
+                            dv.RowFilter = " Substring(prd_mo,1,1)='N' ";
+                        dtNewExcel = dv.ToTable();
+                    }else if (dep == "105")
+                    {
+                        if (ii == 1)//////將未設定組別的，暫時設定為A組別，并將該行用不同顏色顯示
+                            dv.RowFilter = "dep_group = 'BC01'" + " Or dep_group=''";
+                        else if(ii==2)
+                        {
+                            dv.RowFilter = "dep_group = 'BC02'";
+                        }
+                        else if (ii == 3)
+                        {
+                            dv.RowFilter = "dep_group = 'BC03'";
+                        }
+                        else
+                        {
+                            dv.RowFilter = "dep_group = 'BC04'";
+                        }
+                        dtNewExcel = dv.ToTable();
+                    }
+                    else
+                    {
+                        dtNewExcel = dtExcel;
+                    }
+                    wBook.Sheets[ii].Activate();
+                    Worksheet wSheet = (Microsoft.Office.Interop.Excel.Worksheet)wBook.ActiveSheet;
+                    //Microsoft.Office.Interop.Excel.Worksheet wSheet = wBook.Worksheets[ii] as Microsoft.Office.Interop.Excel.Worksheet;
+                    wSheet.Cells[1, 1] = "序號 ";
+                    wSheet.Cells[1, 2] = "制單編號";
+                    wSheet.Cells[1, 3] = "排期日期";
+                    wSheet.Cells[1, 4] = "急單狀態";
+                    wSheet.Cells[1, 5] = "產品編號";
+                    wSheet.Cells[1, 6] = "產品描述";
+                    wSheet.Cells[1, 7] = "圖片";
+                    wSheet.Cells[1, 8] = "PMC要求日期";
+                    wSheet.Cells[1, 9] = "訂單數量";
+                    wSheet.Cells[1, 10] = "要求數量";
+                    wSheet.Cells[1, 11] = "完成數量";
+                    wSheet.Cells[1, 12] = "待完成數量";
+                    wSheet.Cells[1, 13] = "生產數量";
+                    wSheet.Cells[1, 14] = "部門覆期";
+                    wSheet.Cells[1, 15] = "下部門";
+                    wSheet.Cells[1, 16] = "標準時產量";
+                    wSheet.Cells[1, 17] = "需要時間";
+                    wSheet.Cells[1, 18] = "生產設備";
+                    wSheet.Cells[1, 19] = "計劃回港期";
+                    wSheet.Cells[1, 20] = "上部門來貨數量";
+                    wSheet.Cells[1, 21] = "上部門來貨期";
+                    wSheet.Cells[1, 22] = "車間组別";
+                    wSheet.Cells[1, 23] = "每啤";
+                    wSheet.Cells[1, 24] = "需要啤數";
+                    wSheet.Cells[1, 25] = "上模";
+                    wSheet.Cells[1, 26] = "供應商";
+                    wSheet.Cells[1, 27] = "過期標識";
+                    wSheet.Cells[1, 28] = "制單組別";
+                    wSheet.Cells[1, 29] = "到貨狀態";
+                    int excelRow = 2;
+                    int tot_columns = 29;//總列數
+                    
+                    for (int i = 0; i < dtNewExcel.Rows.Count; i++)
+                    {
+                        DataRow dr = dtNewExcel.Rows[i];
+                        wSheet.Cells[excelRow, 1] = dr["arrange_seq"].ToString();
+                        wSheet.Cells[excelRow, 2] = dr["prd_mo"].ToString();
+                        wSheet.Cells[excelRow, 3] = dr["arrange_date"].ToString() != "" ? "\'" + dr["arrange_date"].ToString() : "";// "=\"" +dr["arrange_date"].ToString() + "\"";
+                        wSheet.Cells[excelRow, 4] = dr["dep_urgent_cdesc"].ToString();
+                        wSheet.Cells[excelRow, 5] = dr["prd_item"].ToString();
+                        wSheet.Cells[excelRow, 6] = dr["goods_cname"].ToString();
+                        wSheet.Cells[excelRow, 7] = "";
+                        wSheet.Cells[excelRow, 8] = dr["req_f_date"].ToString() != "" ? "\'" + dr["req_f_date"].ToString() : ""; //"=\"" + dr["req_f_date"].ToString() + "\"";
+                        wSheet.Cells[excelRow, 9] = dr["order_qty"].ToString();
+                        wSheet.Cells[excelRow, 10] = dr["req_qty"].ToString();
+                        wSheet.Cells[excelRow, 11] = dr["cpl_qty"].ToString();
+                        wSheet.Cells[excelRow, 12] = dr["arrange_qty"].ToString();
+                        wSheet.Cells[excelRow, 13] = dr["prd_cpl_qty"].ToString();
+                        wSheet.Cells[excelRow, 14] = "\'" + dr["dep_rep_date"].ToString();
+                        wSheet.Cells[excelRow, 15] = "\'" + dr["to_dep"].ToString();
+                        wSheet.Cells[excelRow, 16] = dr["hour_std_qty"].ToString();
+                        wSheet.Cells[excelRow, 17] = dr["req_time"].ToString();
+                        wSheet.Cells[excelRow, 18] = dr["arrange_machine"].ToString();
+                        wSheet.Cells[excelRow, 19] = dr["req_hk_date"].ToString() != "" ? "\'" + dr["req_hk_date"].ToString() : ""; //"=\"" + dr["req_hk_date"].ToString() + "\"";
+                        wSheet.Cells[excelRow, 20] = dr["pre_cp_qty"].ToString();
+                        wSheet.Cells[excelRow, 21] = dr["pre_cp_date"].ToString() != "" ? "\'" + dr["pre_cp_date"].ToString() : ""; //"=\"" + dr["pre_prd_dep_date"].ToString() + "\"";
+                        wSheet.Cells[excelRow, 22] = dr["dep_group"].ToString();
+                        wSheet.Cells[excelRow, 23] = dr["line_num"].ToString();
+                        wSheet.Cells[excelRow, 24] = dr["req_num"].ToString();
+                        wSheet.Cells[excelRow, 25] = dr["install_moudle"].ToString();
+                        wSheet.Cells[excelRow, 26] = dr["vendor_desc"].ToString();
+                        wSheet.Cells[excelRow, 27] = dr["period_flag"].ToString();
+                        wSheet.Cells[excelRow, 28] = dr["prd_mo"].ToString().Substring(2, 1);
+                        wSheet.Cells[excelRow, 29] = dr["pre_cp_flag_desc"].ToString();
+                        string picPath = DBUtility.image_map_path;// context.Server.MapPath("~/") + "images\\";
+                        string picName = dr["art_image"].ToString().Trim(); //"pencil.png";
+                        if (picName != "")
+                        {
+                            picName = picName.Replace("\\", "/");
+                            picName = picPath + picName;
+                            string file_d = context.Server.MapPath(picName);
+                            //file_d = context.Server.MapPath("~/") + "images\\" + "leftico01.png";
+                            if (File.Exists(file_d))
+                            {
+                                Microsoft.Office.Interop.Excel.Range picRange = wSheet.Range[wSheet.Cells[excelRow, 7], wSheet.Cells[excelRow, 7]];
+                                picRange.Select();
+                                //object m_objOpt = Missing.Value;
+                                //Pictures pics = (Pictures)wSheet.Pictures(m_objOpt);
+                                //pics.Insert(file_d, m_objOpt);
+
+                                float PicLeft, PicTop;
+                                PicLeft = Convert.ToSingle(picRange.Left + 2);
+                                PicTop = Convert.ToSingle(picRange.Top + 2);
+                                wSheet.Shapes.AddPicture(file_d, Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoTrue, PicLeft, PicTop, 50, 50);
+
+
+                            }
+
+                            //wSheet.Cells[excelRow, 28] = file_d;
+                        }
+                        wSheet.Rows[excelRow].RowHeight = 60;
+                        //如果沒有組別的，用特別顏色標識
+                        if (dep == "102" || dep == "105" || dep == "122")
+                        {
+                            if (dr["dep_group"].ToString().Trim() == "")
+                            {
+                                Range bakRange = wSheet.Range[wSheet.Cells[excelRow, 1], wSheet.Cells[excelRow, tot_columns]];
+                                bakRange.Interior.Color = Color.DarkGray.ToArgb();
+                            }
+                        }
+                        excelRow++;
+                    }
+
+                    ////标题  
+                    //for (int i = 0; i < 27; i++)
+                    //{
+                    //    Microsoft.Office.Interop.Excel.Range titleRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, i + 1]];//选中标题  
+                    //    titleRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter; //水平居中  
+                    //}
+                    excelRow--;//退回一行
+
+                    wSheet.Rows[1].RowHeight = 30;//第一行高度
+                    Microsoft.Office.Interop.Excel.Range titleRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, tot_columns]];
+                    titleRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter; //水平居中  
+                                                                                                             //设置边框
+                    Microsoft.Office.Interop.Excel.Range allRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[excelRow, tot_columns]];
+                    allRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
+                    allRange.Font.Size = 10;
+                    allRange = wSheet.Range[wSheet.Cells[2, 9], wSheet.Cells[excelRow, 9]];
+                    allRange.NumberFormat = "###,###,###";
+                    allRange = wSheet.Range[wSheet.Cells[2, 10], wSheet.Cells[excelRow, 10]];
+                    allRange.NumberFormat = "###,###,###";
+                    allRange = wSheet.Range[wSheet.Cells[2, 11], wSheet.Cells[excelRow, 11]];
+                    allRange.NumberFormat = "###,###,###";
+                    allRange = wSheet.Range[wSheet.Cells[2, 12], wSheet.Cells[excelRow, 12]];
+                    allRange.NumberFormat = "###,###,###";
+                    allRange = wSheet.Range[wSheet.Cells[2, 13], wSheet.Cells[excelRow, 13]];
+                    allRange.NumberFormat = "###,###,###";
+                    allRange = wSheet.Range[wSheet.Cells[2, 16], wSheet.Cells[excelRow, 16]];
+                    allRange.NumberFormat = "###,###,###";
+                    allRange = wSheet.Range[wSheet.Cells[2, 20], wSheet.Cells[excelRow, 20]];
+                    allRange.NumberFormat = "###,###,###";
+                    Microsoft.Office.Interop.Excel.Range Range1 = wSheet.Range[wSheet.Cells[1, 19], wSheet.Cells[excelRow, 19]];
+                    Range1.NumberFormatLocal = "YYYY/MM/DD";// "YYYY-MM-DD HH:MM:SS";
+
+                    //设置文本自動換行
+                    //Microsoft.Office.Interop.Excel.Range rangeWrapText = wSheet.Range[wSheet.Cells[1, 6], wSheet.Cells[excelRow, 6]];
+                    //rangeWrapText.WrapText = true;
+                    Microsoft.Office.Interop.Excel.Range rangeWrapText = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[excelRow, tot_columns]];
+                    rangeWrapText.WrapText = true;
+                    //Microsoft.Office.Interop.Excel.Range rangeTemp = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, tot_columns]]; //A2即从第二行以上进行冻结
+                    //rangeTemp.Select();
+                    //excel.ActiveWindow.FreezePanes = true;//冻结窗口
+                    //wSheet.Columns.EntireColumn.AutoFit();//列宽自适应
+
+                    wSheet.Cells.Font.Size = 10;
+                    wSheet.PageSetup.PaperSize = XlPaperSize.xlPaperA4;//纸张大小.XIPaperSize.xIPaperA3;//.xIPaperB4;//纸张大小
+                    wSheet.PageSetup.Orientation = XlPageOrientation.xlPortrait;//纸张方向:豎向；横向:XlPageOrientation.xlLandscape
+                    wSheet.PageSetup.TopMargin = 12.5;
+                    wSheet.PageSetup.BottomMargin = 20;
+                    wSheet.PageSetup.LeftMargin = 12.5;
+                    wSheet.PageSetup.RightMargin = 12.5;
+                    wSheet.PageSetup.HeaderMargin = 10;//页眉
+                    wSheet.PageSetup.FooterMargin = 10;//页脚
+                    wSheet.PageSetup.CenterHorizontally = true;
+                    wSheet.PageSetup.PrintTitleRows = "$1:$1";//顶端标题行
+                    ////wSheet.PageSetup.CenterFooter = @"页次: &P of &N";
+                    SetExcelColumnVisible(dep, wSheet,excelRow);
+                    
+
                 }
-
-                ////标题  
-                //for (int i = 0; i < 27; i++)
-                //{
-                //    Microsoft.Office.Interop.Excel.Range titleRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, i + 1]];//选中标题  
-                //    titleRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter; //水平居中  
-                //}
-                excelRow--;//退回一行
-                wSheet.Rows[1].RowHeight = 30;//第一行高度
-                Range titleRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, 27]];
-                titleRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter; //水平居中  
-                //设置边框
-                Microsoft.Office.Interop.Excel.Range allRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[excelRow, 27]];
-                allRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
-                allRange.Font.Size = 10;
-                allRange = wSheet.Range[wSheet.Cells[2, 9], wSheet.Cells[excelRow, 9]];
-                allRange.NumberFormat = "###,###,###";
-                allRange = wSheet.Range[wSheet.Cells[2, 10], wSheet.Cells[excelRow, 10]];
-                allRange.NumberFormat = "###,###,###";
-                allRange = wSheet.Range[wSheet.Cells[2, 11], wSheet.Cells[excelRow, 11]];
-                allRange.NumberFormat = "###,###,###";
-                allRange = wSheet.Range[wSheet.Cells[2, 12], wSheet.Cells[excelRow, 12]];
-                allRange.NumberFormat = "###,###,###";
-                allRange = wSheet.Range[wSheet.Cells[2, 13], wSheet.Cells[excelRow, 13]];
-                allRange.NumberFormat = "###,###,###";
-                allRange = wSheet.Range[wSheet.Cells[2, 16], wSheet.Cells[excelRow, 16]];
-                allRange.NumberFormat = "###,###,###";
-                allRange = wSheet.Range[wSheet.Cells[2, 20], wSheet.Cells[excelRow, 20]];
-                allRange.NumberFormat = "###,###,###";
-                Microsoft.Office.Interop.Excel.Range Range1 = wSheet.Range[wSheet.Cells[1, 19], wSheet.Cells[excelRow, 19]];
-                Range1.NumberFormatLocal = "YYYY/MM/DD";// "YYYY-MM-DD HH:MM:SS";
-
-                //设置文本自動換行
-                Microsoft.Office.Interop.Excel.Range rangeWrapText = wSheet.Range[wSheet.Cells[1, 6], wSheet.Cells[excelRow, 6]];
-                rangeWrapText.WrapText = true;
-                rangeWrapText = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, 27]];
-                rangeWrapText.WrapText = true;
-                wSheet.Columns[1].ColumnWidth = 4;
-                wSheet.Columns[4].ColumnWidth = 5;
-                wSheet.Columns[6].ColumnWidth = 30;
-                wSheet.Columns[7].ColumnWidth = 10;
-                wSheet.Columns[9].ColumnWidth = 6;
-                wSheet.Columns[10].ColumnWidth = 6;
-                wSheet.Columns[11].ColumnWidth = 6;
-                wSheet.Columns[12].ColumnWidth = 6;
-                wSheet.Columns[13].ColumnWidth = 6;
-                wSheet.Columns[16].ColumnWidth = 6;
-                wSheet.Columns[17].ColumnWidth = 5;
-                wSheet.Columns[20].ColumnWidth = 6;
-                wSheet.Columns[27].ColumnWidth = 6;
-
-                wSheet.Columns[5].Hidden = true;
-
-                //wSheet.Columns.EntireColumn.AutoFit();//列宽自适应
-
-                // 设置禁止弹出保存和覆盖的询问提示框
-                excel.DisplayAlerts = false;
-                excel.AlertBeforeOverwriting = false;
-                //保存工作薄
-
-                //wBook.Save();
-
-                //每次保存激活的表，这样才能多次操作保存不同的Excel表，默认保存位置是在”我的文档"
-                //excel.ActiveWorkbook.SaveCopyAs(filePath);
-                //wBook.SaveAs(filePath + fileName);
-                object m_objOpt = Missing.Value;
-                wBook.SaveAs(filePath + fileName, m_objOpt, m_objOpt, m_objOpt, m_objOpt, m_objOpt, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, m_objOpt, m_objOpt, m_objOpt, m_objOpt, m_objOpt);
-                wBook.Close();
-                excel.Quit();
-
             }
             catch (Exception ex)
             {
                 result = ex.Message;
             }
+            // 设置禁止弹出保存和覆盖的询问提示框
+            excel.DisplayAlerts = false;
+            excel.AlertBeforeOverwriting = false;
+            //保存工作薄
+
+            //wBook.Save();
+
+            //每次保存激活的表，这样才能多次操作保存不同的Excel表，默认保存位置是在”我的文档"
+            //excel.ActiveWorkbook.SaveCopyAs(filePath);
+            //wBook.SaveAs(filePath + fileName);
+            object m_objOpt = Missing.Value;
+            wBook.SaveAs(filePath + fileName, m_objOpt, m_objOpt, m_objOpt, m_objOpt, m_objOpt, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, m_objOpt, m_objOpt, m_objOpt, m_objOpt, m_objOpt);
+            wBook.Close();
+            wBook = null;
+            NAR(wBook);
+            excel.Quit();
+            excel = null;
+            NAR(excel);
+            GC.Collect();
+
+            //}
+            //catch (Exception ex)
+            //{
+            //    result = ex.Message;
+            //}
             return result;
         }
+        private void SetExcelColumnVisible(string dep, Worksheet wSheet,int excelRow)
+        {
+            if (dep == "102")
+            {
+                wSheet.Columns[1].ColumnWidth = 3.29;
+                wSheet.Columns[2].ColumnWidth = 9;
+                wSheet.Columns[3].ColumnWidth = 5;
+                wSheet.Columns[4].ColumnWidth = 5;
+                wSheet.Columns[5].Hidden = true;
+                wSheet.Columns[6].ColumnWidth = 13;
+                wSheet.Columns[7].ColumnWidth = 9.14;
+                //wSheet.Columns[8].Hidden = true;
+                wSheet.Columns[8].ColumnWidth = 6;
+                wSheet.Columns[9].ColumnWidth = 7;
+                wSheet.Columns[10].ColumnWidth = 7;
+                wSheet.Columns[11].ColumnWidth = 7;
+                wSheet.Columns[12].ColumnWidth = 7;
+                wSheet.Columns[13].ColumnWidth = 7;
+                wSheet.Columns[14].ColumnWidth = 6;
+                wSheet.Columns[15].ColumnWidth = 6;
+                wSheet.Columns[16].ColumnWidth = 6;
+                wSheet.Columns[17].ColumnWidth = 5;
+                wSheet.Columns[18].ColumnWidth = 7;
+                wSheet.Columns[19].Hidden = true;
+                wSheet.Columns[20].Hidden = true;
+                wSheet.Columns[21].Hidden = true;
+                wSheet.Columns[22].Hidden = true;
+                wSheet.Columns[23].Hidden = true;
+                wSheet.Columns[24].Hidden = true;
+                wSheet.Columns[25].Hidden = true;
+                wSheet.Columns[26].Hidden = true;
+                wSheet.Columns[27].Hidden = true;
+                wSheet.Columns[28].Hidden = true;
+                wSheet.Columns[29].Hidden = true;
+                wSheet.PageSetup.Zoom = 80;
+                ////wSheet.PageSetup.FitToPagesTall = 1;
+                ////wSheet.PageSetup.FitToPagesWide = 1;
+                string endRow = excelRow.ToString().Trim();
+                string sRow = "A1:" + "R" + endRow;
+                wSheet.PageSetup.PrintArea = sRow;
+            }
+            else if (dep == "302")
+            {
+                wSheet.Columns[1].ColumnWidth = 2.25;
+                wSheet.Columns[2].ColumnWidth = 9;
+                wSheet.Columns[3].ColumnWidth = 5;
+                wSheet.Columns[4].ColumnWidth = 5;
+                wSheet.Columns[5].Hidden = true;
+                wSheet.Columns[6].ColumnWidth = 13;
+                wSheet.Columns[7].ColumnWidth = 9.14;
+                //wSheet.Columns[8].Hidden = true;
+                wSheet.Columns[8].ColumnWidth = 6;
+                wSheet.Columns[8].Hidden = true;
+                wSheet.Columns[9].ColumnWidth = 7;
+                wSheet.Columns[10].ColumnWidth = 7;
+                wSheet.Columns[11].ColumnWidth = 7;
+                wSheet.Columns[12].ColumnWidth = 7;
+                wSheet.Columns[13].ColumnWidth = 7;
+                wSheet.Columns[13].Hidden = true;
+                wSheet.Columns[14].ColumnWidth = 6;
+                wSheet.Columns[15].ColumnWidth = 6;
+                wSheet.Columns[16].ColumnWidth = 6;
+                wSheet.Columns[17].ColumnWidth = 5;
+                wSheet.Columns[18].ColumnWidth = 7;
+                wSheet.Columns[19].Hidden = true;
+                wSheet.Columns[20].Hidden = true;
+                wSheet.Columns[21].Hidden = true;
+                wSheet.Columns[22].Hidden = true;
+                wSheet.Columns[23].Hidden = true;
+                wSheet.Columns[24].Hidden = true;
+                wSheet.Columns[25].Hidden = true;
+                wSheet.Columns[26].Hidden = true;
+                wSheet.Columns[27].Hidden = true;
+                wSheet.Columns[28].Hidden = true;
+                wSheet.Columns[29].Hidden = true;
+                wSheet.PageSetup.Zoom = 87;
+                //wSheet.PageSetup.FitToPagesTall = 1;
+                //wSheet.PageSetup.FitToPagesWide = 1;
+                string endRow = excelRow.ToString().Trim();
+                string sRow = "A1:" + "R" + endRow;
+                wSheet.PageSetup.PrintArea = sRow;
+            }
+            else if (dep == "322")
+            {
+                wSheet.Columns[1].ColumnWidth = 2.25;
+                wSheet.Columns[2].ColumnWidth = 9;
+                wSheet.Columns[3].ColumnWidth = 5;
+                wSheet.Columns[4].ColumnWidth = 5;
+                wSheet.Columns[5].Hidden = true;
+                wSheet.Columns[6].ColumnWidth = 13;
+                wSheet.Columns[7].ColumnWidth = 9.14;
+                //wSheet.Columns[8].Hidden = true;
+                wSheet.Columns[8].ColumnWidth = 6;
+                wSheet.Columns[8].Hidden = true;
+                wSheet.Columns[9].ColumnWidth = 7;
+                wSheet.Columns[10].ColumnWidth = 7;
+                wSheet.Columns[11].ColumnWidth = 7;
+                wSheet.Columns[12].ColumnWidth = 7;
+                wSheet.Columns[13].ColumnWidth = 7;
+                wSheet.Columns[13].Hidden = true;
+                wSheet.Columns[14].ColumnWidth = 6;
+                wSheet.Columns[15].ColumnWidth = 6;
+                wSheet.Columns[16].ColumnWidth = 6;
+                wSheet.Columns[17].ColumnWidth = 5;
+                wSheet.Columns[18].ColumnWidth = 7;
+                wSheet.Columns[19].Hidden = true;
+                wSheet.Columns[20].ColumnWidth = 7;
+                wSheet.Columns[20].Hidden = true;
+                wSheet.Columns[21].ColumnWidth = 7;
+                wSheet.Columns[21].Hidden = true;
+                wSheet.Columns[22].Hidden = true;
+                wSheet.Columns[23].Hidden = true;
+                wSheet.Columns[24].Hidden = true;
+                wSheet.Columns[25].Hidden = true;
+                wSheet.Columns[26].ColumnWidth = 7;
+                wSheet.Columns[27].Hidden = true;
+                wSheet.Columns[28].Hidden = true;
+                wSheet.Columns[29].Hidden = true;
+                wSheet.PageSetup.Zoom = 85;
+                //wSheet.PageSetup.FitToPagesTall = 1;
+                //wSheet.PageSetup.FitToPagesWide = 1;
+                string endRow = excelRow.ToString().Trim();
+                string sRow = "A1:" + "Z" + endRow;
+                wSheet.PageSetup.PrintArea = sRow;
+            }
+            else if (dep == "202")
+            {
+                wSheet.Columns[1].ColumnWidth = 2;
+                wSheet.Columns[2].ColumnWidth = 9;
+                wSheet.Columns[3].ColumnWidth = 3.75;
+                wSheet.Columns[4].ColumnWidth = 4.25;
+                wSheet.Columns[5].Hidden = true;
+                wSheet.Columns[6].ColumnWidth = 19;
+                wSheet.Columns[7].ColumnWidth = 9.14;
+                //wSheet.Columns[8].Hidden = true;
+                wSheet.Columns[8].ColumnWidth = 6;
+                wSheet.Columns[9].ColumnWidth = 7;
+                wSheet.Columns[10].ColumnWidth = 7;
+                wSheet.Columns[11].ColumnWidth = 7;
+                wSheet.Columns[12].ColumnWidth = 7;
+                wSheet.Columns[13].ColumnWidth = 7;
+                wSheet.Columns[13].Hidden = true;
+                wSheet.Columns[14].ColumnWidth = 6;
+                wSheet.Columns[15].ColumnWidth = 6;
+                wSheet.Columns[16].ColumnWidth = 6;
+                wSheet.Columns[17].ColumnWidth = 5;
+                wSheet.Columns[18].ColumnWidth = 7;
+                wSheet.Columns[18].Hidden = true;
+                wSheet.Columns[19].Hidden = true;
+                wSheet.Columns[20].Hidden = true;
+                wSheet.Columns[21].Hidden = true;
+                wSheet.Columns[22].ColumnWidth = 2;
+                //wSheet.Columns[22].Hidden = true;
+                wSheet.Columns[23].Hidden = true;
+                wSheet.Columns[24].Hidden = true;
+                wSheet.Columns[25].Hidden = true;
+                wSheet.Columns[26].ColumnWidth = 7;
+                wSheet.Columns[26].Hidden = true;
+                //wSheet.Columns[27].Hidden = true;
+                wSheet.Columns[27].ColumnWidth = 3;
+                wSheet.Columns[28].ColumnWidth = 1.75;
+                wSheet.Columns[29].Hidden = true;
+                wSheet.PageSetup.Zoom = 80;
+                //wSheet.PageSetup.FitToPagesTall = 1;
+                //wSheet.PageSetup.FitToPagesWide = 1;
+                //string endRow = excelRow.ToString().Trim();
+                //string sRow = "A1:" + "Z" + endRow;
+                //wSheet.PageSetup.PrintArea = sRow;
+            }
+            else if (dep == "203")
+            {
+                wSheet.Columns[1].ColumnWidth = 2;
+                wSheet.Columns[2].ColumnWidth = 9;
+                wSheet.Columns[3].ColumnWidth = 3.75;
+                wSheet.Columns[4].ColumnWidth = 4.25;
+                wSheet.Columns[5].Hidden = true;
+                wSheet.Columns[6].ColumnWidth = 19;
+                wSheet.Columns[7].ColumnWidth = 9.14;
+                //wSheet.Columns[8].Hidden = true;
+                wSheet.Columns[8].ColumnWidth = 6;
+                wSheet.Columns[9].ColumnWidth = 7;
+                wSheet.Columns[10].ColumnWidth = 7;
+                wSheet.Columns[11].ColumnWidth = 7;
+                wSheet.Columns[12].ColumnWidth = 7;
+                wSheet.Columns[13].ColumnWidth = 7;
+                wSheet.Columns[13].Hidden = true;
+                wSheet.Columns[14].ColumnWidth = 6;
+                wSheet.Columns[15].ColumnWidth = 6;
+                wSheet.Columns[16].ColumnWidth = 6;
+                wSheet.Columns[17].ColumnWidth = 5;
+                wSheet.Columns[18].ColumnWidth = 7;
+                wSheet.Columns[18].Hidden = true;
+                wSheet.Columns[19].Hidden = true;
+                wSheet.Columns[20].Hidden = true;
+                wSheet.Columns[21].Hidden = true;
+                wSheet.Columns[22].ColumnWidth = 2;
+                wSheet.Columns[22].Hidden = true;
+                wSheet.Columns[23].Hidden = true;
+                wSheet.Columns[24].Hidden = true;
+                wSheet.Columns[25].Hidden = true;
+                wSheet.Columns[26].ColumnWidth = 7;
+                wSheet.Columns[26].Hidden = true;
+                //wSheet.Columns[27].Hidden = true;
+                wSheet.Columns[27].ColumnWidth = 3;
+                wSheet.Columns[28].ColumnWidth = 1.75;
+                wSheet.Columns[29].Hidden = true;
+                wSheet.PageSetup.Zoom = 80;
+                //wSheet.PageSetup.FitToPagesTall = 1;
+                //wSheet.PageSetup.FitToPagesWide = 1;
+                //string endRow = excelRow.ToString().Trim();
+                //string sRow = "A1:" + "Z" + endRow;
+                //wSheet.PageSetup.PrintArea = sRow;
+            }
+            else if (dep == "105")
+            {
+                wSheet.Columns[1].ColumnWidth = 2;
+                wSheet.Columns[2].ColumnWidth = 9;
+                wSheet.Columns[3].ColumnWidth = 3.75;
+                wSheet.Columns[4].ColumnWidth = 4.25;
+                wSheet.Columns[5].Hidden = true;
+                wSheet.Columns[6].ColumnWidth = 19;
+                wSheet.Columns[7].ColumnWidth = 9.14;
+                //wSheet.Columns[8].Hidden = true;
+                wSheet.Columns[8].ColumnWidth = 6;
+                wSheet.Columns[9].ColumnWidth = 7;
+                wSheet.Columns[9].Hidden = true;
+                wSheet.Columns[10].ColumnWidth = 7;
+                wSheet.Columns[11].ColumnWidth = 7;
+                wSheet.Columns[12].ColumnWidth = 7;
+                wSheet.Columns[13].ColumnWidth = 7;
+                wSheet.Columns[13].Hidden = true;
+                wSheet.Columns[14].ColumnWidth = 6;
+                wSheet.Columns[15].ColumnWidth = 6;
+                wSheet.Columns[16].ColumnWidth = 6;
+                wSheet.Columns[17].ColumnWidth = 5;
+                wSheet.Columns[18].ColumnWidth = 7;
+                wSheet.Columns[18].Hidden = true;
+                wSheet.Columns[19].Hidden = true;
+                wSheet.Columns[20].ColumnWidth = 7;
+                //wSheet.Columns[20].Hidden = true;
+                wSheet.Columns[21].ColumnWidth = 7;
+                //wSheet.Columns[21].Hidden = true;
+                wSheet.Columns[22].ColumnWidth = 2;
+                wSheet.Columns[22].Hidden = true;
+                wSheet.Columns[23].Hidden = true;
+                wSheet.Columns[24].Hidden = true;
+                wSheet.Columns[25].Hidden = true;
+                wSheet.Columns[26].ColumnWidth = 7;
+                wSheet.Columns[26].Hidden = true;
+                //wSheet.Columns[27].Hidden = true;
+                wSheet.Columns[27].ColumnWidth = 3;
+                wSheet.Columns[27].Hidden = true;
+                wSheet.Columns[28].ColumnWidth = 1.75;
+                wSheet.Columns[28].Hidden = true;
+                wSheet.Columns[29].ColumnWidth = 4.25;
+                wSheet.PageSetup.Zoom = 80;
+                //wSheet.PageSetup.FitToPagesTall = 1;
+                //wSheet.PageSetup.FitToPagesWide = 1;
+                //string endRow = excelRow.ToString().Trim();
+                //string sRow = "A1:" + "Z" + endRow;
+                //wSheet.PageSetup.PrintArea = sRow;
+            }
 
+        }
+        private void NAR(object o)
+        {
+            try
+            {
+                while (System.Runtime.InteropServices.Marshal.FinalReleaseComObject(o) > 0) ;
+            }
+            catch { }
+            finally
+            {
+                o = null;
+            }
+        }
 
+        /// <summary>
+        /// ////匯出總表到Excel
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="dtExcel"></param>
+        /// <param name="dep"></param>
+        /// <returns></returns>
         private string DataToExcelSum(HttpContext context, System.Data.DataTable dtExcel, string dep)
         {
             string result = "";
@@ -286,6 +711,7 @@ namespace WebPortal.ashx
             FileOperatpr(fileName, filePath);
             //filePath = savePath + fileName;
             result = fileName;// excelFileName;
+            string picPath = DBUtility.image_map_path;// context.Server.MapPath("~/") + "images\\";
             try
             {
                 // 创建Excel应用程序对象
@@ -295,6 +721,7 @@ namespace WebPortal.ashx
                 Workbook wBook = excel.Workbooks.Add(true);
                 Worksheet wSheet = (Microsoft.Office.Interop.Excel.Worksheet)wBook.ActiveSheet;
                 //var wSheet = (Microsoft.Office.Interop.Excel._Worksheet)wBook.ActiveSheet;
+                
                 wSheet.Cells[1, 1] = "部門";
                 wSheet.Cells[1, 2] = "部門描述";
                 wSheet.Cells[1, 3] = "車間";
@@ -315,7 +742,7 @@ namespace WebPortal.ashx
                 wSheet.Cells[1, 18] = "急單數量";
                 wSheet.Cells[1, 19] = "需生產天數";
                 int excelRow = 2;
-                string picPath = DBUtility.image_map_path;// context.Server.MapPath("~/") + "images\\";
+                int total_cols = 19;//總列數
                 for (int i = 0; i < dtExcel.Rows.Count; i++)
                 {
                     DataRow dr = dtExcel.Rows[i];
@@ -340,8 +767,20 @@ namespace WebPortal.ashx
                     wSheet.Cells[excelRow, 19] = dr["urgent_n_day"].ToString();
 
                     wSheet.Rows[excelRow].RowHeight = 30;
+                    if (excelRow % 2 != 0)
+                    {
+                        Range bakRange = wSheet.Range[wSheet.Cells[excelRow, 1], wSheet.Cells[excelRow, total_cols]];
+                        //bakRange.MergeCells = true;//合併單元格
+                        //bakRange.Style.Color = Color.LightYellow;
+                        // 获取单元格
+                        //Excel.Range cellRange = worksheet.Range["A1"];
+                        bakRange.Interior.Color = Color.DarkGray.ToArgb();
+                    }
+
                     excelRow++;
+
                 }
+                
 
                 ////标题  
                 //for (int i = 0; i < 27; i++)
@@ -351,18 +790,25 @@ namespace WebPortal.ashx
                 //}
                 excelRow--;//退回一行
                 wSheet.Rows[1].RowHeight = 40;//第一行高度
-                Range titleRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, 19]];
+                
+                Range titleRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, total_cols]];
                 titleRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter; //水平居中  
+                ////设置文本自動換行
+                //Microsoft.Office.Interop.Excel.Range rangeWrapText = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[excelRow, total_cols]];
+                //rangeWrapText.WrapText = true;
                 //设置边框
-                Microsoft.Office.Interop.Excel.Range allRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[excelRow, 19]];
+                Microsoft.Office.Interop.Excel.Range allRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[excelRow, total_cols]];
                 allRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                 allRange.Font.Size = 10;
                 allRange.WrapText = true;
+                //excel.get_Range("A1", "A19").Select();
+                //excel.get_Range("C1", "C1").Select();
+                //excel.ActiveWindow.FreezePanes = true;//冻结窗口
                 ////////带有千位分隔符、2位小数和减号的标准数字格式
                 ////////rng.NumberFormat = "# ##0.00:-# ##0.00"
                 allRange = wSheet.Range[wSheet.Cells[2, 5], wSheet.Cells[excelRow, 5]];
                 allRange.NumberFormat = "###,###,###";
-                allRange = wSheet.Range[wSheet.Cells[2, 8], wSheet.Cells[excelRow, 19]];
+                allRange = wSheet.Range[wSheet.Cells[2, 8], wSheet.Cells[excelRow, 8]];
                 allRange.NumberFormat = "###,###,###";
                 allRange = wSheet.Range[wSheet.Cells[2, 10], wSheet.Cells[excelRow, 10]];
                 allRange.NumberFormat = "###,###,##0.00";
@@ -397,6 +843,18 @@ namespace WebPortal.ashx
                 wSheet.Columns[1].Hidden = true;
                 wSheet.Columns[2].Hidden = true;
 
+                wSheet.Cells.Font.Size = 10;
+                wSheet.PageSetup.PaperSize = XlPaperSize.xlPaperA4;//纸张大小.XIPaperSize.xIPaperA3;//.xIPaperB4;//纸张大小
+                wSheet.PageSetup.Orientation = XlPageOrientation.xlLandscape;//横向:纸张方向:豎向；XlPageOrientation.xlPortrait;
+                wSheet.PageSetup.TopMargin = 12.5;
+                wSheet.PageSetup.BottomMargin = 20;
+                wSheet.PageSetup.LeftMargin = 12.5;
+                wSheet.PageSetup.RightMargin = 12.5;
+                wSheet.PageSetup.HeaderMargin = 10;//页眉
+                wSheet.PageSetup.FooterMargin = 10;//页脚
+                wSheet.PageSetup.CenterHorizontally = true;
+                wSheet.PageSetup.PrintTitleRows = "$1:$1";//顶端标题行
+
                 // 设置禁止弹出保存和覆盖的询问提示框
                 excel.DisplayAlerts = false;
                 excel.AlertBeforeOverwriting = false;
@@ -410,7 +868,12 @@ namespace WebPortal.ashx
                 object m_objOpt = Missing.Value;
                 wBook.SaveAs(filePath + fileName, m_objOpt, m_objOpt, m_objOpt, m_objOpt, m_objOpt, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, m_objOpt, m_objOpt, m_objOpt, m_objOpt, m_objOpt);
                 wBook.Close();
+                wBook = null;
+                NAR(wBook);
                 excel.Quit();
+                excel = null;
+                NAR(excel);
+                GC.Collect();
 
             }
             catch (Exception ex)
@@ -420,7 +883,13 @@ namespace WebPortal.ashx
             return result;
         }
 
-
+        /// <summary>
+        /// 生產總表
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="dtExcel"></param>
+        /// <param name="dep"></param>
+        /// <returns></returns>
         private string DataToExcelPrd(HttpContext context, System.Data.DataTable dtExcel, string dep)
         {
             string result = "";
@@ -478,11 +947,12 @@ namespace WebPortal.ashx
                 //    titleRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter; //水平居中  
                 //}
                 excelRow--;//退回一行
+                int total_cols = 11;//總列數
                 wSheet.Rows[1].RowHeight = 40;//第一行高度
-                Range titleRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, 11]];
+                Range titleRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[1, total_cols]];
                 titleRange.HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter; //水平居中  
                 //设置边框
-                Microsoft.Office.Interop.Excel.Range allRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[excelRow, 11]];
+                Microsoft.Office.Interop.Excel.Range allRange = wSheet.Range[wSheet.Cells[1, 1], wSheet.Cells[excelRow, total_cols]];
                 allRange.Borders.LineStyle = Microsoft.Office.Interop.Excel.XlLineStyle.xlContinuous;
                 allRange.Font.Size = 10;
                 allRange.WrapText = true;
@@ -529,7 +999,12 @@ namespace WebPortal.ashx
                 object m_objOpt = Missing.Value;
                 wBook.SaveAs(filePath + fileName, m_objOpt, m_objOpt, m_objOpt, m_objOpt, m_objOpt, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, m_objOpt, m_objOpt, m_objOpt, m_objOpt, m_objOpt);
                 wBook.Close();
+                wBook = null;
+                NAR(wBook);
                 excel.Quit();
+                excel = null;
+                NAR(excel);
+                GC.Collect();
 
             }
             catch (Exception ex)

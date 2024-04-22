@@ -164,7 +164,7 @@ namespace Leyp.SQLServerDAL
         public DataTable get_lang(string doc_type)
         {
             string strSql;
-            strSql = "select flag_id,flag_id+'--'+flag_desc AS flag_desc from bs_flag_desc where doc_type='" + doc_type + "'" + " order by flag_id";
+            strSql = "select rtrim(flag_id) AS flag_id,flag_id+'--'+flag_desc AS flag_desc from bs_flag_desc where doc_type='" + doc_type + "'" + " order by flag_id";
             DataTable dt = SQLHelper.ExecuteSqlReturnDataTable(strSql);
             return dt;
         }
@@ -205,6 +205,15 @@ namespace Leyp.SQLServerDAL
             strSql = "select id AS vend_id,Rtrim(id)+'--'+Rtrim(name) AS vend_cdesc,Rtrim(id)+'--'+Rtrim(english_name) AS vend_edesc" +
                 " from " + remote_db + "it_vendor" +
                 " Where within_code='" + within_code + "' AND id>='CL' AND id<='CLZZZZZZ'";
+            DataTable dt = SQLHelper.ExecuteSqlReturnDataTable(strSql);
+            return dt;
+        }
+
+        //提取生產類型
+        public DataTable GetWorkType()
+        {
+            string strSql;
+            strSql = "select Rtrim(work_type_id) AS work_type_id,Rtrim(work_type_id)+'--'+Rtrim(work_type_desc) AS work_type_desc from dgcf_pad.dbo.work_type order by work_type_id";
             DataTable dt = SQLHelper.ExecuteSqlReturnDataTable(strSql);
             return dt;
         }

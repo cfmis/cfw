@@ -1392,6 +1392,7 @@
     <Content Include="Products\NQ_Select_Products_Window.aspx" />
     <Content Include="Products\Pd_DepAverageProduct.aspx" />
     <Content Include="Products\Pd_DepProductStatus.aspx" />
+    <Content Include="Products\Pd_LoadProductionBonus.aspx" />
     <Content Include="Products\Pd_Mo_Arrange_Imput.aspx" />
     <Content Include="Products\Pd_Mo_Arrange_New.aspx" />
     <Content Include="Products\Pd_Mo_LoadSpecificColorProduct.aspx" />
@@ -1458,6 +1459,7 @@
     <Content Include="Sales\Sa_Mo_FindByBrand.aspx" />
     <Content Include="Sales\Sa_Mo_LoadDepPlan.aspx" />
     <Content Include="Sales\Sa_Mo_LoadDnByBrand.aspx" />
+    <Content Include="Sales\Sa_Mo_NotComplete.aspx" />
     <Content Include="Sales\Sa_Mo_OutsideProcess.aspx" />
     <Content Include="Sales\Sa_Mo_PackRecordNotSent.aspx" />
     <Content Include="Sales\Sa_Mo_PeriodOver5Day.aspx" />
@@ -1632,6 +1634,9 @@
     <Compile Include="ashx\Ax_Iv_salesByPrdType.ashx.cs">
       <DependentUpon>Ax_Iv_salesByPrdType.ashx</DependentUpon>
     </Compile>
+    <Compile Include="ashx\Ax_LoadProductionBouns.ashx.cs">
+      <DependentUpon>Ax_LoadProductionBouns.ashx</DependentUpon>
+    </Compile>
     <Compile Include="ashx\Ax_Mo_FindSeason.ashx.cs">
       <DependentUpon>Ax_Mo_FindSeason.ashx</DependentUpon>
     </Compile>
@@ -1643,6 +1648,9 @@
     </Compile>
     <Compile Include="ashx\Ax_Mo_LoadSpecificColorProduct.ashx.cs">
       <DependentUpon>Ax_Mo_LoadSpecificColorProduct.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="ashx\Ax_Mo_NotComplete.ashx.cs">
+      <DependentUpon>Ax_Mo_NotComplete.ashx</DependentUpon>
     </Compile>
     <Compile Include="ashx\Ax_Mo_PackRecordNotSent.ashx.cs">
       <DependentUpon>Ax_Mo_PackRecordNotSent.ashx</DependentUpon>
@@ -1973,6 +1981,13 @@
     </Compile>
     <Compile Include="Products\Pd_DepProductStatus.aspx.designer.cs">
       <DependentUpon>Pd_DepProductStatus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Products\Pd_LoadProductionBonus.aspx.cs">
+      <DependentUpon>Pd_LoadProductionBonus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Products\Pd_LoadProductionBonus.aspx.designer.cs">
+      <DependentUpon>Pd_LoadProductionBonus.aspx</DependentUpon>
     </Compile>
     <Compile Include="Products\Pd_Mo_Arrange_Imput.aspx.cs">
       <DependentUpon>Pd_Mo_Arrange_Imput.aspx</DependentUpon>
@@ -2422,6 +2437,13 @@
     </Compile>
     <Compile Include="Sales\Sa_Mo_LoadDnByBrand.aspx.designer.cs">
       <DependentUpon>Sa_Mo_LoadDnByBrand.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sales\Sa_Mo_NotComplete.aspx.cs">
+      <DependentUpon>Sa_Mo_NotComplete.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sales\Sa_Mo_NotComplete.aspx.designer.cs">
+      <DependentUpon>Sa_Mo_NotComplete.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sales\Sa_Mo_OutsideProcess.aspx.cs">
       <DependentUpon>Sa_Mo_OutsideProcess.aspx</DependentUpon>
@@ -3482,6 +3504,8 @@
     <Content Include="ashx\Ax_Pd_Mo_ArrangeImput.ashx" />
     <Content Include="ashx\Ax_Mo_LoadDnByBrand.ashx" />
     <Content Include="ashx\Ax_Mo_LoadDepPlan.ashx" />
+    <Content Include="ashx\Ax_Mo_NotComplete.ashx" />
+    <Content Include="ashx\Ax_LoadProductionBouns.ashx" />
     <None Include="dgcf_dbDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dgcf_dbDataSet.Designer.cs</LastGenOutput>

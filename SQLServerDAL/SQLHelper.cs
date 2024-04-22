@@ -184,7 +184,7 @@
                 cmd.Connection = connection;
                 cmd.CommandText = strSql;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandTimeout = 2400;//連接20分鐘
+                cmd.CommandTimeout = 3600;//連接20分鐘//0;
                 cmd.Parameters.AddRange(paras);
                 SqlDataAdapter sda = new SqlDataAdapter(cmd);
                 sda.Fill(dtData);

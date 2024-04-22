@@ -134,6 +134,12 @@ namespace WebPortal.ashx
                 case "get_vend":
                     dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().getVend();
                     break;
+                case "CP_STATE":
+                    dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().get_docflag("CP_STATE");
+                    break;
+                case "get_work_type":
+                    dt = Leyp.SQLServerDAL.Factory_New.BaseDataDAL().GetWorkType();
+                    break;
             }
 
 

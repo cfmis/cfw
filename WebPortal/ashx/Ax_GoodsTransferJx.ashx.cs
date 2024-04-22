@@ -169,17 +169,21 @@ namespace WebPortal.ashx
             }
             else
             {
-                string strSql = "Select a.prd_dep,d.dep_cdesc AS prd_dep_cdesc,a.prd_mo,a.prd_item,b.name AS prd_item_cdesc"+
+
+                string strSql = "Select a.prd_dep,d.dep_cdesc AS prd_dep_cdesc,a.prd_mo,a.prd_item,b.name AS prd_item_cdesc" +
                     ",a.transfer_qty,a.transfer_weg,a.wip_id" +
-                    ",a.transfer_date,c.flag_desc,a.to_dep,e.dep_cdesc AS to_dep_cdesc " +
-                    " FROM dgcf_pad.dbo.product_transfer_jx_details a" +
-                    " LEFT JOIN geo_it_goods b ON a.prd_item=b.id COLLATE chinese_taiwan_stroke_CI_AS" +
+                    ",a.transfer_date,c.flag_desc,a.to_dep,e.dep_cdesc AS to_dep_cdesc ";
+                if (Transfer_flag.Trim() == "1")
+                    strSql += " FROM lnsql1.dgcf_pad.dbo.product_transfer_jx_details a";
+                else
+                    strSql += " FROM dgcf_pad.dbo.product_transfer_jx_details a";
+                strSql +=" LEFT JOIN geo_it_goods b ON a.prd_item=b.id COLLATE chinese_taiwan_stroke_CI_AS" +
                     " LEFT JOIN bs_flag_desc c ON a.transfer_flag=c.flag_id COLLATE chinese_taiwan_stroke_CI_AS" +
                     " LEFT JOIN bs_dep d ON a.wip_id=d.dep_id COLLATE chinese_taiwan_stroke_CI_AS" +
                     " LEFT JOIN bs_dep e ON a.to_dep=e.dep_id COLLATE chinese_taiwan_stroke_CI_AS" +
                     " WHERE c.doc_type='goods_transfer_jx'";
                 if (Prd_dep != "")
-                    strSql += " AND a.prd_dep='" + Prd_dep + "'";
+                    strSql += " AND a.wip_id='" + Prd_dep + "'";
                 if (Mo_group != "")
                     strSql += " AND Substring(a.prd_mo,3,1)='" + Mo_group + "'";
                 if (Prd_mo_from != "" && Prd_mo_to != "")
@@ -188,9 +192,9 @@ namespace WebPortal.ashx
                     strSql += " AND a.prd_item Like '" + "%" + Prd_item_from + "%" + "'";
                 if (Date_from != "" && Date_to != "")
                     strSql += " AND a.Transfer_date>='" + Date_from + "' AND a.Transfer_date<='" + Date_to + "'";
-                if (Transfer_flag.Trim() == "0" || Transfer_flag.Trim() == "1")
-                    strSql += " AND a.Transfer_flag='" + Transfer_flag + "'";
-                strSql += " ORDER BY a.prd_dep,a.Transfer_flag,a.transfer_date,a.prd_item,a.prd_mo";
+                //if (Transfer_flag.Trim() == "0" || Transfer_flag.Trim() == "1")
+                strSql += " AND a.Transfer_flag='" + "0" + "'";
+                strSql += " ORDER BY a.wip_id,a.Transfer_flag,a.transfer_date,a.prd_item,a.prd_mo";
                 DataTable dt = SQLHelper.ExecuteSqlReturnDataTable(strSql);
 
 

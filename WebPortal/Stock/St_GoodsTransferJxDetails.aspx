@@ -491,7 +491,7 @@
                     <td><input type="text" class="easyui-validatebox" id="txtPrd_item_from" name="txtPrd_item_from" style="width:120px" /></td>
                     <td style="text-align:right"><label for="lblMo_group">組別</label></td>
                     <td><input type="text" class="easyui-validatebox" id="txtMo_group" name="txtMo_group" style="width:120px" /></td>
-                    <td style="text-align:right"><label for="lblTransfer_flag">標識</label></td>
+                    <td style="text-align:right"><label for="lblTransfer_flag">收發標識</label></td>
                     <td><input id="selTransfer_flag" name="selTransfer_flag" style="float:none" class="easyui-combobox" data-options="width:120, valueField: 'flag_id', textField: 'flag_desc', url: '../ashx/Base_Select.ashx/GetItem?paraa=goods_transfer_jx&parab=list'" /></td>
                 </tr>
                 <tr>

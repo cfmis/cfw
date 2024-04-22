@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sa_Mo_LoadDepPlan.aspx.cs" Inherits="WebPortal.Sales.Sa_Mo_LoadDepPlan" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Sa_Mo_NotComplete.aspx.cs" Inherits="WebPortal.Sales.Sa_Mo_NotComplete" %>
 
 <!DOCTYPE html>
 
@@ -22,14 +22,14 @@
         .box2 {width:200px; float:left; display:inline;} 
     </style>
     <script type="text/javascript">
-
+        var query_url = '';
         function setValue(fobj, tobj) {
             tobj.value = fobj.value;
 
         }
         
         $(function () {
-
+            
             SearchData();
             $('#tbInvList').datagrid({               //根据自身情况更改
                 width: $(window).width() - 40,    //根据自身情况更改
@@ -51,6 +51,7 @@
             //InitSearch();//查询
 
             $("#btnSerach").click(function () {
+                query_url = "../ashx/Ax_Mo_NotComplete.ashx?paraa=table";
                 SearchData();
 
             });
@@ -72,30 +73,25 @@
             //var subtractYear = date.subtractYears(1); //减1年
             var now_date = new Date();
             var from_date = new Date();
-            from_date.setDate(now_date.getDate() - 60);
+            from_date.setDate(now_date.getDate() - 90);
             $("#txtDate_from").datebox("setValue", changeDateToChar(from_date));
             $("#txtDate_to").datebox("setValue", changeDateToChar(now_date));
+            //$("#selCmpState").datebox("setValue", 0);
+            $('#selCmpState').combobox('select', 0);
+
         });
 
         function SearchData() {
-            var queryData = GetQueryData(1);
+             var queryData = GetQueryData(1);
             //将值传递给initTable
             initList(queryData);
             return false;
         }
 
-        //初始化搜索框
-        function InitSearch() {
-            //按照条件进行查询，首先我们得到数据
-            $("#btnSerach").click(function () {
-                SearchData();
-
-            });
-        }
         function GetQueryData(rpt_type) {
             var queryData = {
                 rpt_type: rpt_type,
-                dep: $("#selPrd_dep").textbox('getValue'),
+                complete_state: $("#selCmpState").textbox('getValue'),
                 date_from: $("#txtDate_from").datebox("getValue"),
                 date_to: $("#txtDate_to").datebox("getValue"),
                 mo_from: $("#txtMo_from").val(),
@@ -105,9 +101,9 @@
         }
         
         function initList(queryData) {
-            $('#tbInvList').datagrid({
+             $('#tbInvList').datagrid({
 
-                url: "../ashx/Ax_Mo_LoadDepPlan.ashx?paraa=get_plan&parab=table",   //指向后台的Action来获取当前用户的信息的Json格式的数据
+                url: query_url,//"../ashx/Ax_Mo_NotComplete.ashx?paraa=table",   //指向后台的Action来获取当前用户的信息的Json格式的数据
                 iconCls: 'icon-view',//图标
                 //height: 500,
                 //fit: true,//自动适屏功能，表格會自動適應屏幕，就算設置了高度也無效的
@@ -120,7 +116,7 @@
                 //sortName: 'Id',//排序列名为ID
                 sortOrder: 'asc',//排序为将序
                 remoteSort: false,
-                idField: 'sequence_id',//主键值
+                idField: 'mo_group',//主键值
                 rownumbers: true,//显示行号
                 multiSort: true,//启用排序 sortable: true //启用排序列
                 //toolbar: '#tbInvList',
@@ -130,21 +126,10 @@
                 queryParams: queryData, //搜索条件查询
                 //frozenColumns 和 columns是有區別的，frozenColumns--沒有滾動，columns--可以滾動，注意是區分大小寫的
                 columns: [[
-                { field: 'arrange_seq', title: '序號', width: 60 },
-                { field: 'prd_mo', title: '制單編號', width: 80 },
-                { field: 'prd_item', title: '物料編號', width: 80 },
-                { field: 'goods_cname', title: '物料描述', width: 200 },
-                { field: 'arrange_qty', title: '安排數量', width: 100 },
-                { field: 'arrange_date', title: '安排日期', width: 60 },
-                { field: 'req_f_date', title: '要求完成時間', width: 80 },
-                { field: 'cust_o_date', title: '客落單日期', width: 80 },
-                { field: 'order_qty', title: '訂單數量', width: 80 },
-                { field: 'req_qty', title: '要求數量', width: 80 },
-                { field: 'cpl_qty', title: '完成數量', width: 80 },
-                { field: 'prd_cpl_qty', title: '生產數量', width: 80 },
-                { field: 'to_dep_desc', title: '收貨部門', width: 80 },
-                { field: 'dep_rep_date', title: '部門回覆', width: 80 },
-                { field: 'prd_dep', title: '部門編號', width: 60 },
+                { field: 'mo_group', title: '組別', width: 60 },
+                { field: 'mo_type', title: '制單類型', width: 80 },
+                { field: 'qty_pcs', title: '訂單數量(PCS)', width: 180 },
+                { field: 'amt_hkd', title: '訂單金額(HKD)', width: 180 },
                 ]],
                 loadFilter: pagerFilter,
                 //toolbar: [{
@@ -216,7 +201,7 @@
 
     <script type="text/javascript">
         function DownloadExcel(rpt_type) {
-            var url = "../ashx/Ax_Mo_LoadDepPlan.ashx?paraa=xls";
+            var url = "../ashx/Ax_Mo_NotComplete.ashx?paraa=xls";
             var url_dst = "../file/";
             var queryData = GetQueryData(rpt_type);
             //debugger;
@@ -275,26 +260,22 @@
                 <%--<form id="ffSearch" method="post">--%>
                     <div style="margin-bottom: 5px">
                         <a href="#" class="easyui-linkbutton" iconcls="icon-search" id="btnSerach" style="width:80px;height:25px">查詢</a>
-                        <a href="#" id="btnExcelSum" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DownloadExcel(0)" style="width:120px;height:25px">Excel明細</a>
-                        <a href="#" id="btExcelDetails" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DownloadExcel(1)" style="width:120px;height:25px">Excel匯總</a>
-                        <a href="#" id="btExcelPrdDetails" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DownloadExcel(2)" style="width:120px;height:25px">Excel生產數</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="#" class="easyui-linkbutton" iconcls="icon-save" id="btnShowDlg" onclick="showMessageDialog('../Products/Pd_Mo_Arrange_Imput.aspx','上傳計劃',600,350,true)" style="width:120px;height:25px">上傳計劃單</a>
+                        <a href="#" id="btnExcelSum" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DownloadExcel(0)" style="width:120px;height:25px">Excel明細表</a>
+                        <a href="#" id="A1" class="easyui-linkbutton" runat="server" iconCls="icon-excel"  plain="false" onclick="DownloadExcel(1)" style="width:120px;height:25px">Excel匯總表</a>
                     </div>
+
                 <div style="margin-bottom: 5px">
-                    <label id="lblDep">部門編號</label>
-                    <input id="selPrd_dep" name="selPrd_dep" class="easyui-combobox" data-options="width:160, valueField: 'dep_id', textField: 'dep_cdesc', url: '../ashx/Base_Select.ashx/GetItem?paraa=pd_mo_plan_dep&parab=list'" />
-                    <%--<label>報表類型</label>
-                    <select id="selIsComplete" class="easyui-combobox" data-options="width:120, valueField: 'flag_id', textField: 'flag_desc', url: '../ashx/Base_Select.ashx/GetItem?paraa=get_order_complete_flag&parab=list'" />--%>
-                </div>
-                <div style="margin-bottom: 5px">
-                        <label id="lblDate">計劃單日期</label>
+                        <label id="lblDate">開單日期</label>
                         <input id="txtDate_from" style="width:160px" class="easyui-datebox-expand"/>
                         <input id="txtDate_to" style="width:160px" class="easyui-datebox-expand"/>
                         <label for="lblMo">制單編號</label>
                         <input type="text" class="easyui-textbox" id="txtMo_from" name="txtMo_from" style="width:160px" />
                         <input type="text" class="easyui-textbox" id="txtMo_to" name="txtMo_to" style="width:160px" />
                     </div>
+                <div>
+                    <label id="lblCmpState">完成狀態</label>
+                    <input id="selCmpState" name="selCmpState" class="easyui-combobox" data-options="width:160, valueField: 'flag_id', textField: 'flag_desc', url: '../ashx/Base_Select.ashx/GetItem?paraa=CP_STATE&parab=list'" />
+                </div>
 
             </fieldset>
 

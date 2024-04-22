@@ -106,9 +106,9 @@ namespace WebPortal.ashx
             {
                 productMoFrom = "ZZZZZZZZZZ";
                 productMoTo = "ZZZZZZZZZZ";
-            }
+            }/*userId*/
             SqlParameter[] parameters = { new SqlParameter("@source_type", sourceType)
-                                        ,new SqlParameter("@user_id", userId)
+                                        ,new SqlParameter("@user_id",userId)
                                         ,new SqlParameter("@cp_state", isComplete)
                                         ,new SqlParameter("@mo_group", moGroup)
                                         ,new SqlParameter("@crdat1", dateFrom), new SqlParameter("@crdat2", dateTo)
