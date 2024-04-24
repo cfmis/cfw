@@ -129,7 +129,7 @@
                 { field: 'hrm1name', title: '姓名', width: 100 },
                 { field: 'hrm1job', title: '職位', width: 60 },
                 { field: 'hrc5name', title: '職位描述', width: 80 },
-                { field: 'prd_qty', title: '生產數量', width: 80 },
+                { field: 'prd_nor_qty', title: '生產數量', width: 80 },
                 { field: 'count_time', title: '生產時數', width: 80 },
                 { field: 'prd_bonus', title: '應得獎金', width: 80 },
                 ]],

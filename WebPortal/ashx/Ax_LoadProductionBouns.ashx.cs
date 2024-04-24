@@ -142,7 +142,7 @@ namespace WebPortal.ashx
                     wSheet.Cells[excelRow, 5] = dr["hrm1name"].ToString();
                     wSheet.Cells[excelRow, 6] = "\'" + dr["hrm1job"].ToString();
                     wSheet.Cells[excelRow, 7] = dr["hrc5name"].ToString();
-                    wSheet.Cells[excelRow, 8] = dr["prd_qty"].ToString();
+                    wSheet.Cells[excelRow, 8] = dr["prd_nor_qty"].ToString();
                     wSheet.Cells[excelRow, 9] = dr["count_time"].ToString();
                     wSheet.Cells[excelRow, 10] = dr["prd_bonus"].ToString();
                     wSheet.Rows[excelRow].RowHeight = 30;
