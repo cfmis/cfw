@@ -209,16 +209,23 @@ namespace WebPortal.Sales
                 sb.Append(
                 "<th bgColor='#ccfefe'>Season</th>" +
                 "<th bgColor='#ccfefe'>Division</th>" +
-                "<th bgColor='#ccfefe'>Client#</th>" +
-                "<th bgColor='#ccfefe'>Handbag factory name</th>" +
-                "<th bgColor='#ccfefe'>Order Date</th>" +
-                "<th bgColor='#ccfefe'>PO#</th>" +
-                "<th bgColor='#ccfefe'>Item#</th>" +
-                "<th bgColor='#ccfefe'>Color</th>" +
-                "<th bgColor='#ccfefe'>QTY(Set)</th>" +
-                "<th bgColor='#ccfefe'>Price(USD)</th>" +
-                "<th bgColor='#ccfefe'>Amount(USD)</th>"+
-                "<th bgColor='#ccfefe'>Delivery Date</th>"
+                "<th bgColor='#ccfefe'>HB Vendors</th>" +
+                "<th bgColor='#ccfefe'>Hardware Fty</th>" +
+                "<th bgColor='#ccfefe'>PO date</th>" +
+                "<th bgColor='#ccfefe'>PO #</th>" +
+                "<th bgColor='#ccfefe'>Supplier code</th>" +
+                "<th bgColor='#ccfefe'>PLM Code</th>" +
+                "<th bgColor='#ccfefe'>BOM Material Name</th>" +
+                "<th bgColor='#ccfefe'>Hardware type</th>" +
+                "<th bgColor='#ccfefe'>Description</th>" +
+                "<th bgColor='#ccfefe'>Color/Finish</th>" +
+                "<th bgColor='#ccfefe'>QTY (Set)</th>"+
+                "<th bgColor='#ccfefe'>FOB HK Price (USD)</th>" +
+                "<th bgColor='#ccfefe'>Amount USD</th>" +
+                "<th bgColor='#ccfefe'>Supplier updated ETD</th>" +
+                "<th bgColor='#ccfefe'>HB fty request ETD</th>" +
+                "<th bgColor='#ccfefe'>D1/D2/D3</th>" +
+                "<th bgColor='#ccfefe'>actual shipped date</th>"
                 );
             else//明細表
                 sb.Append(
@@ -271,16 +278,23 @@ namespace WebPortal.Sales
                     sb.Append("<tr class='firstTR'>");
                     sb.Append("<td>" + row["season"] + " </td>");
                     sb.Append("<td>" + row["division"] + "</td>");
-                    sb.Append("<td>" + row["it_customer"] + "</td>");
                     sb.Append("<td>" + row["cust_name"] + "</td>");
+                    sb.Append("<td>" + "ChingFung" + "</td>");
                     sb.Append("<td>" + "=\"" + row["order_date"] + "\"" + "</td>");
-                    sb.Append("<td>" + "=\"" + row["contract_id"] + "\"" + "</td>");
-                    sb.Append("<td>" + "=\"" + row["table_head"] + "\"" + "</td>");
-                    sb.Append("<td>" + "=\"" + row["customer_color_id"] + "\"" + "</td>");
+                    sb.Append("<td>" + row["contract_id"] + "</td>");
+                    sb.Append("<td>" + row["blueprint_id"] + "</td>");
+                    sb.Append("<td>" + "" + "</td>");
+                    sb.Append("<td>" + "" + "</td>");
+                    sb.Append("<td>" + "Snap" + "</td>");
+                    sb.Append("<td>" + row["table_head"] + "</td>");
+                    sb.Append("<td>" + row["customer_color_id"] + "</td>");
                     sb.Append("<td>" + row["qty_pcs"] + "</td>");
                     sb.Append("<td>" + row["price_pcs_usd"] + "</td>");
                     sb.Append("<td>" + row["amt_usd"] + "</td>");
-                    sb.Append("<td>" + row["arrive_date"] + "</td>");
+                    sb.Append("<td>" + "" + "</td>");
+                    sb.Append("<td>" + "" + "</td>");
+                    sb.Append("<td>" + "" + "</td>");
+                    sb.Append("<td>" + "=\"" + row["arrive_date"] + "\"" + "</td>");
                     sb.Append("</tr>");
 
                 }

@@ -130,7 +130,9 @@
                 { field: 'position_first', title: '包數單位', width: 80 },
                 { field: 'brand_id', title: '牌子編號', width: 80 },
                 { field: 'brand_name', title: '牌子描述', width: 80 },
-                { field: 'apr_brand_id', title: '授權狀態', width: 80 }
+                { field: 'apr_brand_id', title: '授權狀態', width: 80 },
+                { field: 'it_customer', title: '客戶編號', width: 80 },
+                { field: 'cust_cname', title: '客戶描述', width: 80 },
                 ]],
                 loadFilter: pagerFilter,
                 //toolbar: [{
@@ -230,6 +232,8 @@
             row += '<td>' + '牌子編號' + '</td>';
             row += '<td>' + '牌子描述' + '</td>';
             row += '<td>' + '授權狀態' + '</td>';
+            row += '<td>' + '客戶編號' + '</td>';
+            row += '<td>' + '客戶描述' + '</td>';
             //列头结束
             excel += row + "</tr>";
 
@@ -254,6 +258,8 @@
                 row += '<td>' + arrData[i]["brand_id"] + '</td>';
                 row += '<td>' + arrData[i]["brand_name"] + '</td>';
                 row += '<td>' + arrData[i]["apr_brand_id"] + '</td>';
+                row += '<td>' + arrData[i]["it_customer"] + '</td>';
+                row += '<td>' + arrData[i]["cust_cname"] + '</td>';
                 excel += row + "</tr>";
             }
             //table结束
